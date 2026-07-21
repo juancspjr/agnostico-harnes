@@ -1,0 +1,211 @@
+{
+  "l3_entries": {
+    "parse_toml": {
+      "qualname": "parse_toml",
+      "file": ".jcode/lib/_config_parse.py",
+      "anchor": "parse_toml",
+      "line_range": [
+        15,
+        42
+      ],
+      "source_hash": "",
+      "interface": "(content)",
+      "behavior": "Funci\u00f3n parse_toml participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "parse_section_body": {
+      "qualname": "parse_section_body",
+      "file": ".jcode/lib/_config_parse.py",
+      "anchor": "parse_section_body",
+      "line_range": [
+        45,
+        67
+      ],
+      "source_hash": "",
+      "interface": "(body)",
+      "behavior": "Funci\u00f3n parse_section_body participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "get_value": {
+      "qualname": "get_value",
+      "file": ".jcode/lib/_config_parse.py",
+      "anchor": "get_value",
+      "line_range": [
+        70,
+        84
+      ],
+      "source_hash": "",
+      "interface": "(toml_data, key_path)",
+      "behavior": "Funci\u00f3n get_value participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "main": {
+      "qualname": "main",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "main",
+      "line_range": [
+        193,
+        202
+      ],
+      "source_hash": "",
+      "interface": "()",
+      "behavior": "Funci\u00f3n main participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "PythonAdapter.extract": {
+      "qualname": "PythonAdapter.extract",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "PythonAdapter.extract",
+      "line_range": [
+        21,
+        71
+      ],
+      "source_hash": "",
+      "interface": "(self, repo_root: Path) -> dict",
+      "behavior": "Funci\u00f3n PythonAdapter.extract participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "PythonAdapter._extract_from_tree": {
+      "qualname": "PythonAdapter._extract_from_tree",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "PythonAdapter._extract_from_tree",
+      "line_range": [
+        73,
+        97
+      ],
+      "source_hash": "",
+      "interface": "(self, tree, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log)",
+      "behavior": "Funci\u00f3n PythonAdapter._extract_from_tree participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "PythonAdapter._record_function": {
+      "qualname": "PythonAdapter._record_function",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "PythonAdapter._record_function",
+      "line_range": [
+        99,
+        157
+      ],
+      "source_hash": "",
+      "interface": "(self, func_node, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log, qualname_prefix='')",
+      "behavior": "Funci\u00f3n PythonAdapter._record_function participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "PythonAdapter._get_call_name": {
+      "qualname": "PythonAdapter._get_call_name",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "PythonAdapter._get_call_name",
+      "line_range": [
+        159,
+        165
+      ],
+      "source_hash": "",
+      "interface": "(self, func_node)",
+      "behavior": "Funci\u00f3n PythonAdapter._get_call_name participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "PythonAdapter._is_assign_target": {
+      "qualname": "PythonAdapter._is_assign_target",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "PythonAdapter._is_assign_target",
+      "line_range": [
+        167,
+        171
+      ],
+      "source_hash": "",
+      "interface": "(self, attr_node)",
+      "behavior": "Funci\u00f3n PythonAdapter._is_assign_target participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "build_program_graph": {
+      "qualname": "build_program_graph",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "build_program_graph",
+      "line_range": [
+        174,
+        178
+      ],
+      "source_hash": "",
+      "interface": "(repo_root: str) -> dict",
+      "behavior": "Funci\u00f3n build_program_graph participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "save_program_graph": {
+      "qualname": "save_program_graph",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "save_program_graph",
+      "line_range": [
+        181,
+        190
+      ],
+      "source_hash": "",
+      "interface": "(graph: dict, output_path: str)",
+      "behavior": "Funci\u00f3n save_program_graph participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    }
+  },
+  "l2_pages": [
+    "execute.md",
+    "handoff.md",
+    "init.md",
+    "interpret.md",
+    "plan.md",
+    "verify.md"
+  ],
+  "l1_overview": "overview.md"
+}

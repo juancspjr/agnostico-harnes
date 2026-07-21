@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "leaf_mode": "function",
+  "stage_skeleton": {
+    "stages": [
+      {
+        "id": "init",
+        "name": "Initialization",
+        "description": "Bootstrap session, state init, integrity check"
+      },
+      {
+        "id": "interpret",
+        "name": "Interpretation",
+        "description": "Triage task, decide skills, load MCPs"
+      },
+      {
+        "id": "plan",
+        "name": "Planning",
+        "description": "DDLP, TPSP, declare loop"
+      },
+      {
+        "id": "execute",
+        "name": "Execution",
+        "description": "Worker, build, edit, commit"
+      },
+      {
+        "id": "verify",
+        "name": "Verification",
+        "description": "fixed_check, smoke tests, screenshot"
+      },
+      {
+        "id": "handoff",
+        "name": "Handoff",
+        "description": "Closeout, update PLAN-VIVO \u00a78, handoff next agent"
+      }
+    ]
+  },
+  "function_assignments": [
+    {
+      "qualname": "parse_toml",
+      "purpose": "Funci\u00f3n parse_toml participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/_config_parse.py",
+      "line_range": [
+        15,
+        42
+      ]
+    },
+    {
+      "qualname": "parse_section_body",
+      "purpose": "Funci\u00f3n parse_section_body participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/_config_parse.py",
+      "line_range": [
+        45,
+        67
+      ]
+    },
+    {
+      "qualname": "get_value",
+      "purpose": "Funci\u00f3n get_value participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/_config_parse.py",
+      "line_range": [
+        70,
+        84
+      ]
+    },
+    {
+      "qualname": "main",
+      "purpose": "Funci\u00f3n main participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/_config_parse.py",
+      "line_range": [
+        87,
+        112
+      ]
+    },
+    {
+      "qualname": "PythonAdapter.extract",
+      "purpose": "Funci\u00f3n PythonAdapter.extract participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        21,
+        71
+      ]
+    },
+    {
+      "qualname": "PythonAdapter._extract_from_tree",
+      "purpose": "Funci\u00f3n PythonAdapter._extract_from_tree participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        73,
+        97
+      ]
+    },
+    {
+      "qualname": "PythonAdapter._record_function",
+      "purpose": "Funci\u00f3n PythonAdapter._record_function participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        99,
+        157
+      ]
+    },
+    {
+      "qualname": "PythonAdapter._get_call_name",
+      "purpose": "Funci\u00f3n PythonAdapter._get_call_name participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        159,
+        165
+      ]
+    },
+    {
+      "qualname": "PythonAdapter._is_assign_target",
+      "purpose": "Funci\u00f3n PythonAdapter._is_assign_target participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        167,
+        171
+      ]
+    },
+    {
+      "qualname": "build_program_graph",
+      "purpose": "Funci\u00f3n build_program_graph participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        174,
+        178
+      ]
+    },
+    {
+      "qualname": "save_program_graph",
+      "purpose": "Funci\u00f3n save_program_graph participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        181,
+        190
+      ]
+    },
+    {
+      "qualname": "main",
+      "purpose": "Funci\u00f3n main participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        193,
+        202
+      ]
+    }
+  ],
+  "coverage_record": {
+    "unmapped_functions": []
+  }
+}

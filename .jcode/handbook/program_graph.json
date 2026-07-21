@@ -1,0 +1,770 @@
+{
+  "schema_version": 1,
+  "language": "python",
+  "leaf_mode": "function",
+  "files_scanned": 2,
+  "functions": [
+    {
+      "qualname": "parse_toml",
+      "file": ".jcode/lib/_config_parse.py",
+      "line_range": [
+        15,
+        42
+      ],
+      "signature": "(content)",
+      "body_hash": "sha256:04abcda8e45be0fe"
+    },
+    {
+      "qualname": "parse_section_body",
+      "file": ".jcode/lib/_config_parse.py",
+      "line_range": [
+        45,
+        67
+      ],
+      "signature": "(body)",
+      "body_hash": "sha256:cb61ae00a65e9142"
+    },
+    {
+      "qualname": "get_value",
+      "file": ".jcode/lib/_config_parse.py",
+      "line_range": [
+        70,
+        84
+      ],
+      "signature": "(toml_data, key_path)",
+      "body_hash": "sha256:14bcbae10c65964c"
+    },
+    {
+      "qualname": "main",
+      "file": ".jcode/lib/_config_parse.py",
+      "line_range": [
+        87,
+        112
+      ],
+      "signature": "()",
+      "body_hash": "sha256:4526614e4490e6b4"
+    },
+    {
+      "qualname": "PythonAdapter.extract",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        21,
+        71
+      ],
+      "signature": "(self, repo_root: Path) -> dict",
+      "body_hash": "sha256:9c6891feb2d0d438"
+    },
+    {
+      "qualname": "PythonAdapter._extract_from_tree",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        73,
+        97
+      ],
+      "signature": "(self, tree, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log)",
+      "body_hash": "sha256:073d3b137c287cc0"
+    },
+    {
+      "qualname": "PythonAdapter._record_function",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        99,
+        157
+      ],
+      "signature": "(self, func_node, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log, qualname_prefix='')",
+      "body_hash": "sha256:5f90658998f914fa"
+    },
+    {
+      "qualname": "PythonAdapter._get_call_name",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        159,
+        165
+      ],
+      "signature": "(self, func_node)",
+      "body_hash": "sha256:6dc07562c6186fca"
+    },
+    {
+      "qualname": "PythonAdapter._is_assign_target",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        167,
+        171
+      ],
+      "signature": "(self, attr_node)",
+      "body_hash": "sha256:f533aa889238c33f"
+    },
+    {
+      "qualname": "build_program_graph",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        174,
+        178
+      ],
+      "signature": "(repo_root: str) -> dict",
+      "body_hash": "sha256:7f71faaf4b77a98d"
+    },
+    {
+      "qualname": "save_program_graph",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        181,
+        190
+      ],
+      "signature": "(graph: dict, output_path: str)",
+      "body_hash": "sha256:2102a9366cb877df"
+    },
+    {
+      "qualname": "main",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        193,
+        202
+      ],
+      "signature": "()",
+      "body_hash": "sha256:96b9a819392dffbf"
+    }
+  ],
+  "boundaries": [],
+  "call_edges": [
+    {
+      "caller": "parse_toml",
+      "callee": "split",
+      "line": 28,
+      "resolved": false
+    },
+    {
+      "caller": "parse_toml",
+      "callee": "flush_section",
+      "line": 41,
+      "resolved": false
+    },
+    {
+      "caller": "parse_toml",
+      "callee": "join",
+      "line": 25,
+      "resolved": false
+    },
+    {
+      "caller": "parse_toml",
+      "callee": "parse_section_body",
+      "line": 26,
+      "resolved": false
+    },
+    {
+      "caller": "parse_toml",
+      "callee": "match",
+      "line": 30,
+      "resolved": false
+    },
+    {
+      "caller": "parse_toml",
+      "callee": "startswith",
+      "line": 37,
+      "resolved": false
+    },
+    {
+      "caller": "parse_toml",
+      "callee": "flush_section",
+      "line": 32,
+      "resolved": false
+    },
+    {
+      "caller": "parse_toml",
+      "callee": "strip",
+      "line": 33,
+      "resolved": false
+    },
+    {
+      "caller": "parse_toml",
+      "callee": "append",
+      "line": 40,
+      "resolved": false
+    },
+    {
+      "caller": "parse_toml",
+      "callee": "strip",
+      "line": 37,
+      "resolved": false
+    },
+    {
+      "caller": "parse_toml",
+      "callee": "group",
+      "line": 33,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "compile",
+      "line": 49,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "finditer",
+      "line": 52,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "compile",
+      "line": 58,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "finditer",
+      "line": 59,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "group",
+      "line": 53,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "group",
+      "line": 54,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "findall",
+      "line": 55,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "group",
+      "line": 60,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "strip",
+      "line": 63,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "startswith",
+      "line": 64,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "endswith",
+      "line": 64,
+      "resolved": false
+    },
+    {
+      "caller": "parse_section_body",
+      "callee": "group",
+      "line": 63,
+      "resolved": false
+    },
+    {
+      "caller": "get_value",
+      "callee": "rsplit",
+      "line": 78,
+      "resolved": false
+    },
+    {
+      "caller": "get_value",
+      "callee": "exit",
+      "line": 76,
+      "resolved": false
+    },
+    {
+      "caller": "get_value",
+      "callee": "exit",
+      "line": 80,
+      "resolved": false
+    },
+    {
+      "caller": "get_value",
+      "callee": "exit",
+      "line": 83,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "parse_toml",
+      "line": 102,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "isinstance",
+      "line": 108,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "len",
+      "line": 88,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "print",
+      "line": 89,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "exit",
+      "line": 90,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "get_value",
+      "line": 104,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "print",
+      "line": 112,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "open",
+      "line": 96,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "read",
+      "line": 97,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "print",
+      "line": 99,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "exit",
+      "line": 100,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "exit",
+      "line": 106,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "print",
+      "line": 110,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "rglob",
+      "line": 39,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "exists",
+      "line": 36,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "str",
+      "line": 51,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "_extract_from_tree",
+      "line": 52,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "len",
+      "line": 58,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "read_text",
+      "line": 42,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "parse",
+      "line": 43,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "relative_to",
+      "line": 51,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "append",
+      "line": 45,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "str",
+      "line": 43,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "str",
+      "line": 46,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "relative_to",
+      "line": 46,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "type",
+      "line": 47,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "str",
+      "line": 47,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "walk",
+      "line": 78,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "isinstance",
+      "line": 79,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "isinstance",
+      "line": 92,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "append",
+      "line": 80,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "pop",
+      "line": 88,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "_record_function",
+      "line": 93,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "isinstance",
+      "line": 82,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "_record_function",
+      "line": 83,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "join",
+      "line": 86,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "append",
+      "line": 126,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "walk",
+      "line": 135,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "isinstance",
+      "line": 136,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "hasattr",
+      "line": 108,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "unparse",
+      "line": 108,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "get_source_segment",
+      "line": 121,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "_get_call_name",
+      "line": 137,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "isinstance",
+      "line": 147,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "isinstance",
+      "line": 147,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "_is_assign_target",
+      "line": 150,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "append",
+      "line": 152,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "hasattr",
+      "line": 114,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "hexdigest",
+      "line": 122,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "append",
+      "line": 139,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "unparse",
+      "line": 114,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "sha256",
+      "line": 122,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "encode",
+      "line": 122,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._get_call_name",
+      "callee": "isinstance",
+      "line": 161,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._get_call_name",
+      "callee": "isinstance",
+      "line": 163,
+      "resolved": false
+    },
+    {
+      "caller": "build_program_graph",
+      "callee": "resolve",
+      "line": 176,
+      "resolved": false
+    },
+    {
+      "caller": "build_program_graph",
+      "callee": "PythonAdapter",
+      "line": 177,
+      "resolved": false
+    },
+    {
+      "caller": "build_program_graph",
+      "callee": "extract",
+      "line": 178,
+      "resolved": false
+    },
+    {
+      "caller": "build_program_graph",
+      "callee": "Path",
+      "line": 176,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "mkdir",
+      "line": 183,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "print",
+      "line": 186,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "print",
+      "line": 187,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "open",
+      "line": 184,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "dump",
+      "line": 185,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "Path",
+      "line": 183,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "len",
+      "line": 187,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "len",
+      "line": 188,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "len",
+      "line": 189,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "ArgumentParser",
+      "line": 195,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 196,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 197,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "parse_args",
+      "line": 199,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "build_program_graph",
+      "line": 201,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "save_program_graph",
+      "line": 202,
+      "resolved": false
+    }
+  ],
+  "state_accesses": [
+    {
+      "function": "PythonAdapter.extract",
+      "attribute": "self._extract_from_tree",
+      "access": "write",
+      "line": 52
+    },
+    {
+      "function": "PythonAdapter._extract_from_tree",
+      "attribute": "self._record_function",
+      "access": "write",
+      "line": 93
+    },
+    {
+      "function": "PythonAdapter._extract_from_tree",
+      "attribute": "self._record_function",
+      "access": "write",
+      "line": 83
+    },
+    {
+      "function": "PythonAdapter._record_function",
+      "attribute": "self._get_call_name",
+      "access": "write",
+      "line": 137
+    },
+    {
+      "function": "PythonAdapter._record_function",
+      "attribute": "self._is_assign_target",
+      "access": "write",
+      "line": 150
+    }
+  ],
+  "unresolved_calls_log": []
+}
