@@ -129,9 +129,30 @@ on_demand = [
 # =============================================================================
 # Providers (Forzado a nivel de proyecto)
 # =============================================================================
-[handbook]
+[handbook.stages]
+id.init      = "init"
+name.init    = "Inicialización"
+description.init = "Bootstrap session, state init"
 
-stages = [{"id": "init", "name": "Inicializaci\u00f3n", "description": "Bootstrap session, state init"}, {"id": "interpret", "name": "Interpretaci\u00f3n", "description": "Triage task, decide skills"}, {"id": "plan", "name": "Planificaci\u00f3n", "description": "DDLP, TPSP, declare loop"}, {"id": "execute", "name": "Ejecuci\u00f3n", "description": "Worker, build, edit, commit"}, {"id": "verify", "name": "Verificaci\u00f3n", "description": "Checks, smoke tests"}, {"id": "handoff", "name": "Entrega", "description": "Closeout, handoff next agent"}]
+id.interpret = "interpret"
+name.interpret = "Interpretación"
+description.interpret = "Triage task, decide skills"
+
+id.plan      = "plan"
+name.plan    = "Planificación"
+description.plan = "DDLP, TPSP, declare loop"
+
+id.execute   = "execute"
+name.execute = "Ejecución"
+description.execute = "Worker, build, edit, commit"
+
+id.verify    = "verify"
+name.verify  = "Verificación"
+description.verify = "Checks, smoke tests"
+
+id.handoff   = "handoff"
+name.handoff = "Entrega"
+description.handoff = "Closeout, handoff next agent"
 
 # =============================================================================
 # Hidden Failure Patterns (FAILURE-PATTERNS.md)
@@ -144,5 +165,23 @@ require_fixed_check_assertion = true
 require_idempotent_state_changes = true
 forbid_silent_error_suppression = true
 flaky_repeat_count = 5
+
+# =============================================================================
+# Frontier quality — effort routing por task_class
+# =============================================================================
+# El agente normal no sabe qué effort usar. Esto lo hace explícito.
+# Los hooks leen este bloque y lo inyectan en el prompt del turno.
+[policy.effort_routing]
+MICROFIX     = "low"
+SLICE        = "medium"
+REMEDIATION  = "high"
+PHASE-CLOSE  = "medium"
+AUDIT        = "low"
+
+[policy.frontier_quality]
+require_self_critique   = true
+require_evidence_bundle = true
+auto_spawn_reviewer     = true
+reasoning_trace         = true
 
 

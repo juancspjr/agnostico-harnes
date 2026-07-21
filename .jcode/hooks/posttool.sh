@@ -25,6 +25,18 @@ source "$JCODE_DIR/lib/state_manager.sh"
 source "$JCODE_DIR/lib/config_reader.sh"
 
 # ----------------------------------------------------------------------------
+# Frontier quality: reasoning trace (proxy ejecutable)
+# ----------------------------------------------------------------------------
+# Captura tool calls en `.jcode/logs/trace-YYYYMMDD.log`. NO captura el
+# thinking interno del LLM (eso requiere soporte del runtime); captura lo
+# observable externamente. Es un proxy, no una réplica del reasoning.
+TRACE_ENABLED="$(config_get policy.frontier_quality.reasoning_trace 2>/dev/null || echo 'false')"
+if [[ "$TRACE_ENABLED" == "true" ]]; then
+  TRACE_LOG="$JCODE_DIR/logs/trace-$(date -u +%Y%m%d).log"
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] posttool invoked (runner=${TOOL_NAME:-unknown})" >> "$TRACE_LOG"
+fi
+
+# ----------------------------------------------------------------------------
 # Construir regex de extensiones desde config.toml (H-02)
 # ----------------------------------------------------------------------------
 _build_code_ext_regex() {

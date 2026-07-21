@@ -109,4 +109,36 @@ else
   state_set closeout_passed false
 fi
 
+# ----------------------------------------------------------------------------
+# Frontier quality gate (quality-preamble.md)
+# ----------------------------------------------------------------------------
+TASK_CLASS="$(state_get current_loop_task_class 2>/dev/null || echo 'MICROFIX')"
+SELF_CRITIQUE_REQUIRED="$(config_get policy.frontier_quality.require_self_critique 2>/dev/null || echo 'false')"
+EVIDENCE_REQUIRED="$(config_get policy.frontier_quality.require_evidence_bundle 2>/dev/null || echo 'false')"
+REVIEWER_AUTO="$(config_get policy.frontier_quality.auto_spawn_reviewer 2>/dev/null || echo 'false')"
+
+# 1. Self-critique prompt
+if [[ "$SELF_CRITIQUE_REQUIRED" == "true" ]]; then
+  echo "[turnend] SELF-CRITIQUE: Re-leé tu último output contra la petición original." >&2
+  echo "[turnend] Si encontrás un error, corregilo ANTES de cerrar sesión." >&2
+  state_set self_critique_pending true
+fi
+
+# 2. Evidence bundle automático
+if [[ "$EVIDENCE_REQUIRED" == "true" && "$TASK_CLASS" != "AUDIT" ]]; then
+  bash "$JCODE_DIR/lib/evidence_bundle.sh" "$loop" 2>&1 | sed 's/^/[turnend] /' >&2 || true
+fi
+
+# 3. Reviewer spawn requirement
+if [[ "$REVIEWER_AUTO" == "true" ]]; then
+  case "$TASK_CLASS" in
+    SLICE|REMEDIATION|PHASE-CLOSE)
+      echo "[turnend] REVIEWER REQUIRED: task_class=$TASK_CLASS exige revisión independiente." >&2
+      echo "[turnend] En TUI: Ctrl+N → spawn reviewer con fixed_check como prompt." >&2
+      state_set reviewer_required true
+      state_set reviewer_task_class "$TASK_CLASS"
+      ;;
+  esac
+fi
+
 exit 0

@@ -27,3 +27,22 @@ Quality harness – frontier emulation (applies to all agents, including yoursel
 - After producing a deliverable (code, design, analysis), re‑read the original request and verify your output against it. If you find a flaw, fix it before responding.
 - For any non‑trivial implementation, spawn a short‑lived reviewer (`label: "reviewer"`, `model: "9router:team"` or the same model if cost matters) with the prompt "Review the following output for correctness, completeness, and edge cases. List concrete improvements." Use its feedback to revise before reporting upstream.
 - Keep results concise but always include the evidence or reasoning that supports your conclusion.
+
+## Reasoning explícito (frontier quality)
+
+Cuando razones sobre una decisión no trivial, escribí tu razonamiento en este formato:
+
+    [Thinking]
+    1. Qué estoy intentando resolver
+    2. Qué opciones tengo
+    3. Qué descarto y por qué
+    4. Qué elijo y por qué
+    [EndThinking]
+
+El harness loguea tus tool calls automáticamente en `.jcode/logs/trace-*.log`.
+Tu reasoning explícito complementa ese trace y permite auditoría posterior.
+
+Si el runtime no soporta reasoning visible, declaralo en `PLAN-VIVO §8`:
+
+    - limitation: "runtime no expone reasoning interno"
+    - mitigation: "tool-call trace activo + self-critique en turnend"
