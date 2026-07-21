@@ -65,6 +65,20 @@ if [[ $last_commit_age -le 5 ]]; then
   fi
 fi
 
+# 6b. Handbook resync (Pilar 2 del paper) — paper ref §3.3.3 + Appendix B.4
+if [[ $last_commit_age -le 5 ]]; then
+  HANDBOOK_DIR="$JCODE_DIR/handbook"
+  if [[ -d "$HANDBOOK_DIR" ]] && [[ -f "$HANDBOOK_DIR/K_g.json" ]]; then
+    echo "[turnend] Sincronizando handbook (Resync_g)…"
+    if python3 "$JCODE_DIR/lib/handbook_resync.py" --auto 2>&1 | \
+       tee -a "$JCODE_DIR/logs/handbook_resync.log"; then
+      echo "[turnend] ✅ Handbook resync OK"
+    else
+      echo "[turnend] ⚠️  Handbook resync falló — ver log" >&2
+    fi
+  fi
+fi
+
 # 5c. AUDITORÍA 3: si commit reciente tocó modelos de datos, recordar STATE-REGISTERS + BEHAVIOR-INDEX
 # Patrones derivados de config.toml (H-02)
 if [[ $last_commit_age -le 5 ]]; then
