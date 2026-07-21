@@ -1,11 +1,11 @@
 ---
 type: HARNESS-MAP
-version: 101.2-paper-compliant
+version: 101.4-orient-checkpoints
 date: 2026-07-21
-title: Arnés JCode — Paper-Compliant + Bootstrap Adaptativo
+title: Arnés JCode — Paper-Compliant + Bootstrap Adaptativo + Orient v101.4
 ---
 
-# Arnés JCode — Mapa del Arnés (v101.2-paper-compliant)
+# Arnés JCode — Mapa del Arnés (v101.4-orient-checkpoints)
 
 > **Filosofía**: este arnés es **agnóstico al dominio**. Cero paths de proyecto,
 > cero contraseñas, cero reglas de negocio. Toda la mecánica operativa portable
@@ -38,6 +38,12 @@ title: Arnés JCode — Paper-Compliant + Bootstrap Adaptativo
 ├── INTERPRETACION.md                  # Capa de decisión pre-código
 ├── INCIDENT-PROTOCOLS.md              # Protocolos raros (fragmentación, preflight)
 ├── FAILURE-PATTERNS.md                 # Catálogo normativo de fallos ocultos + HF Gate
+├── quality-preamble.md                  # *** NUEVO: Protocolo de calidad para cada agente ***
+├── swarm-prompt.md                      # *** NUEVO: Routing + calidad inyectada a cada spawn ***
+├── orient/                              # *** NUEVO v101.4: 11 checkpoints de seguridad ***
+│   ├── SKILL.md                         # Triage + 10 preguntas + 7 fases + 11 checkpoints
+│   ├── ANALISIS-COMPARATIVO.md          # 15 flujos del harness vs cobertura de orient
+│   └── ARBOL-CONEXIONES.md              # 37 mecanismos del harness mapeados
 ├── BEHAVIOR-INDEX.md                  # Índice de comportamientos del sistema
 ├── STATE-REGISTERS.md                 # Registros de estado del sistema
 ├── config.toml                        # Política ejecutable (env-based)
@@ -145,6 +151,90 @@ python3 .jcode/lib/handbook_verify.py --request "modificar función auth"
 
 ---
 
+## Skill `orient` v101.4 — Mecanismo de seguridad de flujo (NUEVO)
+
+La skill `orient` ahora opera como **mecanismo de seguridad obligatorio** del flujo del agente.
+
+### Arquitectura de Orient
+
+```text
+¿Tarea nueva?
+├─ NO → ¿Compresión? → SÍ → Fase 4 (re-anclaje)
+└─ SÍ → F0 (bootstrap)
+         ├─ FAIL → bootstrap --apply primero
+         └─ PASS → P1-P10 (10 preguntas en cascada)
+                  ├─ MICROFIX  → 2-A + F1 + F1.5 + Fase 3
+                  ├─ SLICE     → 2-B + F1 + F1.5 + F2-F5 + F9-F11 + Fase 3
+                  ├─ REMEDIATION → 2-C + F1 + F1.5 + F3 + Fase 3
+                  └─ MAINTENANCE → 2-D + F1 + F1.5 + F2-F7 + F9 + Fase 3
+```
+
+### 11 Checkpoints (F0-F11) ejecutables
+
+| Chk | Función | Comando |
+|-----|---------|---------|
+| F0 | Proyecto bootstrap-eado | `bootstrap_all.py --json` |
+| F1 | HF Gate | `verify_hidden_failure_gate*.sh` |
+| F1.5 | Patrones HF por task_class | dict en runtime |
+| F2 | Effort routing | `tomllib` lee `config.toml` |
+| F3 | Evidence bundle | `evidence_bundle.sh <loop_id>` |
+| F4 | Self-critique | marca `self_critique_done=true` |
+| F5 | Reviewer spawn | marca `reviewer_required=true` |
+| F6 | Rebuild handbook | `handbook_builder.py + phase2 + phase3` |
+| F7 | Regresión completa | `run_all.sh + 4 verify_*.sh` |
+| F8 | Aprobación humana | `compliance.json:approval_recorded` |
+| F9 | Contamination-zero | `harness.sh check` |
+| F10 | BGPD verify | `handbook_verify.py --request` |
+| F11 | Cross-check consumidores | `grep old=0, new≥1` |
+
+### 10 Preguntas del árbol
+
+P1-P4 (legacy): muta estado, UI, >2 archivos, tiempo.
+P5: ¿test independiente presente?
+P6: ¿marcadores de compresión?
+P7: ¿toca código del harness?
+P8: ¿bug recurrente?
+P9: ¿hay approval_boundary?
+P10: ¿cambia contrato/schema/R-N?
+
+### Cobertura medida
+
+| Categoría | Cobertura |
+|-----------|-----------|
+| Leyes (PRINCIPLES.md) | 93% (14/14 principios) |
+| Paper-compliant | 78% (Phase I/II/III, resync, BGPD, freeze, OP Γ, leaf mode) |
+| HF Gate | 75% (validación de patrones por task_class) |
+
+---
+
+## Frontier Quality Automation (NUEVO)
+
+5 mecanismos ejecutables que convierten el `quality-preamble.md` de consejo a flujo obligatorio:
+
+1. **Effort routing** — `config.toml [policy.effort_routing]` mapea task_class → effort
+2. **Evidence bundle generator** — `evidence_bundle.sh` arma bundle automáticamente
+3. **Self-critique** — `turnend.sh` marca `self_critique_pending` y avisa al agente
+4. **Reviewer spawn** — `turnend.sh` declara `reviewer_required` si task_class ≥ SLICE
+5. **Reasoning trace** — `posttool.sh` loguea tool calls en `.jcode/logs/trace-*.log`
+
+---
+
+## Skill `bootstrap-proyecto` (NUEVO)
+
+Cubre los 3 gaps del paper-compliant cuando el proyecto está vacío o en otro stack:
+
+```bash
+python3 .jcode/skills/bootstrap-proyecto/lib/bootstrap_all.py
+```
+
+| Gap | Cubre |
+|-----|-------|
+| 1 — Stages adaptativas | Detecta dominio (CRM/API/ML/etc.) desde PDR.md |
+| 2 — Multi-lenguaje | Framework `BaseAdapter` con Python como referencia |
+| 3 — Auto-init | Genera `contamination_patterns.txt`, `mcp.json`, stages |
+
+---
+
 ## Qué hace el harness por ti (mejoras incorporadas)
 
 ### Antes de la auditoría (v100-clean)
@@ -161,7 +251,7 @@ python3 .jcode/lib/handbook_verify.py --request "modificar función auth"
 | Race condition | Sin locks en escritura JSON |
 | Stages | Hardcodeadas (init/interpret/plan/execute/verify/handoff) |
 
-### Después de la remediación (v101.2)
+### Después de la remediación + automatización (v101.4)
 
 | Componente | Estado |
 |-----------|--------|
@@ -174,6 +264,10 @@ python3 .jcode/lib/handbook_verify.py --request "modificar función auth"
 | Path inválido | **Error claro, PG no se corrompe** |
 | Race condition | **fcntl.flock + os.replace atómico** |
 | Stages | **Adaptativas al dominio del proyecto** |
+| HF Gate | **Tests ejecutables + 26 strikes en compliance.json** |
+| Frontier Quality | **5 mecanismos ejecutables en hooks** |
+| Bootstrap adaptativo | **3 módulos + stages por dominio** |
+| **Orient** | **11 checkpoints + 10 preguntas + 7 fases + 93% leyes + 78% paper** |
 
 ---
 
@@ -375,6 +469,12 @@ Cada log documenta: cambios aplicados, output de tests, veredicto.
 
 ## Versión
 
+- **v101.4-orient-checkpoints** (2026-07-21): Skill `orient` reescrita como mecanismo
+  de seguridad de flujo. 11 checkpoints (F0-F11), 10 preguntas en árbol (P1-P10),
+  7 fases (0, 1, 2-A, 2-B, 2-C, 2-D MAINTENANCE, 3, 4), 5 anti-patrones nuevos.
+  Cobertura: 93% leyes PRINCIPLES, 78% paper-compliant, 75% HF Gate.
+  Quality-preamble.md integrado con routing/evidence/self-critique/reviewer/reasoning.
+  Frontier Quality Automation: 5 mecanismos ejecutables. 19 tests anti-fraude.
 - **v101.2-paper-compliant** (2026-07-21): Los 3 pilares del paper implementados.
   Remedación de 9 blockers (4 CRITICAL + 5 HIGH). Skill bootstrap-proyecto
   para stages adaptativas, multi-lenguaje, y auto-inicialización. 18 tests
