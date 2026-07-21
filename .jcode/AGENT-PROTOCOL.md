@@ -64,6 +64,15 @@ salvo búsqueda específica con `grep`.
 - [ ] **7. VERIFICACIÓN EJECUTADA**: corrí `fixed_check` del loop actual y pasó
 - [ ] **8. ACTUALIZAR MAPAS**: si el commit tocó un modelo de datos (DB, DTO, servicio), actualizar `STATE-REGISTERS.md`. Si introdujo nueva feature o fix con efecto observable, agregar entrada a `BEHAVIOR-INDEX.md`.
 
+### Si es remediación (bloqueo de guardrail o blocker)
+
+- [ ] **R7. R-VERIFY-BEFORE-CLAIM**: antes de declarar resuelto, ejecuté el comando de verificación y capturé su output. No afirmo "funciona" sin evidencia.
+- [ ] **R8. R-INDEPENDENT-TEST**: creé el test independiente ANTES de declarar el blocker resuelto. El test recalcula desde ground truth, no lee archivos del fix.
+- [ ] **R9. R-ITERATION-LOG**: documenté la iteración en `.jcode/logs/remediation-{ID}-iter{N}.log` con timestamp, cambios, outputs y veredicto.
+- [ ] **R10. R-NO-SILENT-STUB**: si hay modo stub/fallback, es visible (warning stderr, flag en código, README).
+- [ ] **R11. R-REGRESSION-BEFORE-MERGE**: antes de mergear, ejecuté `run_all.sh`, `harness.sh check`, todos los `verify_blocker_*` y `verify_blocker_*_independiente`.
+- [ ] **R12. R-CONTAMINATION-ZERO**: verifiqué con `harness.sh check` que no hay paths absolutos, nombres de proyecto, ni archivos .pyc en `.jcode/`.
+
 ### Al cerrar sesión
 
 - [ ] **9. HANDOFF**: ajustar `PLAN-VIVO §8` con el próximo loop planeado
@@ -84,6 +93,10 @@ salvo búsqueda específica con `grep`.
 | No registrar bloqueo guardrail | manual en §14 | R-AA-2 strike |
 | Cambiar proveedor por guardrail | manual | R-AA-3 strike + reversión |
 | **Simular swarm con scripts bash** | `guardrails` audit | R-NO-FAKE-SWARM strike |
+| **Declarar blocker resuelto sin test independiente** | audit `verify_blocker_*_independiente.sh` | R-INDEPENDENT-TEST strike |
+| **No crear log de iteración** | `ls .jcode/logs/remediation-*.log` | R-ITERATION-LOG strike |
+| **Modo stub silencioso** | `grep "stub\|LLM_AVAILABLE" handbook_phase2.py` | R-NO-SILENT-STUB strike |
+| **Contaminación en `.jcode/`** | `harness.sh check` | R-CONTAMINATION-ZERO strike |
 
 ---
 
@@ -211,6 +224,10 @@ y NO toca diseño/journey/UI. Documentar en PLAN-VIVO §8.
 
 ## Versión
 
+- **v101.2-paper-compliant** (2026-07-21): Añadidos 6 nuevos principios anti-fallo
+  (§7 R-VERIFY-BEFORE-CLAIM, §8 R-INDEPENDENT-TEST, §9 R-ITERATION-LOG,
+  §10 R-NO-SILENT-STUB, §11 R-REGRESSION-BEFORE-MERGE, §12 R-CONTAMINATION-ZERO).
+  Checklist de remediación con 6 nuevos items (R7-R12). 4 nuevas violaciones
+  en §2 con detección y strike correspondiente.
 - **v100-clean.template** (2026-07-21): Versión agnóstica del checklist
-  por turno. Aplicable a cualquier stack o dominio. Lista para usar
-  en cualquier proyecto nuevo.
+  por turno. Aplicable a cualquier stack o dominio.

@@ -70,6 +70,79 @@ jcode y confunde al usuario (no ve los agentes en `Ctrl+O`).
 Si el runtime no soporta swarm (limitación del LLM host), declarar la
 limitación explícitamente en `PLAN-VIVO §8` y trabajar en single-agent.
 
+### §7 R-VERIFY-BEFORE-CLAIM — No declarar sin evidencia
+
+**Nunca** decir "funciona", "está listo", "todo bien" sin haber ejecutado
+un comando reproducible que lo demuestre.
+
+- Antes de declarar un blocker resuelto: ejecutar `bash verify_blocker_X.sh`
+- Capturar output completo en el log de iteración
+- Si el test falla: iterar. No declarar "casi listo".
+
+### §8 R-INDEPENDENT-TEST — Test propio + Test independiente
+
+Todo fix requiere **2 niveles de test**:
+
+1. **Test propio** (quien hace el fix lo escribe): verifica que el fix funciona
+2. **Test independiente** (recalcula desde ground truth): verifica que no hay
+   autoengaño. NO puede leer archivos generados por el fix. Debe parsear el
+   código fuente directamente (AST, grep, etc.)
+
+El test independiente debe existir **ANTES** de declarar el blocker resuelto.
+Si no existe, el bloque no está resuelto — es un hallazgo pendiente.
+
+### §9 R-ITERATION-LOG — Log obligatorio por iteración
+
+Cada intento de resolver un bloque debe documentarse en un archivo de log:
+
+```
+.jcode/logs/remediation-{ID}-iter{N}.log
+```
+
+El log DEBE contener:
+- Timestamp y número de iteración
+- Cambios aplicados (archivo + líneas + descripción)
+- Output del test propio (exit code + mensaje)
+- Output del test independiente (exit code + mensaje)
+- Output de regresión (exit code + pass/fail count)
+- Veredicto: PASSED o FAILED (con motivo)
+
+Si el log no existe o está vacío, el fix no ocurrió.
+
+### §10 R-NO-SILENT-STUB — Stubs visibles o no existen
+
+Cualquier modo stub/fallback/heurístico debe ser explícitamente visible:
+
+- Warning en stderr al inicio de la ejecución
+- Flag `LLM_AVAILABLE = False` documentado en el código
+- El README documenta qué dependencias opcionales activan el modo real
+- El stub no puede ser silencioso
+
+### §11 R-REGRESSION-BEFORE-MERGE — Regresión completa antes de merge
+
+Antes de mergear cualquier cambio al arnés:
+
+- [ ] `bash .jcode/tests/run_all.sh` → 0 fail
+- [ ] `bash .jcode/lib/harness.sh check` → 0 contaminación
+- [ ] Todos los `verify_blocker_*.sh` → exit 0
+- [ ] Todos los `verify_blocker_*_independiente.sh` → exit 0
+- [ ] `python3 .jcode/skills/bootstrap-proyecto/lib/bootstrap_all.py` → sin errores
+
+### §12 R-CONTAMINATION-ZERO — Cero contaminación en el arnés
+
+`.jcode/` NO debe contener:
+
+- Paths absolutos (`/home/`, `/Users/`, `C:\`)
+- Nombres de proyecto hardcodeados
+- Contraseñas, tokens, API keys
+- Reglas de negocio del proyecto
+- Archivos `.pyc` o `__pycache__/`
+
+Verificar con: `bash .jcode/lib/harness.sh check`
+
+Si `harness.sh check` reporta contaminación > 0, detener y limpiar antes de
+cualquier otro trabajo.
+
 ---
 
 ## PARTE II — Ley operativa del arnés
@@ -143,6 +216,12 @@ template repo para compartir el arnés entre proyectos.
 | **R-AA-1** | Anti-autoengaño: no declarar fix sin verificar |
 | **R-AA-2** | Anti-bloqueo-silencioso: registrar bloqueos de guardrail en §14 |
 | **R-AA-3** | Anti-cambio-proveedor: NO cambiar LLM por bloqueo de guardrail (fragmentar) |
+| **R-VERIFY-BEFORE-CLAIM** | §7: No declarar sin evidencia ejecutable |
+| **R-INDEPENDENT-TEST** | §8: Test propio + test independiente por fix |
+| **R-ITERATION-LOG** | §9: Log obligatorio por iteración |
+| **R-NO-SILENT-STUB** | §10: Stubs deben ser visibles |
+| **R-REGRESSION-BEFORE-MERGE** | §11: Regresión completa antes de merge |
+| **R-CONTAMINATION-ZERO** | §12: Cero contaminación en `.jcode/` |
 
 R-AA-2 y R-AA-3 viven en `INCIDENT-PROTOCOLS.md` (cargo bajo demanda).
 
@@ -150,4 +229,8 @@ R-AA-2 y R-AA-3 viven en `INCIDENT-PROTOCOLS.md` (cargo bajo demanda).
 
 ## Versión
 
-- **v100-clean**: refactor. Eliminados ejemplos de proyecto específico. Eliminadas referencias a proveedores LLM concretos. Eliminado §7 R-FRAGMENT-ATOMIC y §8 R-PREFLIGHT-SENIOR (movidos a INCIDENT-PROTOCOLS.md). Eliminado bug de dos §7. Añadido glosario formal.
+- **v101.2-paper-compliant** (2026-07-21): Añadidos 6 principios anti-fallo
+  (§7 R-VERIFY-BEFORE-CLAIM, §8 R-INDEPENDENT-TEST, §9 R-ITERATION-LOG,
+  §10 R-NO-SILENT-STUB, §11 R-REGRESSION-BEFORE-MERGE, §12 R-CONTAMINATION-ZERO).
+  Glosario actualizado con 6 nuevos términos.
+- **v100-clean**: refactor. Eliminados ejemplos de proyecto específico.
