@@ -26,6 +26,7 @@ title: AGENT-PROTOCOL — Checklist por turno (agnóstico)
 | `.jcode/AGENT-PROTOCOL.md` (este) | Siempre al iniciar turno | este |
 | `.jcode/PRINCIPLES.md` PARTE II | Solo si tarea es de loops | ~150 |
 | `.jcode/INCIDENT-PROTOCOLS.md` | Solo si hubo bloqueo de guardrail | bajo demanda |
+| `.jcode/FAILURE-PATTERNS.md §1-§3` | **Si task_class >= SLICE, fixed_check falló 2 veces, o remediación** | ~200 |
 
 **Prohibido**: leer `archive/` entero, `PLAN-VIVO` histórico, o `INDEX.md`
 salvo búsqueda específica con `grep`.
@@ -73,6 +74,21 @@ salvo búsqueda específica con `grep`.
 - [ ] **R11. R-REGRESSION-BEFORE-MERGE**: antes de mergear, ejecuté `run_all.sh`, `harness.sh check`, todos los `verify_blocker_*` y `verify_blocker_*_independiente`.
 - [ ] **R12. R-CONTAMINATION-ZERO**: verifiqué con `harness.sh check` que no hay paths absolutos, nombres de proyecto, ni archivos .pyc en `.jcode/`.
 
+### Si aplica Hidden Failure Gate (HF Gate)
+
+- [ ] **HF1.** `fixed_check` tiene aserción explícita y guardó salida completa
+- [ ] **HF2.** test independiente pasó y no usa self-oracle
+- [ ] **HF3.** si se modificaron tests, hay causa raíz o aprobación persistida
+- [ ] **HF4.** si el check es no determinístico, pasó 5/5 o se declaró blocker
+- [ ] **HF5.** diff vacío declarado no-op; no como progreso
+- [ ] **HF6.** diff dentro de scope; `out_of_scope` intacto o justificado
+- [ ] **HF7.** no hay supresión silenciosa de errores
+- [ ] **HF8.** no quedan placeholders en camino crítico
+- [ ] **HF9.** mutaciones de estado son idempotentes o tienen excepción declarada
+- [ ] **HF10.** cross-check de consumidores hecho si hubo renombrado/movida
+- [ ] **HF11.** evidence bundle completo y persistido
+- [ ] **HF12.** flags de compliance referencian evidencia real
+
 ### Al cerrar sesión
 
 - [ ] **9. HANDOFF**: ajustar `PLAN-VIVO §8` con el próximo loop planeado
@@ -97,6 +113,10 @@ salvo búsqueda específica con `grep`.
 | **No crear log de iteración** | `ls .jcode/logs/remediation-*.log` | R-ITERATION-LOG strike |
 | **Modo stub silencioso** | `grep "stub\|LLM_AVAILABLE" handbook_phase2.py` | R-NO-SILENT-STUB strike |
 | **Contaminación en `.jcode/`** | `harness.sh check` | R-CONTAMINATION-ZERO strike |
+| **fixed_check sin aserción explícita** | audit HF Gate | HF-V1 strike |
+| **Test independiente con self-oracle** | audit verify_blocker_*_independiente.sh | HF-V2 strike |
+| **Debilitar tests para cerrar loop** | diff de tests sin causa raíz | HF-V3 strike |
+| **Marcar compliance true sin evidencia** | audit compliance.json | HF-G2 strike |
 
 ---
 

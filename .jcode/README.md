@@ -37,6 +37,7 @@ title: Arnés JCode — Paper-Compliant + Bootstrap Adaptativo
 ├── LOOPS.md                           # Catálogo de loops
 ├── INTERPRETACION.md                  # Capa de decisión pre-código
 ├── INCIDENT-PROTOCOLS.md              # Protocolos raros (fragmentación, preflight)
+├── FAILURE-PATTERNS.md                 # Catálogo normativo de fallos ocultos + HF Gate
 ├── BEHAVIOR-INDEX.md                  # Índice de comportamientos del sistema
 ├── STATE-REGISTERS.md                 # Registros de estado del sistema
 ├── config.toml                        # Política ejecutable (env-based)

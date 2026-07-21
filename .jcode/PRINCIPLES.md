@@ -143,6 +143,14 @@ Verificar con: `bash .jcode/lib/harness.sh check`
 Si `harness.sh check` reporta contaminación > 0, detener y limpiar antes de
 cualquier otro trabajo.
 
+### §13 R-HIDDEN-FAILURE-CATALOG — Catálogo de fallos ocultos
+
+Los patrones de fallo ocultos y recurrentes del agente están normados en
+`.jcode/FAILURE-PATTERNS.md`.
+
+Ningún loop puede cerrarse ni declararse resuelto si el Hidden Failure Gate
+definido allí no pasa completo.
+
 ---
 
 ## PARTE II — Ley operativa del arnés
@@ -222,6 +230,9 @@ template repo para compartir el arnés entre proyectos.
 | **R-NO-SILENT-STUB** | §10: Stubs deben ser visibles |
 | **R-REGRESSION-BEFORE-MERGE** | §11: Regresión completa antes de merge |
 | **R-CONTAMINATION-ZERO** | §12: Cero contaminación en `.jcode/` |
+| **R-HIDDEN-FAILURE-CATALOG** | §13: Catálogo normado en `FAILURE-PATTERNS.md` |
+| **HF Gate** | Hidden Failure Gate — gate anti-autoengaño para cierre de loops |
+| **Evidence Bundle** | Conjunto persistido de evidencia ejecutable que prueba un fix |
 
 R-AA-2 y R-AA-3 viven en `INCIDENT-PROTOCOLS.md` (cargo bajo demanda).
 
