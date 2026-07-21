@@ -37,12 +37,126 @@
   },
   "function_assignments": [
     {
-      "qualname": "parse_toml",
-      "purpose": "Funci\u00f3n parse_toml participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "qualname": "git_diff_files",
+      "purpose": "(heuristic) git_diff_files \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
         "execute"
       ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        20,
+        30
+      ]
+    },
+    {
+      "qualname": "load_json",
+      "purpose": "(heuristic) load_json \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        33,
+        37
+      ]
+    },
+    {
+      "qualname": "save_json",
+      "purpose": "(heuristic) save_json \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        40,
+        43
+      ]
+    },
+    {
+      "qualname": "version_align",
+      "purpose": "(unmapped: no heuristic match) version_align",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        46,
+        72
+      ]
+    },
+    {
+      "qualname": "scoped_update",
+      "purpose": "(unmapped: no heuristic match) scoped_update",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        75,
+        91
+      ]
+    },
+    {
+      "qualname": "conservative_handling",
+      "purpose": "(unmapped: no heuristic match) conservative_handling",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        94,
+        126
+      ]
+    },
+    {
+      "qualname": "rebuild_full",
+      "purpose": "(heuristic) rebuild_full \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        129,
+        139
+      ]
+    },
+    {
+      "qualname": "resync",
+      "purpose": "(unmapped: no heuristic match) resync",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        142,
+        170
+      ]
+    },
+    {
+      "qualname": "main",
+      "purpose": "(unmapped: no heuristic match) main",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        173,
+        182
+      ]
+    },
+    {
+      "qualname": "parse_toml",
+      "purpose": "(unmapped: no heuristic match) parse_toml",
+      "granularity": "function",
+      "stage_assignments": [],
       "regions": null,
       "file": ".jcode/lib/_config_parse.py",
       "line_range": [
@@ -52,11 +166,9 @@
     },
     {
       "qualname": "parse_section_body",
-      "purpose": "Funci\u00f3n parse_section_body participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "purpose": "(unmapped: no heuristic match) parse_section_body",
       "granularity": "function",
-      "stage_assignments": [
-        "execute"
-      ],
+      "stage_assignments": [],
       "regions": null,
       "file": ".jcode/lib/_config_parse.py",
       "line_range": [
@@ -66,10 +178,10 @@
     },
     {
       "qualname": "get_value",
-      "purpose": "Funci\u00f3n get_value participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "purpose": "(heuristic) get_value \u2192 stage(s) verify. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "execute"
+        "verify"
       ],
       "regions": null,
       "file": ".jcode/lib/_config_parse.py",
@@ -80,10 +192,11 @@
     },
     {
       "qualname": "main",
-      "purpose": "Funci\u00f3n main participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "purpose": "(heuristic) main \u2192 stage(s) execute, verify. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "execute"
+        "execute",
+        "verify"
       ],
       "regions": null,
       "file": ".jcode/lib/_config_parse.py",
@@ -93,106 +206,261 @@
       ]
     },
     {
-      "qualname": "PythonAdapter.extract",
-      "purpose": "Funci\u00f3n PythonAdapter.extract participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "qualname": "build_stage_skeleton",
+      "purpose": "(heuristic) build_stage_skeleton \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
         "execute"
       ],
       "regions": null,
-      "file": ".jcode/lib/handbook_builder.py",
+      "file": ".jcode/lib/handbook_phase2.py",
       "line_range": [
-        21,
-        71
+        27,
+        29
       ]
     },
     {
-      "qualname": "PythonAdapter._extract_from_tree",
-      "purpose": "Funci\u00f3n PythonAdapter._extract_from_tree participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "qualname": "classify_function_stub",
+      "purpose": "(heuristic) classify_function_stub \u2192 stage(s) handoff, interpret. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "execute"
+        "handoff",
+        "interpret"
       ],
       "regions": null,
-      "file": ".jcode/lib/handbook_builder.py",
+      "file": ".jcode/lib/handbook_phase2.py",
       "line_range": [
-        73,
-        97
+        32,
+        55
       ]
     },
     {
-      "qualname": "PythonAdapter._record_function",
-      "purpose": "Funci\u00f3n PythonAdapter._record_function participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "qualname": "generate_purpose_stub",
+      "purpose": "(unmapped: no heuristic match) generate_purpose_stub",
       "granularity": "function",
-      "stage_assignments": [
-        "execute"
-      ],
+      "stage_assignments": [],
       "regions": null,
-      "file": ".jcode/lib/handbook_builder.py",
+      "file": ".jcode/lib/handbook_phase2.py",
       "line_range": [
-        99,
-        157
+        58,
+        63
       ]
     },
     {
-      "qualname": "PythonAdapter._get_call_name",
-      "purpose": "Funci\u00f3n PythonAdapter._get_call_name participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "qualname": "run_phase2",
+      "purpose": "(heuristic) run_phase2 \u2192 stage(s) handoff, execute, plan, verify. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "execute"
+        "handoff",
+        "execute",
+        "plan",
+        "verify"
       ],
       "regions": null,
-      "file": ".jcode/lib/handbook_builder.py",
+      "file": ".jcode/lib/handbook_phase2.py",
       "line_range": [
-        159,
-        165
-      ]
-    },
-    {
-      "qualname": "PythonAdapter._is_assign_target",
-      "purpose": "Funci\u00f3n PythonAdapter._is_assign_target participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
-      "granularity": "function",
-      "stage_assignments": [
-        "execute"
-      ],
-      "regions": null,
-      "file": ".jcode/lib/handbook_builder.py",
-      "line_range": [
-        167,
-        171
-      ]
-    },
-    {
-      "qualname": "build_program_graph",
-      "purpose": "Funci\u00f3n build_program_graph participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
-      "granularity": "function",
-      "stage_assignments": [
-        "execute"
-      ],
-      "regions": null,
-      "file": ".jcode/lib/handbook_builder.py",
-      "line_range": [
-        174,
-        178
-      ]
-    },
-    {
-      "qualname": "save_program_graph",
-      "purpose": "Funci\u00f3n save_program_graph participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
-      "granularity": "function",
-      "stage_assignments": [
-        "execute"
-      ],
-      "regions": null,
-      "file": ".jcode/lib/handbook_builder.py",
-      "line_range": [
-        181,
-        190
+        66,
+        118
       ]
     },
     {
       "qualname": "main",
-      "purpose": "Funci\u00f3n main participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "purpose": "(unmapped: no heuristic match) main",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_phase2.py",
+      "line_range": [
+        121,
+        127
+      ]
+    },
+    {
+      "qualname": "load_json",
+      "purpose": "(heuristic) load_json \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_verify.py",
+      "line_range": [
+        17,
+        21
+      ]
+    },
+    {
+      "qualname": "compute_relevance",
+      "purpose": "(unmapped: no heuristic match) compute_relevance",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_verify.py",
+      "line_range": [
+        24,
+        33
+      ]
+    },
+    {
+      "qualname": "verify_site",
+      "purpose": "(heuristic) verify_site \u2192 stage(s) verify. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "verify"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_verify.py",
+      "line_range": [
+        36,
+        82
+      ]
+    },
+    {
+      "qualname": "verify_handbook",
+      "purpose": "(heuristic) verify_handbook \u2192 stage(s) verify. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "verify"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_verify.py",
+      "line_range": [
+        85,
+        146
+      ]
+    },
+    {
+      "qualname": "main",
+      "purpose": "(unmapped: no heuristic match) main",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_verify.py",
+      "line_range": [
+        149,
+        169
+      ]
+    },
+    {
+      "qualname": "now_iso",
+      "purpose": "(unmapped: no heuristic match) now_iso",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        24,
+        25
+      ]
+    },
+    {
+      "qualname": "generate_overview",
+      "purpose": "(heuristic) generate_overview \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "handoff",
+        "plan"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        28,
+        83
+      ]
+    },
+    {
+      "qualname": "generate_index",
+      "purpose": "(unmapped: no heuristic match) generate_index",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        86,
+        119
+      ]
+    },
+    {
+      "qualname": "generate_registers",
+      "purpose": "(unmapped: no heuristic match) generate_registers",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        122,
+        168
+      ]
+    },
+    {
+      "qualname": "generate_stage_page",
+      "purpose": "(heuristic) generate_stage_page \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "handoff",
+        "plan"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        171,
+        220
+      ]
+    },
+    {
+      "qualname": "generate_l3_entries",
+      "purpose": "(unmapped: no heuristic match) generate_l3_entries",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        223,
+        244
+      ]
+    },
+    {
+      "qualname": "compute_graph_hash",
+      "purpose": "(unmapped: no heuristic match) compute_graph_hash",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        247,
+        250
+      ]
+    },
+    {
+      "qualname": "run_phase3",
+      "purpose": "(heuristic) run_phase3 \u2192 stage(s) execute, verify. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute",
+        "verify"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        253,
+        331
+      ]
+    },
+    {
+      "qualname": "main",
+      "purpose": "(unmapped: no heuristic match) main",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        334,
+        341
+      ]
+    },
+    {
+      "qualname": "PythonAdapter.extract",
+      "purpose": "(heuristic) PythonAdapter.extract \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
         "execute"
@@ -200,12 +468,181 @@
       "regions": null,
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        193,
-        202
+        112,
+        188
+      ]
+    },
+    {
+      "qualname": "PythonAdapter._extract_from_tree",
+      "purpose": "(heuristic) PythonAdapter._extract_from_tree \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        190,
+        214
+      ]
+    },
+    {
+      "qualname": "PythonAdapter._record_function",
+      "purpose": "(unmapped: no heuristic match) PythonAdapter._record_function",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        216,
+        274
+      ]
+    },
+    {
+      "qualname": "PythonAdapter._get_call_name",
+      "purpose": "(unmapped: no heuristic match) PythonAdapter._get_call_name",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        276,
+        282
+      ]
+    },
+    {
+      "qualname": "PythonAdapter._is_assign_target",
+      "purpose": "(unmapped: no heuristic match) PythonAdapter._is_assign_target",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        284,
+        288
+      ]
+    },
+    {
+      "qualname": "_read_source_dirs",
+      "purpose": "(heuristic) _read_source_dirs \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        51,
+        68
+      ]
+    },
+    {
+      "qualname": "_read_source_dirs_from_config",
+      "purpose": "(heuristic) _read_source_dirs_from_config \u2192 stage(s) init, execute. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "init",
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        71,
+        82
+      ]
+    },
+    {
+      "qualname": "_auto_detect_source_dirs",
+      "purpose": "(unmapped: no heuristic match) _auto_detect_source_dirs",
+      "granularity": "function",
+      "stage_assignments": [],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        85,
+        89
+      ]
+    },
+    {
+      "qualname": "_validate_repo_root",
+      "purpose": "(heuristic) _validate_repo_root \u2192 stage(s) verify. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "verify"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        92,
+        106
+      ]
+    },
+    {
+      "qualname": "build_program_graph",
+      "purpose": "(heuristic) build_program_graph \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        291,
+        295
+      ]
+    },
+    {
+      "qualname": "save_program_graph",
+      "purpose": "(heuristic) save_program_graph \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "execute"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        298,
+        307
+      ]
+    },
+    {
+      "qualname": "main",
+      "purpose": "(heuristic) main \u2192 stage(s) verify. Clasificado por heur\u00edstica de source analysis.",
+      "granularity": "function",
+      "stage_assignments": [
+        "verify"
+      ],
+      "regions": null,
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        310,
+        323
       ]
     }
   ],
   "coverage_record": {
-    "unmapped_functions": []
+    "unmapped_functions": [
+      "version_align",
+      "scoped_update",
+      "conservative_handling",
+      "resync",
+      "main",
+      "parse_toml",
+      "parse_section_body",
+      "generate_purpose_stub",
+      "main",
+      "compute_relevance",
+      "main",
+      "now_iso",
+      "generate_index",
+      "generate_registers",
+      "generate_l3_entries",
+      "compute_graph_hash",
+      "main",
+      "PythonAdapter._record_function",
+      "PythonAdapter._get_call_name",
+      "PythonAdapter._is_assign_target",
+      "_auto_detect_source_dirs"
+    ]
   }
 }
