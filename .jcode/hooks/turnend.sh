@@ -4,6 +4,8 @@
 # =============================================================================
 # Bug fixed: eliminada dependencia state-mapa-report.sh (no existía).
 # Bug fixed: score ahora puede llegar a 100 (bug matemático corregido).
+# Bug fixed (H-02): patrones hardcoded de paths de modelos/frontend ahora
+#   se derivan de config.toml vía config_reader.sh (stack-agnóstico).
 # =============================================================================
 
 set -uo pipefail
@@ -12,6 +14,21 @@ REPO_ROOT="${JCODE_HOOK_CWD:-$PWD}"
 JCODE_DIR="$REPO_ROOT/.jcode"
 
 source "$JCODE_DIR/lib/state_manager.sh"
+source "$JCODE_DIR/lib/config_reader.sh"
+
+# ----------------------------------------------------------------------------
+# Construir regex de extensiones desde config.toml (H-02)
+# ----------------------------------------------------------------------------
+_build_code_ext_regex() {
+  local exts
+  exts=$(config_get_array workspace.code_extensions.extensions 2>/dev/null)
+  if [[ -z "$exts" ]]; then
+    exts=$'.go\n.ts\n.astro\n.tsx\n.jsx\n.sql\n.svelte\n.css\n.scss\n.vue'
+  fi
+  echo "$exts" | sed 's/^\.//' | paste -sd'|' - | sed 's/^/\\./;s/$/([^A-Za-z0-9]|$)/'
+}
+
+CODE_EXT_REGEX=$(_build_code_ext_regex)
 
 # 1. Calcular score
 score=$(state_compliance_score)
@@ -49,12 +66,23 @@ if [[ $last_commit_age -le 5 ]]; then
 fi
 
 # 5c. AUDITORÍA 3: si commit reciente tocó modelos de datos, recordar STATE-REGISTERS + BEHAVIOR-INDEX
+# Patrones derivados de config.toml (H-02)
 if [[ $last_commit_age -le 5 ]]; then
   diff_paths=$(last_commit_paths)
-  if echo "$diff_paths" | grep -qE "(models/|migrations/|dto)"; then
+  # Patrones backend (models, migrations, dto)
+  backend_patterns=$(config_get_array workspace.backend_patterns.patterns 2>/dev/null || echo "models/
+migrations/
+dto/")
+  backend_regex=$(echo "$backend_patterns" | sed 's/\/$//' | paste -sd'|' -)
+  if echo "$diff_paths" | grep -qE "($backend_regex)"; then
     echo "[turnend] ⚠️  Commit tocó modelos/dto/migrations → actualizar STATE-REGISTERS (escribir bitácora de writers/readers/invariantes)" >&2
   fi
-  if echo "$diff_paths" | grep -qE "(frontend/src/|\.astro|\.tsx)"; then
+  # Patrones frontend (desde config)
+  frontend_ext=$(config_get_array workspace.frontend_extensions.extensions 2>/dev/null || echo ".astro
+.tsx
+.ts")
+  frontend_regex=$(echo "$frontend_ext" | sed 's/^\./\\./' | paste -sd'|' - | sed 's/^/.*(/;s/$/)/')
+  if echo "$diff_paths" | grep -qE "frontend/src/" || echo "$diff_paths" | grep -qE "($frontend_regex)"; then
     echo "[turnend] ⚠️  Commit tocó frontend → considerar entrada en BEHAVIOR-INDEX (comportamiento observable nuevo/fix)" >&2
   fi
 fi

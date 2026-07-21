@@ -1,0 +1,6 @@
+  PASS  posttool.sh implementa R-FAKE-COORDINATOR
+  PASS  state_record_swarm_spawn definido
+  PASS  state_swarm_recent_within_turns definido
+  PASS  Patrón lee de config.toml (post-fix H-02)
+  PASS  Bypass clause §4.7 presente
+smoke_r_no_fake_swarm: OK

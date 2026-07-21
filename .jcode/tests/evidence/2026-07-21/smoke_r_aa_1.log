@@ -1,0 +1,3 @@
+  PASS  aa1_violations incrementó: 0 → 1
+  PASS  r_aa_1_strikes = 1
+smoke_r_aa_1: OK

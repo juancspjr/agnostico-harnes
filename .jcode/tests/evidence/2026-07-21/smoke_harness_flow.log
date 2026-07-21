@@ -1,0 +1,5 @@
+  PASS  6 archivos canónicos presentes
+  PASS  4 hooks bash ejecutables
+  PASS  compliance.json válido
+  PASS  Score en rango (≤100): 20/100
+smoke_harness_flow: OK

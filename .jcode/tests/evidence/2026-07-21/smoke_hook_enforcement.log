@@ -1,0 +1,5 @@
+  PASS  posttool.sh detecta grep/rg y marca SRSI
+  PASS  posttool.sh llama state_record_srsi_violation
+  PASS  state_manager.sh define state_record_srsi_violation
+  PASS  turnend.sh audita srsi_done
+smoke_hook_enforcement: OK

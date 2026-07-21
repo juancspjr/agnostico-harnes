@@ -1,0 +1,5 @@
+  PASS  check reporta 0 contaminación
+  PASS  check reporta estructura completa
+  PASS  JSON files validados
+  PASS  0 claves duplicadas en mcp.json
+audit_harness: OK

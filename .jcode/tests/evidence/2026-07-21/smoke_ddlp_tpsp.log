@@ -1,0 +1,4 @@
+  PASS  PLAN-VIVO.template tiene §3, §4, §5 (DDLP)
+  PASS  PLAN-VIVO.template referencia backlog y cronología (TPSP)
+  PASS  PRINCIPLES.md declara DDLP y TPSP
+smoke_ddlp_tpsp: OK

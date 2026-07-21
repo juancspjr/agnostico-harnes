@@ -1,0 +1,7 @@
+  PASS  harness.sh check produce output canónico
+  PASS  breakdown produce desglose estructurado
+✅ mcp.json tiene mcpServers
+  PASS  mcp.json estructura válida
+  PASS  config.toml tiene secciones [project], [workspace], [jcode]
+  PASS  Scripts lib ejecutables
+diagnostics: OK
