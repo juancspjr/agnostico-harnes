@@ -32,7 +32,7 @@ pass "Pilar 2: Resync automático configurado"
 # Pilar 3: BGPD verification
 test -f "$JCODE_DIR/lib/handbook_verify.py" || fail "Falta handbook_verify.py"
 test -f "$JCODE_DIR/skills/handbook/SKILL.md" || fail "Falta skill handbook/SKILL.md"
-grep -q "VERIFY (NUEVO)" "$JCODE_DIR/skills/orient/SKILL.md" || fail "skill orient/ sin paso VERIFY"
+grep -qE "VERIFY.*OBLIGATORIAMENTE|VERIFY:[A-Z]" "$JCODE_DIR/skills/orient/SKILL.md" || fail "skill orient/ sin paso VERIFY"
 pass "Pilar 3: BGPD con source verification"
 
 # Edit Planning con Γ
