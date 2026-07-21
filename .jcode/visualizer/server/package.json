@@ -1,0 +1,17 @@
+{
+  "name": "jcode-harness-visualizer",
+  "version": "1.0.0",
+  "description": "Visualizador en tiempo real del arnés jcode — debug de flujos dinámicos, agentes, gobernanza",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

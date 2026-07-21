@@ -1,0 +1,22 @@
+{
+  "session_id": "",
+  "turn": 0,
+  "reads_this_turn": 0,
+  "cumulative_reads": 0,
+  "drill_done_this_turn": false,
+  "srsi_done_this_turn": false,
+  "ddlp_done": false,
+  "handoff_written": false,
+  "closeout_passed": false,
+  "r_aa_1_strikes": 0,
+  "r_3strike_mvp_activations": 0,
+  "aa1_violations": [],
+  "last_swarm_spawn_turn": 0,
+  "last_swarm_role": "",
+  "last_swarm_prompt_size": 0,
+  "swarm_spawn_count_session": 0,
+  "current_loop_id": null,
+  "current_loop_budget": 0,
+  "current_loop_iter": 0,
+  "history": []
+}

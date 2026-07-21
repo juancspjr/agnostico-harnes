@@ -1,0 +1,50 @@
+{
+  "_comment": "MCPs del arnés jcode (optimizados). Paths absolutos usados (Jcode no expande ${PROJECT_ROOT}).",
+  "_comment_2": "ESTRATEGIA DE VISIÓN: cdp-browser-mcp REEMPLAZA @playwright/mcp. Chrome CDP local (puerto 9224) + Accessibility API nativa = 4x menos tokens. Ver .jcode/docs/VISION-STRATEGY.md",
+  "_comment_3": "PLAYWRIGHT CLI: agente oficial @playwright/cli. Binario: playwright-cli (NO es la CLI Python 'playwright'). Usar para tareas de terminal; para flujos multi-paso dentro del arnés, preferir cdp-browser-mcp.",
+  "_comment_4": "OVERRIDE LOCAL: el path absoluto de filesystem.args DEBE apuntar al directorio del nuevo proyecto. Ajustar antes del primer uso.",
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${PROJECT_ROOT}"],
+      "shared": false,
+      "_comment": "Filesystem access scoped al repo root. Jcode no expande ${PROJECT_ROOT} al pasar args al proceso hijo — se sustituye en runtime vía wrapper o env. Para que funcione AHORA, reemplazar el placeholder por el path absoluto del proyecto (ej /home/usuario/proyectos/mi-proyecto)."
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "shared": false,
+      "_comment": "Razonamiento step-by-step para tareas complejas; session-owned para aislar la política MCP local del pool global"
+    },
+    "cdp-browser": {
+      "command": "node",
+      "args": ["${HOME}/.local/tools/cdp-browser-mcp/server.mjs"],
+      "env": {
+        "CDP_URL": "http://127.0.0.1:9224"
+      },
+      "shared": false,
+      "_comment": "cdp-browser-mcp — usa Chrome Accessibility API via CDP. 4x menos tokens que @playwright/mcp. REQUIERE Chrome con --remote-debugging-port=9224 corriendo. Levantar con: bash bin/start-cdp-chrome.sh",
+      "_comment_usage": "Tools principales: cdp_navigate (full page in 1 call, ~3.8k tokens), cdp_snapshot (ARIA indexed, ready para click/type), cdp_click <ref>, cdp_type <ref> <text>, cdp_evaluate.",
+      "_comment_prereq": "Chrome CDP debe estar vivo. Verificar con: curl http://127.0.0.1:9224/json/version"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest", "--browser", "chromium", "--vision", "--caps=devtools"],
+      "shared": false,
+      "disabled": true,
+      "_comment": "OVERRIDE LOCAL: @playwright/mcp queda disponible solo bajo conexión manual; no se autoconecta porque es 3-5x más verboso."
+    },
+    "semble": {
+      "command": "uvx",
+      "args": ["--from", "semble[mcp]", "semble"],
+      "disabled": true,
+      "_comment": "OVERRIDE LOCAL: Semble queda disponible solo bajo conexión manual; agentgrep cubre la búsqueda normal."
+    },
+    "repomix": {
+      "command": "npx",
+      "args": ["-y", "repomix@latest", "--mcp"],
+      "disabled": true,
+      "_comment": "OVERRIDE LOCAL: Repomix queda disponible solo bajo conexión manual para auditorías de repositorio."
+    }
+  }
+}

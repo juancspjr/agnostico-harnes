@@ -1,0 +1,37 @@
+# =============================================================================
+# Patrones de contaminación de proyecto — usados por harness.sh check
+# =============================================================================
+# Un patrón por línea. Líneas vacías y líneas que empiezan con # se ignoran.
+# Estos patrones NO deben aparecer en ningún archivo del arnés .jcode/
+# (excepto en dirs excluidos por EXCLUDE_PATHS en harness.sh).
+# Si aparecen, el archivo debe moverse al proyecto o limpiarse.
+# =============================================================================
+#
+# INSTRUCCIONES para este archivo:
+# =================================
+# Este archivo debe contener SOLO patrones específicos del PROYECTO que
+# estás construyendo. NO agregues patrones genéricos como "/home/" o
+# "/run/user/" — esos aparecen legítimamente en documentación del arnés
+# como ejemplos de paths.
+#
+# ANTES de hacer tu primer commit, AGREGA aquí:
+#   1. El nombre del proyecto (y variantes): nombre-del-proyecto|nombreproyecto|slug
+#   2. Si tenés tablas DB específicas del dominio: tabla1|tabla2|tabla3
+#   3. Si tenés endpoints específicos: /api/recurso-especial
+#   4. Si tenés emails de staff: admin@miempresa|staff@miempresa
+#   5. Si tenés branches específicas: feature/XX-nombre
+#
+# EJEMPLOS:
+#   mi-proyecto|miproyecto|mi_proyecto
+#   orders|customers|products  # solo si son tablas específicas del dominio
+#   /api/v2/reports            # solo si el endpoint es muy específico
+#
+# NO agregar:
+#   - Paths absolutos del entorno (/home/, /run/user/, etc.)
+#   - Lenguajes o frameworks comunes (go, ts, react, postgres)
+#   - Nombres de archivos genéricos (frontend, backend, src)
+#
+# =============================================================================
+
+# Agregar el nombre del proyecto (REEMPLAZAR con el real antes del primer commit)
+# Ejemplo: miproyecto|mi-proyecto|mi_proyecto

@@ -1,0 +1,122 @@
+# =============================================================================
+# .jcode/config.toml — Política ejecutable del arnés (agnóstico)
+# =============================================================================
+# Regla: cero paths absolutos, cero nombres de proyecto, cero contraseñas.
+# Todo se resuelve vía variables de entorno con defaults genéricos.
+# =============================================================================
+
+[project]
+name = "proyecto-01"  # Ajustar al nombre real del proyecto
+description = "Proyecto nuevo"  # Ajustar a la descripción real
+
+[workspace]
+# Ajustar a los paths reales del proyecto
+source_dirs = ["src", "docs", "tests"]
+exclude_dirs = ["node_modules", ".git", "dist", "build", ".jcode/iterations/archive"]
+
+# =============================================================================
+# jcode runtime
+# =============================================================================
+[jcode]
+socket = "${JCODE_SOCKET:-/run/user/1000/jcode.sock}"
+cli = "${JCODE_CLI:-jcode}"
+mode = "${JCODE_MODE:-tui}"
+
+# =============================================================================
+# Agents — usar jcode NATIVO
+# =============================================================================
+[agents]
+swarm_spawn_mode = "auto"
+coordinator_role = "coordinator"
+architect_role = "arquitecto-proyecto"
+worker_role = "worker-ejecutor"
+reviewer_role = "reviewer-calidad"
+auditor_role = "guardrails"
+
+# Skills obligatorias en cold-start
+default_skills = ["orient"]
+
+# =============================================================================
+# Loops
+# =============================================================================
+[loops]
+microfix_budget = 2
+slice_budget = 5
+remediation_budget = 8
+phase_close_budget = 3
+audit_budget = 1
+max_consecutive_no_progress = 2
+
+# =============================================================================
+# Benchmark
+# =============================================================================
+[benchmark]
+benchmark_type_is_singular = true
+valid_types = ["test", "smoke", "curl", "grep", "sql", "review-score", "guardrail-audit", "build"]
+
+# =============================================================================
+# Hooks — policy
+# =============================================================================
+[hooks]
+enabled = ["sessionstart", "turn_start", "turnend", "posttool"]
+posttool_auto_compile = false
+posttool_auto_e2e = false
+posttool_log_only = true
+
+# =============================================================================
+# Compliance scoring
+# =============================================================================
+[compliance]
+max_score = 100
+warn_threshold = 80
+block_threshold = 50
+weights = { reads = 15, cumulative = 15, drill = 15, srsi = 15, ddlp = 10, r3s = 10, handoff = 10, clean = 10 }
+
+# =============================================================================
+# Visualizer
+# =============================================================================
+[visualizer]
+host = "127.0.0.1"
+port = 7777
+poll_interval_ms = 200
+history_size = 1000
+
+# =============================================================================
+# Documentación canónica
+# =============================================================================
+[docs]
+# Archivos canónicos del arnés (carga obligatoria en cold-start)
+canonical = [
+  "AGENTS.md",
+  "PROJECT.md",
+  "PDR.md",
+  ".jcode/README.md",
+  ".jcode/PRINCIPLES.md",
+  ".jcode/AGENT-PROTOCOL.md",
+  ".jcode/LOOPS.md",
+  ".jcode/BEHAVIOR-INDEX.md",
+  ".jcode/STATE-REGISTERS.md",
+  ".jcode/iterations/PLAN-VIVO.md",
+  ".jcode/iterations/INDEX.md",
+]
+# Bajo demanda
+on_demand = [
+  ".jcode/INCIDENT-PROTOCOLS.md",
+  ".jcode/INTERPRETACION.md",
+  ".jcode/templates/OP.md",
+  ".jcode/templates/STATE.md",
+  ".jcode/templates/PDR.md",
+]
+
+# =============================================================================
+# Variables de entorno (overrides)
+# =============================================================================
+# JCODE_SOCKET    → sobreescribe jcode.socket
+# JCODE_CLI       → sobreescribe jcode.cli
+# JCODE_MODE      → sobreescribe jcode.mode
+# PROJECT_ROOT    → raíz del repo (para MCPs)
+# PROJECT_NAME    → sobreescribe project.name
+
+# =============================================================================
+# Providers (Forzado a nivel de proyecto)
+# =============================================================================

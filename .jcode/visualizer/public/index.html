@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JCode Harness — Visualizador en tiempo real</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="logo">⬢</span>
+      <h1>JCode Harness <span class="version">v100-clean</span></h1>
+    </div>
+    <div class="status-bar">
+      <div class="status-pill" id="conn-status">
+        <span class="dot dot-connecting"></span>
+        <span class="label">Conectando…</span>
+      </div>
+      <div class="status-pill" id="mode-status">
+        <span class="label">modo: —</span>
+      </div>
+      <button id="btn-clear" class="btn btn-warn">Limpiar</button>
+      <button id="btn-replay" class="btn">Replay</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================ -->
+    <!-- Panel izquierdo: grafo de agentes en tiempo real             -->
+    <!-- ============================================================ -->
+    <section class="panel panel-graph">
+      <h2>Grafo de agentes (swarm dinámico)</h2>
+      <div class="graph-controls">
+        <label>Force strength: <input type="range" id="force-strength" min="10" max="500" value="180" /></label>
+        <label>Link distance: <input type="range" id="link-distance" min="40" max="300" value="120" /></label>
+      </div>
+      <svg id="graph" viewBox="0 0 800 600"></svg>
+      <div class="legend">
+        <span class="legend-item"><span class="dot dot-active"></span> activo</span>
+        <span class="legend-item"><span class="dot dot-closed"></span> cerrado</span>
+        <span class="legend-item"><span class="dot dot-coordinator"></span> coordinador</span>
+        <span class="legend-item"><span class="dot dot-worker"></span> worker</span>
+        <span class="legend-item"><span class="dot dot-reviewer"></span> reviewer</span>
+        <span class="legend-item"><span class="dot dot-guardrails"></span> guardrails</span>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Panel central: loops + gobernanza                            -->
+    <!-- ============================================================ -->
+    <section class="panel panel-loops">
+      <h2>Loops</h2>
+      <div id="loops-list" class="loops-list"></div>
+
+      <h2>Gobernanza</h2>
+      <div class="governance">
+        <div class="score-display">
+          <div class="score-circle">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" class="score-bg" />
+              <circle cx="50" cy="50" r="45" class="score-fg" id="score-circle" />
+            </svg>
+            <div class="score-value" id="score-value">0</div>
+          </div>
+          <div class="score-label">/ 100</div>
+        </div>
+
+        <div class="compliance-grid">
+          <div class="compliance-item" id="ci-srsi">
+            <span class="ci-icon">🔍</span>
+            <span class="ci-label">SRSI</span>
+            <span class="ci-value">—</span>
+          </div>
+          <div class="compliance-item" id="ci-ddlp">
+            <span class="ci-icon">📋</span>
+            <span class="ci-label">DDLP</span>
+            <span class="ci-value">—</span>
+          </div>
+          <div class="compliance-item" id="ci-handoff">
+            <span class="ci-icon">🤝</span>
+            <span class="ci-label">Handoff</span>
+            <span class="ci-value">—</span>
+          </div>
+          <div class="compliance-item" id="ci-reads">
+            <span class="ci-icon">📖</span>
+            <span class="ci-label">Reads (turno)</span>
+            <span class="ci-value">0</span>
+          </div>
+          <div class="compliance-item" id="ci-strikes">
+            <span class="ci-icon">⚠️</span>
+            <span class="ci-label">Strikes</span>
+            <span class="ci-value">0</span>
+          </div>
+          <div class="compliance-item" id="ci-loop">
+            <span class="ci-icon">🔄</span>
+            <span class="ci-label">Loop actual</span>
+            <span class="ci-value">—</span>
+          </div>
+        </div>
+
+        <div class="strike-bar" id="strike-bar">
+          <div class="strike-bar-label">R-3STRIKE-MVP</div>
+          <div class="strike-bar-track">
+            <div class="strike-bar-fill" id="strike-bar-fill"></div>
+          </div>
+          <div class="strike-bar-count"><span id="strike-count">0</span>/3</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Panel derecho: logs + eventos                                 -->
+    <!-- ============================================================ -->
+    <section class="panel panel-logs">
+      <h2>Eventos en vivo</h2>
+      <div class="tabs">
+        <button class="tab active" data-tab="events">Eventos</button>
+        <button class="tab" data-tab="messages">Mensajes</button>
+        <button class="tab" data-tab="logs">Logs/agent</button>
+      </div>
+
+      <div class="tab-content" id="tab-events">
+        <ul id="events-list" class="events-list"></ul>
+      </div>
+      <div class="tab-content hidden" id="tab-messages">
+        <ul id="messages-list" class="messages-list"></ul>
+      </div>
+      <div class="tab-content hidden" id="tab-logs">
+        <select id="agent-select" class="agent-select">
+          <option value="">— selecciona agente —</option>
+        </select>
+        <ul id="logs-list" class="logs-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Visualizador del arnés jcode (agnóstico)</span>
+    <span>Eventos: <span id="event-count">0</span></span>
+    <span>Agentes activos: <span id="active-agents">0</span></span>
+    <span>Uptime: <span id="uptime">0s</span></span>
+  </footer>
+
+  <script src="graph.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# =============================================================================
+# .jcode/hooks/turnend.sh — Fin de turno (mínimo)
+# =============================================================================
+# Bug fixed: eliminada dependencia state-mapa-report.sh (no existía).
+# Bug fixed: score ahora puede llegar a 100 (bug matemático corregido).
+# =============================================================================
+
+set -uo pipefail
+
+REPO_ROOT="${JCODE_HOOK_CWD:-$PWD}"
+JCODE_DIR="$REPO_ROOT/.jcode"
+
+source "$JCODE_DIR/lib/state_manager.sh"
+
+# 1. Calcular score
+score=$(state_compliance_score)
+
+# 2. Verificar handoff
+handoff=$(state_get handoff_written)
+loop=$(state_get current_loop_id)
+
+# 3. Reporte (mínimo)
+cat <<EOF
+[turnend] turn=$(state_get turn) score=$score/100
+[turnend] srsi=$(state_get srsi_done_this_turn) ddlp=$(state_get ddlp_done) handoff=$handoff
+EOF
+
+# 4. Warning si score < 80 (no bloquear, solo avisar)
+if [[ $score -lt 80 ]]; then
+  echo "[turnend] ⚠️  Score $score < 80 — revisar compliance" >&2
+fi
+
+# 5. Reminder handoff si hay loop activo y no se escribió handoff
+if [[ "$loop" != "" ]] && [[ "$loop" != "null" ]] && [[ "$handoff" != "true" ]]; then
+  echo "[turnend] ⚠️  Loop $loop activo sin handoff — bumpear PLAN-VIVO §8" >&2
+fi
+
+# 5b. AUDITORÍA 3 (2026-07-20): verificar que hubo update de PLAN-VIVO §6 si hubo commit en últimos 5 min
+source "$JCODE_DIR/lib/git_age.sh"
+last_commit_age=$(last_commit_minutes)
+if [[ $last_commit_age -le 5 ]]; then
+  # commit reciente — verificar que la última entrada de §6 menciona algún loop related al commit
+  last_commit_msg=$(last_commit_subject)
+  section6_hit=$(grep -c "L-" "$JCODE_DIR/iterations/PLAN-VIVO.md" 2>/dev/null || echo "0")
+  if [[ $section6_hit -le 4 ]]; then
+    echo "[turnend] ⚠️  Commit reciente ($last_commit_msg) sin update de PLAN-VIVO §6 (auditoría 3/3 — trazabilidad)" >&2
+  fi
+fi
+
+# 5c. AUDITORÍA 3: si commit reciente tocó modelos de datos, recordar STATE-REGISTERS + BEHAVIOR-INDEX
+if [[ $last_commit_age -le 5 ]]; then
+  diff_paths=$(last_commit_paths)
+  if echo "$diff_paths" | grep -qE "(models/|migrations/|dto)"; then
+    echo "[turnend] ⚠️  Commit tocó modelos/dto/migrations → actualizar STATE-REGISTERS (escribir bitácora de writers/readers/invariantes)" >&2
+  fi
+  if echo "$diff_paths" | grep -qE "(frontend/src/|\.astro|\.tsx)"; then
+    echo "[turnend] ⚠️  Commit tocó frontend → considerar entrada en BEHAVIOR-INDEX (comportamiento observable nuevo/fix)" >&2
+  fi
+fi
+
+# 6. Closeout check (no bloquea, solo reporta)
+if [[ $score -ge 80 ]] && [[ "$handoff" == "true" ]]; then
+  state_set closeout_passed true
+  echo "[turnend] ✅ closeout OK"
+else
+  state_set closeout_passed false
+fi
+
+exit 0
