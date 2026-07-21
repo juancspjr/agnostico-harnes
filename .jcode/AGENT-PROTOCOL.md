@@ -58,6 +58,11 @@ salvo búsqueda específica con `grep`.
   - `grep -rn '<nombre_nuevo>' frontend/src/` → debe retornar ≥ 1 match por consumidor.
   - `grep -rn '<nombre_viejo>' frontend/src/` → debe retornar **0** matches (no quedaron remanentes).
   - Si hay consumidores desincronizados → **STOP**, no declarar listo. Abrir fix separado en `PLAN-VIVO §6`.
+- [ ] **5.7. INYECCIÓN DE VERIFICACIÓN REUTILIZABLE (R-REUSABLE-VERIFICATION-INJECTION, Capa A)**: si el grep de §5.5 es estructural (campos DTO, schema, contrato, API), NO improvisar verificación one-liner. En su lugar:
+  - Consultar `BEHAVIOR-INDEX.md` del módulo afectado: ¿ya existe un B-XXX con «Tests críticos» para este comportamiento?
+  - Si SÍ → ejecutar ese test como `fixed_check` (reutilizar).
+  - Si NO → planificar en `templates/OP.md §3` (Γ declarations) la generación de `tests/validation/contract_<modulo>.sh` que extrae campos por AST y compara conjuntos backend ↔ frontend. El script debe ser la próxima invocación de `F11` (cross-check) en loops futuros.
+  - Referencia: §R-REUSABLE-VERIFICATION-INJECTION en `quality-preamble.md`.
 - [ ] **5.6. AUTOJUDGE**: si el cambio toca reglas de dominio, declarar `autojudge_scopes` en `compliance.json`
 
 ### Después del fix

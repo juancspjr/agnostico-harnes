@@ -99,6 +99,22 @@ dto/")
   if echo "$diff_paths" | grep -qE "frontend/src/" || echo "$diff_paths" | grep -qE "($frontend_regex)"; then
     echo "[turnend] ⚠️  Commit tocó frontend → considerar entrada en BEHAVIOR-INDEX (comportamiento observable nuevo/fix)" >&2
   fi
+
+  # Capa C (R-REUSABLE-VERIFICATION-INJECTION): si el commit tocó un campo
+  # listado en STATE-REGISTERS, recordar ejecutar su invariant_<campo>.sh
+  if [[ -f "$JCODE_DIR/STATE-REGISTERS.md" ]] && grep -qE "## [a-z_]+\.[a-z_]+" "$JCODE_DIR/STATE-REGISTERS.md" 2>/dev/null; then
+    fields=$(grep -E "## [a-z_]+\.[a-z_]+" "$JCODE_DIR/STATE-REGISTERS.md" | sed 's/^## //' | head -5)
+    matched=""
+    for f in $fields; do
+      if grep -q "$f" "$JCODE_DIR/iterations/PLAN-VIVO.md" 2>/dev/null || \
+         echo "$diff_paths" | grep -q "$f"; then
+        matched="$matched $f"
+      fi
+    done
+    if [[ -n "$matched" ]]; then
+      echo "[turnend] ⚠️  Campos tocados:$matched → ejecutar tests/validation/invariant_<campo>.sh (R-SYNC-3)" >&2
+    fi
+  fi
 fi
 
 # 6. Closeout check (no bloquea, solo reporta)

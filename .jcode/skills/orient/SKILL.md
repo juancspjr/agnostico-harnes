@@ -337,6 +337,33 @@ print(f'✅ Cross-check OK')
 "
 ```
 
+### Checkpoint F12 — Test registry sync (NUEVO, si P10=YES o task_class ≥ SLICE)
+
+```bash
+# Validar que cada B-XXX afectado tiene tests referenciados en BEHAVIOR-INDEX
+# y los scripts existen en disco.
+python3 -c "
+import re, pathlib, os
+beh = pathlib.Path('.jcode/BEHAVIOR-INDEX.md').read_text() if pathlib.Path('.jcode/BEHAVIOR-INDEX.md').exists() else ''
+# Buscar entradas B-XXX con Tests críticos
+matches = re.findall(r'## B-\d+.*?(?=\n## |\Z)', beh, re.DOTALL)
+if not matches:
+    print('❌ BEHAVIOR-INDEX.md sin entradas B-XXX')
+    exit(1)
+# Verificar scripts referenciados existen
+missing = []
+for entry in matches:
+    tests = re.findall(r'tests/[^\s`]+\.sh', entry)
+    for t in tests:
+        if not os.path.exists(t):
+            missing.append(t)
+if missing:
+    print(f'❌ Scripts faltantes: {missing}')
+    exit(1)
+print(f'✅ {len(matches)} B-XXX, todos los scripts existen')
+"
+```
+
 ---
 
 ## INTEGRACIÓN FINAL (matriz de decisión)
@@ -348,10 +375,10 @@ print(f'✅ Cross-check OK')
 └─ SÍ → F0 (bootstrap)
          ├─ FAIL → bootstrap --apply
          └─ PASS → P1-P10 (10 preguntas)
-                  ├─ MICROFIX → 2-A + F1 + F1.5 + Fase 3
-                  ├─ SLICE → 2-B + F1 + F1.5 + F2-F5 + F9-F11 + Fase 3
-                  ├─ REMEDIATION → 2-C + F1 + F1.5 + F3 + Fase 3
-                  └─ MAINTENANCE → 2-D + F1 + F1.5 + F2-F7 + F9 + Fase 3
+                  ├─ MICROFIX → 2-A + F1 + F1.5 + F12 + Fase 3
+                  ├─ SLICE → 2-B + F1 + F1.5 + F2-F5 + F9-F12 + Fase 3
+                  ├─ REMEDIATION → 2-C + F1 + F1.5 + F3 + F12 + Fase 3
+                  └─ MAINTENANCE → 2-D + F1 + F1.5 + F2-F7 + F9 + F12 + Fase 3
 ```
 
 ---

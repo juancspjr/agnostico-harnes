@@ -23,7 +23,19 @@ ITER_LOG="$(ls .jcode/logs/remediation-*-iter*.log 2>/dev/null | tail -1 || echo
 if [[ "$INDEP_TEST" == "MISSING" || "$ITER_LOG" == "MISSING" ]]; then
   VERDICT="INCOMPLETE — falta test independiente o iteration log"
 else
-  VERDICT="PENDING — revisar outputs arriba"
+  # Capa C: validar que BEHAVIOR-INDEX.md tiene Tests críticos
+  # registrados para los loops del B-XXX actual.
+  # Match estricto: 'Tests críticos' como entry de campo (con/sin markdown bold)
+  if grep -qE "^\s*-?\s*\*\*?Tests críticos\*\*?\s*:" .jcode/BEHAVIOR-INDEX.md 2>/dev/null; then
+    BEHAVIOR_REGISTERED="true"
+  else
+    BEHAVIOR_REGISTERED="false"
+  fi
+  if [[ "$BEHAVIOR_REGISTERED" == "false" ]]; then
+    VERDICT="INCOMPLETE — BEHAVIOR-INDEX sin Tests críticos (orient F12 abortaría)"
+  else
+    VERDICT="PENDING — revisar outputs arriba"
+  fi
 fi
 
 {

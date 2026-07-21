@@ -114,6 +114,79 @@ def get_stages_for_domain(domains: list, critical_flows: list = None) -> list:
     return stages[:10]  # max 10 stages
 
 
+def generate_test_skeletons(repo_root: str = ".") -> list:
+    """Genera esqueletos de tests/integration/ desde PDR.md §5 (Capa B).
+
+    Cada flujo crítico en PDR.md §5 genera un esqueleto de test con
+    `set -euo pipefail` y placeholder para aserciones. El primer loop
+    que toque ese flujo completa el esqueleto.
+    """
+    root = Path(repo_root).resolve()
+    pdr_path = root / "PDR.md"
+
+    if not pdr_path.exists():
+        return []
+
+    content = pdr_path.read_text(encoding="utf-8", errors="replace")
+
+    # Extraer flujos críticos
+    flows = []
+    patterns = [
+        r"§5.*?(?=§\d|\Z)",
+        r"flujos? críticos?.*?(?=\n##|\Z)",
+        r"critical flows?.*?(?=\n##|\Z)",
+        r"## 5\..*?(?=\n##|\Z)",
+    ]
+    for p in patterns:
+        m = re.search(p, content, re.IGNORECASE | re.DOTALL)
+        if m:
+            section = m.group(0)
+            items = re.findall(r"[-*]\s+(.+?)(?=\n[-*]|\n\d\.|\Z)", section)
+            if not items:
+                items = re.findall(r"\d\.\s+(.+?)(?=\n\d\.|\Z)", section)
+            if not items:
+                items = [l.strip("- *") for l in section.split("\n")
+                         if l.strip() and not l.strip().startswith("#")]
+            flows = [f.strip() for f in items if len(f.strip()) > 10][:8]
+            if flows:
+                break
+
+    # Crear directorio tests/integration/ si no existe
+    tests_dir = root / "tests" / "integration"
+    tests_dir.mkdir(parents=True, exist_ok=True)
+
+    created = []
+    for flow in flows:
+        flow_id = re.sub(r"[^a-z0-9_]", "_", flow.lower())[:20].strip("_")
+        if not flow_id:
+            continue
+        script_path = tests_dir / f"test_flow_{flow_id}.sh"
+        if script_path.exists():
+            continue
+        script_content = f"""#!/usr/bin/env bash
+# test_flow_{flow_id}.sh — Esqueleto generado por bootstrap-proyecto
+# Cubre flujo crítico: {flow}
+# Capa B de R-REUSABLE-VERIFICATION-INJECTION
+# Rellenar con aserciones reales (set -euo pipefail anti HF-V1).
+set -euo pipefail
+
+# TODO: implementar setup (DB, mocks, fixtures)
+
+# TODO: ejecutar flujo completo
+# echo "Ejecutando flujo: {flow}"
+
+# TODO: aserciones explícitas (anti PHANTOM-PASS HF-V1)
+# [[ "$(<comando>)" == "<expected>" ]] || {{ echo "❌ FAIL"; exit 1; }}
+
+echo "✅ test_flow_{flow_id} OK"
+"""
+        script_path.write_text(script_content)
+        script_path.chmod(0o755)
+        created.append(str(script_path.relative_to(root)))
+
+    return created
+
+
 def generate(repo_root: str = ".") -> dict:
     """Genera seed skeleton S₀ para el proyecto."""
     root = Path(repo_root).resolve()
@@ -143,6 +216,15 @@ def generate(repo_root: str = ".") -> dict:
             "_note": "No se detectó proyecto. Stages genéricas. "
                      "Ejecuta de nuevo cuando el proyecto tenga código.",
         }
+
+    # Capa B: generar esqueletos de tests desde PDR.md §5
+    test_skeletons = generate_test_skeletons(repo_root)
+    if test_skeletons:
+        result["test_skeletons"] = test_skeletons
+        result["_test_registry_note"] = (
+            f"Se generaron {len(test_skeletons)} esqueletos de test en tests/integration/. "
+            "Estos son la base del registry reutilizable que orient F12 invoca."
+        )
 
     return result
 

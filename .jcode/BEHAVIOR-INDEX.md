@@ -35,7 +35,11 @@ title: BEHAVIOR-INDEX — Mapa comportamiento → código (plantilla agnóstica)
   - `<tabla>.<columna>` (<qué se lee>)
 - **Reglas**: <R-1, R-5, R-NN> (referencias a PROJECT.md)
 - **Loop típico**: <L-SLICE-NNN-...>
-- **Tests críticos**: <qué test verificar>
+- **Tests críticos**:
+  - `tests/integration/test_<feature>.sh` — flujo end-to-end
+  - `tests/validation/contract_<modulo>.sh` — contrato backend↔frontend (si aplica)
+  - `tests/validation/invariant_<campo>.sh` — invariantes de estado (referencias a STATE-REGISTERS)
+  - `tests/audit/verify_<loop_id>_independiente.sh` — independiente que recalcula desde AST
 ```
 
 ---
@@ -115,6 +119,17 @@ title: BEHAVIOR-INDEX — Mapa comportamiento → código (plantilla agnóstica)
 - **R-MAINT-4**: Las referencias a loops (`L-XXX-NNN`) deben existir en
   `INDEX.md §Loops`. Si se cierra un loop, mover su entrada al archive
   pero mantener la referencia en este BEHAVIOR-INDEX.
+- **R-MAINT-5** (NUEVO): El campo **Tests críticos** es OBLIGATORIO y debe
+  listar rutas específicas a scripts en `tests/` (no descripciones vagas).
+  Cada script listado debe existir en disco y pasar `bash <path>`. Si
+  alguno no existe, **abort** el cierre del loop y crearlo. Esto es la
+  base del "registry reutilizable" que `orient F10 (BGPD verify)` y
+  `F12 (test registry sync)` invocan en cada loop que toque el B-XXX.
+- **R-MAINT-6** (NUEVO): Cuando un loop cierre un B-XXX (desarrollo o fix),
+  el `worker-ejecutor` DEBE poblar «Tests críticos» en este archivo antes
+  de declarar fixed_check. Si el comportamiento es genuinamente nuevo,
+  crea el script; si es una variación, reutiliza el existente. Anti-patrón:
+  declarar «qué test verificar» sin ruta específica al script.
 
 ---
 
@@ -129,6 +144,11 @@ title: BEHAVIOR-INDEX — Mapa comportamiento → código (plantilla agnóstica)
 
 ## Versión
 
+- **v002-reusable-verification** (2026-07-21): Tests críticos ahora es lista
+  de rutas específicas a scripts en `tests/` (no descripciones vagas).
+  Añadidos R-MAINT-5 (obligatoriedad de Tests críticos) y R-MAINT-6
+  (worker-ejecutor debe poblar antes de cerrar). Cableado con
+  `orient F10/F12` y `evidence_bundle.sh`.
 - **v001-template** (2026-07-21): Plantilla agnóstica del mapa de
   comportamientos. Llenar con los comportamientos reales del proyecto
   antes del primer commit.

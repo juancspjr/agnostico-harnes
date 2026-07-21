@@ -20,7 +20,10 @@ title: Catálogo oficial de loops
 - goal: "<descripción concrete, 1 frase>"
 - scope: [<archivos/dirs afectados>]
 - out_of_scope: [<archivos/dirs no tocados>]
-- fixed_check: "<comando reproducible que valida el éxito>"
+- fixed_check: "tests/integration/test_<feature>.sh"
+  # El fixed_check DEBE ser ruta a script versionado en `tests/integration/`,
+  # `tests/validation/` o `tests/audit/`. NO one-liner improvisado.
+  # Si el script no existe, el loop NO puede cerrar (orient F12 aborta).
 - benchmark_type: test|smoke|curl|grep|sql|review-score|guardrail-audit|build
 - hf_gate: required                    # Hidden Failure Gate (FAILURE-PATTERNS.md)
 - budget: <máx iteraciones>

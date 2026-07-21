@@ -95,9 +95,17 @@ title: STATE-REGISTERS — Quién lee/escribe cada estado (plantilla agnóstica)
 - **R-SYNC-2**: Si un campo tiene más de 5 writers, probablemente debería
   descomponerse en derived fields.
 - **R-SYNC-3**: Cada invariante declarada aquí debe tener un test que
-  la verifique (o documentar por qué no se puede testear).
+  la verifique (o documentar por qué no se puede testear). Cada
+  invariante debe declarar el path al script en `tests/validation/invariant_<campo>.sh`
+  que la verifica. Si el script no existe, **abort** el cierre del loop
+  y créalo en `tests/validation/`. Esos scripts son invocados por
+  `orient F12 (test registry sync)` en cada loop que toca el campo.
 - **R-SYNC-4**: Antes de refactorizar un campo, leer TODAS sus writers
   y readers aquí. Si hay muchos, considerar helper centralizado.
+- **R-SYNC-5** (NUEVO): Si modificas un invariante, regenera el script
+  `tests/validation/invariant_<campo>.sh` antes de declarar el loop
+  cerrado. El `evidence_bundle.sh` valida que el script referenciado
+  existe y pasa (`behavior_index_registered: true`).
 
 ---
 
@@ -112,6 +120,10 @@ title: STATE-REGISTERS — Quién lee/escribe cada estado (plantilla agnóstica)
 
 ## Versión
 
+- **v002-reusable-verification** (2026-07-21): Actualizado R-SYNC-3 con referencia
+  explícita a `tests/validation/invariant_<campo>.sh`. Añadido R-SYNC-5
+  (regeneración tras modificar invariante). Cableado con `orient F12 (test registry sync)`
+  y `evidence_bundle.sh`.
 - **v001-template** (2026-07-21): Plantilla agnóstica del mapa de
   estados. Llenar con los campos reales del proyecto antes del primer
   commit que toque un estado.
