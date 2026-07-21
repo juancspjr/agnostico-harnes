@@ -27,28 +27,28 @@ Relevant state registers (see registers.md):
 ### `git_diff_files`
 
 - **File**: `.jcode/lib/handbook_resync.py`
-- **Line range**: 20-30
+- **Line range**: 23-33
 - **Signature**: `(repo_root: Path) -> list`
 - **Purpose**: (heuristic) git_diff_files → stage(s) execute. Clasificado por heurística de source analysis.
 
 ### `load_json`
 
 - **File**: `.jcode/lib/handbook_resync.py`
-- **Line range**: 33-37
+- **Line range**: 36-40
 - **Signature**: `(path: Path) -> dict`
 - **Purpose**: (heuristic) load_json → stage(s) execute. Clasificado por heurística de source analysis.
 
 ### `save_json`
 
 - **File**: `.jcode/lib/handbook_resync.py`
-- **Line range**: 40-43
+- **Line range**: 43-67
 - **Signature**: `(path: Path, data: dict)`
 - **Purpose**: (heuristic) save_json → stage(s) execute. Clasificado por heurística de source analysis.
 
 ### `rebuild_full`
 
 - **File**: `.jcode/lib/handbook_resync.py`
-- **Line range**: 129-139
+- **Line range**: 153-163
 - **Signature**: `(repo_root: Path, handbook_dir: Path)`
 - **Purpose**: (heuristic) rebuild_full → stage(s) execute. Clasificado por heurística de source analysis.
 
@@ -57,7 +57,7 @@ Relevant state registers (see registers.md):
 - **File**: `.jcode/lib/_config_parse.py`
 - **Line range**: 87-112
 - **Signature**: `()`
-- **Purpose**: (heuristic) main → stage(s) verify, execute. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) main → stage(s) execute, verify. Clasificado por heurística de source analysis.
 
 ### `build_stage_skeleton`
 
@@ -71,14 +71,14 @@ Relevant state registers (see registers.md):
 - **File**: `.jcode/lib/handbook_phase2.py`
 - **Line range**: 78-145
 - **Signature**: `(func: dict, context: dict) -> list`
-- **Purpose**: (heuristic) _classify_with_heuristic → stage(s) handoff, execute, verify, plan, interpret. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) _classify_with_heuristic → stage(s) plan, execute, interpret, handoff, verify. Clasificado por heurística de source analysis.
 
 ### `run_phase2`
 
 - **File**: `.jcode/lib/handbook_phase2.py`
 - **Line range**: 169-255
 - **Signature**: `(program_graph_path: str='.jcode/handbook/program_graph.json', output_path: str='.jcode/handbook/behavioral_mapping.json') -> dict`
-- **Purpose**: (heuristic) run_phase2 → stage(s) verify, execute. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) run_phase2 → stage(s) execute, verify. Clasificado por heurística de source analysis.
 
 ### `load_json`
 
@@ -92,7 +92,7 @@ Relevant state registers (see registers.md):
 - **File**: `.jcode/lib/handbook_phase3.py`
 - **Line range**: 272-350
 - **Signature**: `(program_graph_path: str='.jcode/handbook/program_graph.json', mapping_path: str='.jcode/handbook/behavioral_mapping.json', handbook_dir: str='.jcode/handbook') -> dict`
-- **Purpose**: (heuristic) run_phase3 → stage(s) verify, execute. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) run_phase3 → stage(s) execute, verify. Clasificado por heurística de source analysis.
 
 ### `PythonAdapter.extract`
 
@@ -120,7 +120,7 @@ Relevant state registers (see registers.md):
 - **File**: `.jcode/lib/handbook_builder.py`
 - **Line range**: 71-82
 - **Signature**: `(repo_root: Path) -> list`
-- **Purpose**: (heuristic) _read_source_dirs_from_config → stage(s) init, execute. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) _read_source_dirs_from_config → stage(s) execute, init. Clasificado por heurística de source analysis.
 
 ### `build_program_graph`
 

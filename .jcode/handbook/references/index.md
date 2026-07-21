@@ -1,6 +1,6 @@
 # Handbook Index
 
-> Auto-generated on 2026-07-21T05:21:10.571445+00:00
+> Auto-generated on 2026-07-21T05:58:24.176492+00:00
 
 ## Stages (6)
 

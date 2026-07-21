@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "qualname": "verify_site",
+    "reason": "function_removed",
+    "frozen_at": "now"
+  }
+]

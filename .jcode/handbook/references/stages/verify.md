@@ -36,21 +36,21 @@ Relevant state registers (see registers.md):
 - **File**: `.jcode/lib/_config_parse.py`
 - **Line range**: 87-112
 - **Signature**: `()`
-- **Purpose**: (heuristic) main → stage(s) verify, execute. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) main → stage(s) execute, verify. Clasificado por heurística de source analysis.
 
 ### `_classify_with_heuristic`
 
 - **File**: `.jcode/lib/handbook_phase2.py`
 - **Line range**: 78-145
 - **Signature**: `(func: dict, context: dict) -> list`
-- **Purpose**: (heuristic) _classify_with_heuristic → stage(s) handoff, execute, verify, plan, interpret. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) _classify_with_heuristic → stage(s) plan, execute, interpret, handoff, verify. Clasificado por heurística de source analysis.
 
 ### `run_phase2`
 
 - **File**: `.jcode/lib/handbook_phase2.py`
 - **Line range**: 169-255
 - **Signature**: `(program_graph_path: str='.jcode/handbook/program_graph.json', output_path: str='.jcode/handbook/behavioral_mapping.json') -> dict`
-- **Purpose**: (heuristic) run_phase2 → stage(s) verify, execute. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) run_phase2 → stage(s) execute, verify. Clasificado por heurística de source analysis.
 
 ### `verify_site`
 
@@ -71,7 +71,7 @@ Relevant state registers (see registers.md):
 - **File**: `.jcode/lib/handbook_phase3.py`
 - **Line range**: 272-350
 - **Signature**: `(program_graph_path: str='.jcode/handbook/program_graph.json', mapping_path: str='.jcode/handbook/behavioral_mapping.json', handbook_dir: str='.jcode/handbook') -> dict`
-- **Purpose**: (heuristic) run_phase3 → stage(s) verify, execute. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) run_phase3 → stage(s) execute, verify. Clasificado por heurística de source analysis.
 
 ### `_validate_repo_root`
 

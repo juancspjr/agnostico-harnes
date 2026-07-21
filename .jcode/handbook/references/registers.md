@@ -1,6 +1,6 @@
 # State Registers (Vista Z)
 
-> Auto-generated on 2026-07-21T05:21:10.571560+00:00
+> Auto-generated on 2026-07-21T05:58:24.176621+00:00
 > Maps each state register to all writers and readers.
 
 _No state registers detected yet._

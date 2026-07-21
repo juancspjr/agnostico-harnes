@@ -29,7 +29,7 @@ Relevant state registers (see registers.md):
 - **File**: `.jcode/lib/handbook_builder.py`
 - **Line range**: 71-82
 - **Signature**: `(repo_root: Path) -> list`
-- **Purpose**: (heuristic) _read_source_dirs_from_config → stage(s) init, execute. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) _read_source_dirs_from_config → stage(s) execute, init. Clasificado por heurística de source analysis.
 
 
 ## Code anchors

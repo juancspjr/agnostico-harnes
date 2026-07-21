@@ -5,8 +5,8 @@
       "file": ".jcode/lib/handbook_resync.py",
       "anchor": "git_diff_files",
       "line_range": [
-        20,
-        30
+        23,
+        33
       ],
       "source_hash": "sha256:a1f21c73d4424817ae0b6673db99f225b2eb5563938ec4a55716f4c57292c8ea",
       "interface": "(repo_root: Path) -> list",
@@ -41,10 +41,10 @@
       "file": ".jcode/lib/handbook_resync.py",
       "anchor": "save_json",
       "line_range": [
-        40,
-        43
+        43,
+        67
       ],
-      "source_hash": "sha256:595495718390bc937d3965d38dfba69b42b6a9c9fe7407b37f7510bc864342ac",
+      "source_hash": "sha256:b1edec493ab4c74539b793cf6c0874f11ddc319446f0e931d817d7dc4c0e2cb3",
       "interface": "(path: Path, data: dict)",
       "behavior": "(heuristic) save_json \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
@@ -59,8 +59,8 @@
       "file": ".jcode/lib/handbook_resync.py",
       "anchor": "version_align",
       "line_range": [
-        46,
-        72
+        70,
+        96
       ],
       "source_hash": "sha256:0cd72597f8572d32cd150ef6a7b21ed9cef0f0213a598ad0fda00278750714c1",
       "interface": "(repo_root: Path, handbook_dir: Path) -> dict",
@@ -75,8 +75,8 @@
       "file": ".jcode/lib/handbook_resync.py",
       "anchor": "scoped_update",
       "line_range": [
-        75,
-        91
+        99,
+        115
       ],
       "source_hash": "sha256:8c9f330efa83619aa4100f2096a73af5f3fa89cda3d219ac177f9cc34741a009",
       "interface": "(repo_root: Path, handbook_dir: Path, align_result: dict) -> dict",
@@ -91,8 +91,8 @@
       "file": ".jcode/lib/handbook_resync.py",
       "anchor": "conservative_handling",
       "line_range": [
-        94,
-        126
+        118,
+        150
       ],
       "source_hash": "sha256:ded60440783c3b530fbc122ea974afe62ced03bc9da6b9c0af055708cbb4f535",
       "interface": "(handbook_dir: Path, scoped_result: dict) -> dict",
@@ -107,8 +107,8 @@
       "file": ".jcode/lib/handbook_resync.py",
       "anchor": "rebuild_full",
       "line_range": [
-        129,
-        139
+        153,
+        163
       ],
       "source_hash": "sha256:8de3da7c47bd96f0a9a40f5e095e0b072c92791bd53078eb10cd6725321f6cb3",
       "interface": "(repo_root: Path, handbook_dir: Path)",
@@ -125,8 +125,8 @@
       "file": ".jcode/lib/handbook_resync.py",
       "anchor": "resync",
       "line_range": [
-        142,
-        217
+        166,
+        241
       ],
       "source_hash": "sha256:612a81278d3c69c29e6a571496c79f60e176af42a4ebdacb4a865bc8624d8f11",
       "interface": "(repo_root: str='.', auto: bool=False) -> dict",
@@ -264,14 +264,14 @@
       ],
       "source_hash": "sha256:7efd4f996728d7d8d699a5c0fbba9b43d815572237a02bd8f231b2d852feef52",
       "interface": "(func: dict, context: dict) -> list",
-      "behavior": "(heuristic) _classify_with_heuristic \u2192 stage(s) handoff, execute, verify, plan, interpret. Clasificado por heur\u00edstica de source analysis.",
+      "behavior": "(heuristic) _classify_with_heuristic \u2192 stage(s) plan, execute, interpret, handoff, verify. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
-          "handoff",
-          "execute",
-          "verify",
           "plan",
-          "interpret"
+          "execute",
+          "interpret",
+          "handoff",
+          "verify"
         ]
       },
       "register_interactions": []
@@ -320,11 +320,11 @@
       ],
       "source_hash": "sha256:34b87fbf4f46fde27203506bcc9c13612f1d3bd16d1a7f3284411d0746228c56",
       "interface": "(program_graph_path: str='.jcode/handbook/program_graph.json', output_path: str='.jcode/handbook/behavioral_mapping.json') -> dict",
-      "behavior": "(heuristic) run_phase2 \u2192 stage(s) verify, execute. Clasificado por heur\u00edstica de source analysis.",
+      "behavior": "(heuristic) run_phase2 \u2192 stage(s) execute, verify. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
-          "verify",
-          "execute"
+          "execute",
+          "verify"
         ]
       },
       "register_interactions": []
@@ -423,11 +423,11 @@
       ],
       "source_hash": "sha256:c5646044987b806e00c251da954cfda3b72aa7f3c30d7e68e83f117cb6bd52d6",
       "interface": "(pg: dict, mapping: dict) -> str",
-      "behavior": "(heuristic) generate_overview \u2192 stage(s) plan, handoff. Clasificado por heur\u00edstica de source analysis.",
+      "behavior": "(heuristic) generate_overview \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
-          "plan",
-          "handoff"
+          "handoff",
+          "plan"
         ]
       },
       "register_interactions": []
@@ -474,11 +474,11 @@
       ],
       "source_hash": "sha256:386fffad42c2b9ce2e5d0402a5086a4fa174d688818210c99ef15bf737391ef5",
       "interface": "(stage_id: str, stage_name: str, stage_desc: str, funcs: list, pg: dict) -> str",
-      "behavior": "(heuristic) generate_stage_page \u2192 stage(s) plan, handoff. Clasificado por heur\u00edstica de source analysis.",
+      "behavior": "(heuristic) generate_stage_page \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
-          "plan",
-          "handoff"
+          "handoff",
+          "plan"
         ]
       },
       "register_interactions": []
@@ -525,11 +525,11 @@
       ],
       "source_hash": "sha256:06d29cf77f4f7a5d26f60d90fd9c06973c1aa01a374b302d315523d459428dee",
       "interface": "(program_graph_path: str='.jcode/handbook/program_graph.json', mapping_path: str='.jcode/handbook/behavioral_mapping.json', handbook_dir: str='.jcode/handbook') -> dict",
-      "behavior": "(heuristic) run_phase3 \u2192 stage(s) verify, execute. Clasificado por heur\u00edstica de source analysis.",
+      "behavior": "(heuristic) run_phase3 \u2192 stage(s) execute, verify. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
-          "verify",
-          "execute"
+          "execute",
+          "verify"
         ]
       },
       "register_interactions": []
@@ -646,11 +646,11 @@
       ],
       "source_hash": "sha256:b46ac63b647044d78b060c23b979cdba44fabed8a8d7a11caf6c95be987eedd8",
       "interface": "(repo_root: Path) -> list",
-      "behavior": "(heuristic) _read_source_dirs_from_config \u2192 stage(s) init, execute. Clasificado por heur\u00edstica de source analysis.",
+      "behavior": "(heuristic) _read_source_dirs_from_config \u2192 stage(s) execute, init. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
-          "init",
-          "execute"
+          "execute",
+          "init"
         ]
       },
       "register_interactions": []

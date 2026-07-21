@@ -8,8 +8,8 @@
       "qualname": "git_diff_files",
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        20,
-        30
+        23,
+        33
       ],
       "signature": "(repo_root: Path) -> list",
       "body_hash": "sha256:a1f21c73d4424817"
@@ -18,8 +18,8 @@
       "qualname": "load_json",
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        33,
-        37
+        36,
+        40
       ],
       "signature": "(path: Path) -> dict",
       "body_hash": "sha256:2f2f3b692c9e77e9"
@@ -28,18 +28,18 @@
       "qualname": "save_json",
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        40,
-        43
+        43,
+        67
       ],
       "signature": "(path: Path, data: dict)",
-      "body_hash": "sha256:595495718390bc93"
+      "body_hash": "sha256:b1edec493ab4c745"
     },
     {
       "qualname": "version_align",
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        46,
-        72
+        70,
+        96
       ],
       "signature": "(repo_root: Path, handbook_dir: Path) -> dict",
       "body_hash": "sha256:0cd72597f8572d32"
@@ -48,8 +48,8 @@
       "qualname": "scoped_update",
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        75,
-        91
+        99,
+        115
       ],
       "signature": "(repo_root: Path, handbook_dir: Path, align_result: dict) -> dict",
       "body_hash": "sha256:8c9f330efa83619a"
@@ -58,8 +58,8 @@
       "qualname": "conservative_handling",
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        94,
-        126
+        118,
+        150
       ],
       "signature": "(handbook_dir: Path, scoped_result: dict) -> dict",
       "body_hash": "sha256:ded60440783c3b53"
@@ -68,8 +68,8 @@
       "qualname": "rebuild_full",
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        129,
-        139
+        153,
+        163
       ],
       "signature": "(repo_root: Path, handbook_dir: Path)",
       "body_hash": "sha256:8de3da7c47bd96f0"
@@ -78,8 +78,8 @@
       "qualname": "resync",
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        142,
-        217
+        166,
+        241
       ],
       "signature": "(repo_root: str='.', auto: bool=False) -> dict",
       "body_hash": "sha256:612a81278d3c69c2"
@@ -88,8 +88,8 @@
       "qualname": "main",
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        220,
-        229
+        244,
+        253
       ],
       "signature": "()",
       "body_hash": "sha256:0dffee778f7dec8d"
@@ -490,211 +490,241 @@
     {
       "caller": "git_diff_files",
       "callee": "run",
-      "line": 23,
+      "line": 26,
       "resolved": false
     },
     {
-      "caller": "version_align",
-      "callee": "load_json",
-      "line": 51,
+      "caller": "save_json",
+      "callee": "with_suffix",
+      "line": 47,
       "resolved": false
     },
     {
-      "caller": "version_align",
-      "callee": "load_json",
+      "caller": "save_json",
+      "callee": "unlink",
+      "line": 65,
+      "resolved": false
+    },
+    {
+      "caller": "save_json",
+      "callee": "flock",
+      "line": 50,
+      "resolved": false
+    },
+    {
+      "caller": "save_json",
+      "callee": "flock",
+      "line": 62,
+      "resolved": false
+    },
+    {
+      "caller": "save_json",
+      "callee": "NamedTemporaryFile",
       "line": 52,
       "resolved": false
     },
     {
       "caller": "version_align",
+      "callee": "load_json",
+      "line": 75,
+      "resolved": false
+    },
+    {
+      "caller": "version_align",
+      "callee": "load_json",
+      "line": 76,
+      "resolved": false
+    },
+    {
+      "caller": "version_align",
       "callee": "git_diff_files",
-      "line": 66,
+      "line": 90,
       "resolved": false
     },
     {
       "caller": "version_align",
       "callee": "hexdigest",
-      "line": 59,
+      "line": 83,
       "resolved": false
     },
     {
       "caller": "version_align",
       "callee": "sha256",
-      "line": 59,
+      "line": 83,
       "resolved": false
     },
     {
       "caller": "scoped_update",
       "callee": "load_json",
-      "line": 78,
+      "line": 102,
       "resolved": false
     },
     {
       "caller": "conservative_handling",
       "callee": "load_json",
-      "line": 96,
+      "line": 120,
       "resolved": false
     },
     {
       "caller": "conservative_handling",
       "callee": "load_json",
-      "line": 98,
+      "line": 122,
       "resolved": false
     },
     {
       "caller": "conservative_handling",
       "callee": "load_json",
-      "line": 101,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "save_json",
       "line": 125,
       "resolved": false
     },
     {
       "caller": "conservative_handling",
+      "callee": "save_json",
+      "line": 149,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
       "callee": "Path",
-      "line": 109,
+      "line": 133,
       "resolved": false
     },
     {
       "caller": "rebuild_full",
       "callee": "run",
-      "line": 132,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
-      "callee": "resolve",
-      "line": 144,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
-      "callee": "load_json",
       "line": 156,
       "resolved": false
     },
     {
       "caller": "resync",
+      "callee": "resolve",
+      "line": 168,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "load_json",
+      "line": 180,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
       "callee": "version_align",
-      "line": 197,
+      "line": 221,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "scoped_update",
-      "line": 203,
+      "line": 227,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "conservative_handling",
-      "line": 206,
+      "line": 230,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "build_program_graph",
-      "line": 163,
+      "line": 187,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "save_json",
-      "line": 179,
+      "line": 203,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "load_json",
-      "line": 182,
+      "line": 206,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "save_json",
-      "line": 186,
+      "line": 210,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "rebuild_full",
-      "line": 209,
+      "line": 233,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "Path",
-      "line": 144,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
-      "callee": "hexdigest",
-      "line": 167,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
-      "callee": "hexdigest",
       "line": 168,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "hexdigest",
+      "line": 191,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "hexdigest",
+      "line": 192,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "load_json",
-      "line": 172,
+      "line": 196,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "save_json",
-      "line": 175,
+      "line": 199,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "sha256",
-      "line": 167,
+      "line": 191,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "sha256",
-      "line": 168,
+      "line": 192,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "ArgumentParser",
-      "line": 221,
+      "line": 245,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "add_argument",
-      "line": 222,
+      "line": 246,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "add_argument",
-      "line": 223,
+      "line": 247,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "parse_args",
-      "line": 225,
+      "line": 249,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "resync",
-      "line": 227,
+      "line": 251,
       "resolved": false
     },
     {
