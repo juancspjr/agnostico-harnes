@@ -15,28 +15,131 @@ import sys
 from pathlib import Path
 
 
+# Built-in methods that should NOT be counted as call edges
+BUILTIN_METHODS = {
+    'split', 'join', 'rsplit', 'splitlines', 'strip', 'rstrip', 'lstrip',
+    'upper', 'lower', 'title', 'capitalize', 'swapcase', 'replace',
+    'startswith', 'endswith', 'find', 'rfind', 'index', 'rindex',
+    'count', 'encode', 'decode', 'format', 'format_map',
+    'isdigit', 'isalnum', 'isupper', 'islower', 'isspace', 'istitle',
+    'isidentifier', 'isprintable', 'isnumeric', 'isdecimal', 'isascii',
+    'expandtabs', 'ljust', 'rjust', 'center', 'zfill', 'partition',
+    'rpartition', 'removeprefix', 'removesuffix', 'translate', 'maketrans',
+    'append', 'extend', 'insert', 'remove', 'pop', 'clear', 'sort', 'reverse', 'copy',
+    'keys', 'values', 'items', 'get', 'popitem',
+    'update', 'setdefault',
+    'add', 'discard', 'union', 'intersection', 'difference',
+    'read', 'readline', 'readlines', 'write', 'writelines',
+    'close', 'flush', 'seek', 'tell', 'truncate', 'fileno',
+    'hex', 'fromhex',
+    'print', 'len', 'range', 'enumerate', 'zip', 'map', 'filter',
+    'sorted', 'reversed', 'sum', 'min', 'max', 'abs', 'round',
+    'isinstance', 'issubclass', 'hasattr', 'getattr', 'setattr',
+    'delattr', 'dir', 'vars', 'type', 'id', 'hash', 'repr',
+    'str', 'int', 'float', 'bool', 'complex',
+    'list', 'tuple', 'set', 'frozenset', 'dict', 'bytes', 'bytearray',
+    'open', 'input', 'iter', 'next', 'all', 'any',
+    'match', 'search', 'findall', 'finditer', 'sub', 'subn', 'escape', 'fullmatch',
+    'load', 'loads', 'dump', 'dumps',
+    'exists', 'isfile', 'isdir', 'join', 'split', 'splitext',
+    'basename', 'dirname', 'abspath', 'relpath', 'normpath',
+    'getcwd', 'chdir', 'listdir', 'mkdir', 'makedirs', 'remove',
+    'rmdir', 'removedirs', 'rename', 'renames', 'walk', 'glob',
+}
+
+
+def _read_source_dirs(repo_root: Path) -> list:
+    """Lee source_dirs de config.toml o autodetecta."""
+    config_path = repo_root / ".jcode" / "config.toml"
+    if config_path.exists():
+        try:
+            import tomllib
+            with open(config_path, "rb") as f:
+                config = tomllib.load(f)
+            dirs = config.get("workspace", {}).get("source_dirs", [])
+            if dirs:
+                return [str(d) for d in dirs if isinstance(d, str)]
+        except Exception:
+            pass
+
+    # Autodetect
+    candidates = ["src", "lib", "app", "tests", ".jcode/lib",
+                  "backend", "frontend", "scripts"]
+    return [d for d in candidates if (repo_root / d).exists()]
+
+
+def _read_source_dirs_from_config(repo_root: Path) -> list:
+    """Lee [workspace] source_dirs desde config.toml."""
+    config_path = repo_root / ".jcode" / "config.toml"
+    if not config_path.exists():
+        return []  # will autodetect
+    try:
+        import tomllib
+        with open(config_path, "rb") as f:
+            config = tomllib.load(f)
+        return config.get("workspace", {}).get("source_dirs", [])
+    except Exception:
+        return []
+
+
+def _auto_detect_source_dirs(repo_root: Path) -> list:
+    """Si no hay source_dirs configurados, detectar automáticamente."""
+    candidates = ["src", "lib", "app", "tests", ".jcode/lib",
+                  "backend", "frontend", "scripts"]
+    return [d for d in candidates if (repo_root / d).exists()]
+
+
+def _validate_repo_root(repo_root: Path):
+    """C-4: validar repo_root ANTES de cualquier operación."""
+    if not repo_root.exists():
+        raise FileNotFoundError(
+            f"repo_root no existe: {repo_root}. "
+            f"Verificar --repo path."
+        )
+    if not repo_root.is_dir():
+        raise NotADirectoryError(
+            f"repo_root no es directorio: {repo_root}"
+        )
+    if not os.access(repo_root, os.R_OK):
+        raise PermissionError(
+            f"Sin permisos de lectura en: {repo_root}"
+        )
+
+
 class PythonAdapter:
     """Adapter Python para extraer el program graph G."""
 
     def extract(self, repo_root: Path) -> dict:
-        """Extrae el program graph G del repo."""
+        """Extrae el program graph G del repo con scan dinámico."""
+        # C-4: validar repo_root ANTES de cualquier operación
+        _validate_repo_root(repo_root)
+
         functions = []
         call_edges = []
         state_accesses = []
         files_scanned = 0
         unresolved_calls_log = []
 
-        # Walk src/, lib/, scripts/
-        scan_dirs = [
-            repo_root / "src",
-            repo_root / ".jcode" / "lib",
-            repo_root / "backend",
-            repo_root / "frontend",
-        ]
-        scan_dirs = [d for d in scan_dirs if d.exists()]
+        # C-1: scan_dirs dinámico (desde config.toml o autodetect)
+        configured_dirs = _read_source_dirs(repo_root)
+        scan_dirs = configured_dirs[:]
+
+        # C-1: SIEMPRE incluir .jcode/lib (circularidad del harness)
+        if ".jcode/lib" not in scan_dirs:
+            scan_dirs.append(".jcode/lib")
+
+        # Filtrar solo directorios que existen
+        scan_dirs = [d for d in scan_dirs if (repo_root / d).exists()]
+
+        if not scan_dirs:
+            print("[warn] No source directories found. Autodetecting...", file=sys.stderr)
+            scan_dirs = _auto_detect_source_dirs(repo_root)
 
         for scan_dir in scan_dirs:
-            for py_file in scan_dir.rglob("*.py"):
+            for py_file in (repo_root / scan_dir).rglob("*.py"):
+                # Skip __pycache__
+                if "__pycache__" in str(py_file):
+                    continue
                 files_scanned += 1
                 try:
                     source = py_file.read_text(encoding="utf-8", errors="replace")
@@ -53,6 +156,20 @@ class PythonAdapter:
                     tree, rel_path, source,
                     functions, call_edges, state_accesses, unresolved_calls_log
                 )
+
+        # C-4: nunca retornar PG vacío (quien llama no debe escribirlo)
+        if not functions and files_scanned > 0:
+            raise RuntimeError(
+                "Functions found but none extracted. "
+                "Check AST extraction logic."
+            )
+        if not functions:
+            raise RuntimeError(
+                f"No functions found in {scan_dirs}. "
+                f"Verificar --repo path y source_dirs en config.toml. "
+                f"Files scanned: {files_scanned}. "
+                f"NO se escribió program_graph.json."
+            )
 
         # Auto-detect leaf mode
         leaf_mode = "function" if len(functions) <= 200 else "file"
@@ -198,8 +315,12 @@ def main():
                         help="Output JSON path")
     args = parser.parse_args()
 
-    graph = build_program_graph(args.repo)
-    save_program_graph(graph, args.output)
+    try:
+        graph = build_program_graph(args.repo)
+        save_program_graph(graph, args.output)
+    except (FileNotFoundError, NotADirectoryError, PermissionError, RuntimeError) as e:
+        print(f"[error] {e}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
