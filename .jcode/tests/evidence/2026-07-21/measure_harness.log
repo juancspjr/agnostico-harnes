@@ -6,6 +6,6 @@
   PASS  state_manager.sh score < 5000ms
   state_manager.sh breakdown: 84ms
   PASS  state_manager.sh breakdown < 5000ms
-  harness.sh status: 429ms
+  harness.sh status: 428ms
   PASS  harness.sh status < 5000ms
 measure_harness: OK

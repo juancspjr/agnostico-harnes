@@ -42,7 +42,7 @@ info() { printf "  ${YELLOW}INFO${NC}  %s\n" "$*"; }
 
 # ── Definir tests por categoría ──
 declare -A CATEGORIES=(
-  [smoke]="smoke_harness_flow.sh smoke_hook_enforcement.sh smoke_r_aa_1.sh smoke_agent_protocol.sh smoke_r_no_fake_swarm.sh smoke_ddlp_tpsp.sh"
+  [smoke]="smoke_harness_flow.sh smoke_hook_enforcement.sh smoke_r_aa_1.sh smoke_agent_protocol.sh smoke_r_no_fake_swarm.sh smoke_ddlp_tpsp.sh smoke_paper_compliance.sh"
   [diagnostics]="diagnostics.sh"
   [audit]="audit_harness.sh"
   [measure]="measure_harness.sh"
