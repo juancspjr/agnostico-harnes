@@ -10,10 +10,13 @@
 # =============================================================================
 
 import argparse
+import fcntl
 import hashlib
 import json
+import os
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 
@@ -38,9 +41,30 @@ def load_json(path: Path) -> dict:
 
 
 def save_json(path: Path, data: dict):
+    """Write JSON atomically with file locking (H-5 fix)."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w") as f:
-        json.dump(data, f, indent=2)
+
+    lock_path = path.with_suffix(path.suffix + ".lock")
+    with open(lock_path, "w") as lock_file:
+        try:
+            fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
+
+            with tempfile.NamedTemporaryFile(
+                mode="w", dir=str(path.parent),
+                prefix=path.stem + ".", suffix=".tmp", delete=False
+            ) as tmp_file:
+                json.dump(data, tmp_file, indent=2, default=str)
+                tmp_path = tmp_file.name
+
+            os.replace(tmp_path, str(path))
+
+        finally:
+            fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
+
+    try:
+        lock_path.unlink()
+    except FileNotFoundError:
+        pass
 
 
 def version_align(repo_root: Path, handbook_dir: Path) -> dict:
