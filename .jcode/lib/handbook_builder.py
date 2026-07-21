@@ -252,8 +252,12 @@ class PythonAdapter:
         for node in ast.walk(func_node):
             if isinstance(node, ast.Call):
                 callee_name = self._get_call_name(node.func)
-                if callee_name:
-                    call_edges.append({
+                if not callee_name:
+                    continue
+                # H-2: filtrar métodos built-in y funciones builtins
+                if callee_name in BUILTIN_METHODS:
+                    continue
+                call_edges.append({
                         "caller": qualname,
                         "callee": callee_name,
                         "line": node.lineno,

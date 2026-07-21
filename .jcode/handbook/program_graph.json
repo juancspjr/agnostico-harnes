@@ -389,17 +389,17 @@
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
         216,
-        274
+        278
       ],
       "signature": "(self, func_node, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log, qualname_prefix='')",
-      "body_hash": "sha256:5f90658998f914fa"
+      "body_hash": "sha256:4a4283e0d8634791"
     },
     {
       "qualname": "PythonAdapter._get_call_name",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        276,
-        282
+        280,
+        286
       ],
       "signature": "(self, func_node)",
       "body_hash": "sha256:6dc07562c6186fca"
@@ -408,8 +408,8 @@
       "qualname": "PythonAdapter._is_assign_target",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        284,
-        288
+        288,
+        292
       ],
       "signature": "(self, attr_node)",
       "body_hash": "sha256:f533aa889238c33f"
@@ -458,8 +458,8 @@
       "qualname": "build_program_graph",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        291,
-        295
+        295,
+        299
       ],
       "signature": "(repo_root: str) -> dict",
       "body_hash": "sha256:7f71faaf4b77a98d"
@@ -468,8 +468,8 @@
       "qualname": "save_program_graph",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        298,
-        307
+        302,
+        311
       ],
       "signature": "(graph: dict, output_path: str)",
       "body_hash": "sha256:2102a9366cb877df"
@@ -478,8 +478,8 @@
       "qualname": "main",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        310,
-        323
+        314,
+        327
       ],
       "signature": "()",
       "body_hash": "sha256:90efec706f65b29b"
@@ -494,66 +494,6 @@
       "resolved": false
     },
     {
-      "caller": "git_diff_files",
-      "callee": "strip",
-      "line": 28,
-      "resolved": false
-    },
-    {
-      "caller": "git_diff_files",
-      "callee": "str",
-      "line": 25,
-      "resolved": false
-    },
-    {
-      "caller": "git_diff_files",
-      "callee": "split",
-      "line": 28,
-      "resolved": false
-    },
-    {
-      "caller": "git_diff_files",
-      "callee": "strip",
-      "line": 28,
-      "resolved": false
-    },
-    {
-      "caller": "load_json",
-      "callee": "exists",
-      "line": 34,
-      "resolved": false
-    },
-    {
-      "caller": "load_json",
-      "callee": "open",
-      "line": 36,
-      "resolved": false
-    },
-    {
-      "caller": "load_json",
-      "callee": "load",
-      "line": 37,
-      "resolved": false
-    },
-    {
-      "caller": "save_json",
-      "callee": "mkdir",
-      "line": 41,
-      "resolved": false
-    },
-    {
-      "caller": "save_json",
-      "callee": "open",
-      "line": 42,
-      "resolved": false
-    },
-    {
-      "caller": "save_json",
-      "callee": "dump",
-      "line": 43,
-      "resolved": false
-    },
-    {
       "caller": "version_align",
       "callee": "load_json",
       "line": 51,
@@ -563,18 +503,6 @@
       "caller": "version_align",
       "callee": "load_json",
       "line": 52,
-      "resolved": false
-    },
-    {
-      "caller": "version_align",
-      "callee": "dumps",
-      "line": 58,
-      "resolved": false
-    },
-    {
-      "caller": "version_align",
-      "callee": "get",
-      "line": 61,
       "resolved": false
     },
     {
@@ -596,39 +524,9 @@
       "resolved": false
     },
     {
-      "caller": "version_align",
-      "callee": "encode",
-      "line": 59,
-      "resolved": false
-    },
-    {
       "caller": "scoped_update",
       "callee": "load_json",
       "line": 78,
-      "resolved": false
-    },
-    {
-      "caller": "scoped_update",
-      "callee": "get",
-      "line": 80,
-      "resolved": false
-    },
-    {
-      "caller": "scoped_update",
-      "callee": "get",
-      "line": 84,
-      "resolved": false
-    },
-    {
-      "caller": "scoped_update",
-      "callee": "len",
-      "line": 90,
-      "resolved": false
-    },
-    {
-      "caller": "scoped_update",
-      "callee": "append",
-      "line": 86,
       "resolved": false
     },
     {
@@ -651,80 +549,8 @@
     },
     {
       "caller": "conservative_handling",
-      "callee": "get",
-      "line": 104,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "list",
-      "line": 105,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "max",
-      "line": 120,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
       "callee": "save_json",
       "line": 125,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "keys",
-      "line": 105,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "len",
-      "line": 120,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "len",
-      "line": 121,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "len",
-      "line": 126,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "get",
-      "line": 102,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "get",
-      "line": 108,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "append",
-      "line": 110,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "get",
-      "line": 106,
-      "resolved": false
-    },
-    {
-      "caller": "conservative_handling",
-      "callee": "exists",
-      "line": 109,
       "resolved": false
     },
     {
@@ -737,36 +563,6 @@
       "caller": "rebuild_full",
       "callee": "run",
       "line": 132,
-      "resolved": false
-    },
-    {
-      "caller": "rebuild_full",
-      "callee": "str",
-      "line": 133,
-      "resolved": false
-    },
-    {
-      "caller": "rebuild_full",
-      "callee": "str",
-      "line": 134,
-      "resolved": false
-    },
-    {
-      "caller": "rebuild_full",
-      "callee": "str",
-      "line": 135,
-      "resolved": false
-    },
-    {
-      "caller": "rebuild_full",
-      "callee": "str",
-      "line": 136,
-      "resolved": false
-    },
-    {
-      "caller": "rebuild_full",
-      "callee": "str",
-      "line": 137,
       "resolved": false
     },
     {
@@ -795,44 +591,8 @@
     },
     {
       "caller": "resync",
-      "callee": "exists",
-      "line": 147,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
-      "callee": "get",
-      "line": 152,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
-      "callee": "get",
-      "line": 161,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
       "callee": "rebuild_full",
       "line": 162,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
-      "callee": "get",
-      "line": 167,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
-      "callee": "get",
-      "line": 168,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
-      "callee": "get",
-      "line": 169,
       "resolved": false
     },
     {
@@ -872,39 +632,9 @@
       "resolved": false
     },
     {
-      "caller": "main",
-      "callee": "print",
-      "line": 181,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "dumps",
-      "line": 181,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "get",
-      "line": 182,
-      "resolved": false
-    },
-    {
-      "caller": "parse_toml",
-      "callee": "split",
-      "line": 28,
-      "resolved": false
-    },
-    {
       "caller": "parse_toml",
       "callee": "flush_section",
       "line": 41,
-      "resolved": false
-    },
-    {
-      "caller": "parse_toml",
-      "callee": "join",
-      "line": 25,
       "resolved": false
     },
     {
@@ -915,38 +645,8 @@
     },
     {
       "caller": "parse_toml",
-      "callee": "match",
-      "line": 30,
-      "resolved": false
-    },
-    {
-      "caller": "parse_toml",
-      "callee": "startswith",
-      "line": 37,
-      "resolved": false
-    },
-    {
-      "caller": "parse_toml",
       "callee": "flush_section",
       "line": 32,
-      "resolved": false
-    },
-    {
-      "caller": "parse_toml",
-      "callee": "strip",
-      "line": 33,
-      "resolved": false
-    },
-    {
-      "caller": "parse_toml",
-      "callee": "append",
-      "line": 40,
-      "resolved": false
-    },
-    {
-      "caller": "parse_toml",
-      "callee": "strip",
-      "line": 37,
       "resolved": false
     },
     {
@@ -963,20 +663,8 @@
     },
     {
       "caller": "parse_section_body",
-      "callee": "finditer",
-      "line": 52,
-      "resolved": false
-    },
-    {
-      "caller": "parse_section_body",
       "callee": "compile",
       "line": 58,
-      "resolved": false
-    },
-    {
-      "caller": "parse_section_body",
-      "callee": "finditer",
-      "line": 59,
       "resolved": false
     },
     {
@@ -993,44 +681,14 @@
     },
     {
       "caller": "parse_section_body",
-      "callee": "findall",
-      "line": 55,
-      "resolved": false
-    },
-    {
-      "caller": "parse_section_body",
       "callee": "group",
       "line": 60,
       "resolved": false
     },
     {
       "caller": "parse_section_body",
-      "callee": "strip",
-      "line": 63,
-      "resolved": false
-    },
-    {
-      "caller": "parse_section_body",
-      "callee": "startswith",
-      "line": 64,
-      "resolved": false
-    },
-    {
-      "caller": "parse_section_body",
-      "callee": "endswith",
-      "line": 64,
-      "resolved": false
-    },
-    {
-      "caller": "parse_section_body",
       "callee": "group",
       "line": 63,
-      "resolved": false
-    },
-    {
-      "caller": "get_value",
-      "callee": "rsplit",
-      "line": 78,
       "resolved": false
     },
     {
@@ -1059,24 +717,6 @@
     },
     {
       "caller": "main",
-      "callee": "isinstance",
-      "line": 108,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "len",
-      "line": 88,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "print",
-      "line": 89,
-      "resolved": false
-    },
-    {
-      "caller": "main",
       "callee": "exit",
       "line": 90,
       "resolved": false
@@ -1085,30 +725,6 @@
       "caller": "main",
       "callee": "get_value",
       "line": 104,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "print",
-      "line": 112,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "open",
-      "line": 96,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "read",
-      "line": 97,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "print",
-      "line": 99,
       "resolved": false
     },
     {
@@ -1124,33 +740,9 @@
       "resolved": false
     },
     {
-      "caller": "main",
-      "callee": "print",
-      "line": 110,
-      "resolved": false
-    },
-    {
       "caller": "_issue_stub_mode_warning",
       "callee": "warn",
       "line": 34,
-      "resolved": false
-    },
-    {
-      "caller": "_issue_stub_mode_warning",
-      "callee": "print",
-      "line": 40,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source",
-      "callee": "get",
-      "line": 63,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source",
-      "callee": "get",
-      "line": 64,
       "resolved": false
     },
     {
@@ -1161,200 +753,8 @@
     },
     {
       "caller": "_read_source",
-      "callee": "exists",
-      "line": 68,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source",
-      "callee": "splitlines",
-      "line": 71,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source",
-      "callee": "join",
-      "line": 73,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source",
-      "callee": "len",
-      "line": 65,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source",
       "callee": "read_text",
       "line": 71,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source",
-      "callee": "max",
-      "line": 73,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "lower",
-      "line": 83,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "lower",
-      "line": 84,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "lower",
-      "line": 85,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 92,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 100,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 108,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 116,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 125,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 133,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "list",
-      "line": 145,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "lower",
-      "line": 86,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "lower",
-      "line": 87,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 94,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 95,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 102,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 103,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 110,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 111,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 119,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 120,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 127,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 128,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 135,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 136,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "set",
-      "line": 145,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "get",
-      "line": 83,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "get",
-      "line": 84,
       "resolved": false
     },
     {
@@ -1364,87 +764,9 @@
       "resolved": false
     },
     {
-      "caller": "_classify_with_heuristic",
-      "callee": "get",
-      "line": 86,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "get",
-      "line": 87,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "any",
-      "line": 96,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 105,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 122,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 130,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 137,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "len",
-      "line": 140,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "len",
-      "line": 140,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 97,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "append",
-      "line": 113,
-      "resolved": false
-    },
-    {
-      "caller": "_classify_with_heuristic",
-      "callee": "splitlines",
-      "line": 140,
-      "resolved": false
-    },
-    {
       "caller": "classify_function_heuristic",
       "callee": "_classify_with_heuristic",
       "line": 156,
-      "resolved": false
-    },
-    {
-      "caller": "generate_purpose",
-      "callee": "join",
-      "line": 164,
       "resolved": false
     },
     {
@@ -1467,92 +789,8 @@
     },
     {
       "caller": "run_phase2",
-      "callee": "get",
-      "line": 188,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "mkdir",
-      "line": 241,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "print",
-      "line": 250,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "print",
-      "line": 252,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "print",
-      "line": 253,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "print",
-      "line": 254,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "exists",
-      "line": 173,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "print",
-      "line": 174,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
       "callee": "exit",
       "line": 175,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "open",
-      "line": 177,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "load",
-      "line": 178,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "get",
-      "line": 198,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "get",
-      "line": 199,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "add",
-      "line": 200,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "add",
-      "line": 201,
       "resolved": false
     },
     {
@@ -1569,116 +807,8 @@
     },
     {
       "caller": "run_phase2",
-      "callee": "append",
-      "line": 221,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "get",
-      "line": 233,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "open",
-      "line": 242,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "dump",
-      "line": 243,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "set",
-      "line": 195,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "set",
-      "line": 197,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "set",
-      "line": 198,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "set",
-      "line": 199,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "list",
-      "line": 209,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "list",
-      "line": 210,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "append",
-      "line": 217,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "get",
-      "line": 209,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "get",
-      "line": 210,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "get",
-      "line": 224,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
       "callee": "Path",
       "line": 241,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "get",
-      "line": 248,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "len",
-      "line": 250,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "len",
-      "line": 251,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase2",
-      "callee": "len",
-      "line": 253,
       "resolved": false
     },
     {
@@ -1712,123 +842,9 @@
       "resolved": false
     },
     {
-      "caller": "load_json",
-      "callee": "exists",
-      "line": 18,
-      "resolved": false
-    },
-    {
-      "caller": "load_json",
-      "callee": "open",
-      "line": 20,
-      "resolved": false
-    },
-    {
-      "caller": "load_json",
-      "callee": "load",
-      "line": 21,
-      "resolved": false
-    },
-    {
-      "caller": "compute_relevance",
-      "callee": "set",
-      "line": 28,
-      "resolved": false
-    },
-    {
-      "caller": "compute_relevance",
-      "callee": "set",
-      "line": 29,
-      "resolved": false
-    },
-    {
-      "caller": "compute_relevance",
-      "callee": "split",
-      "line": 28,
-      "resolved": false
-    },
-    {
-      "caller": "compute_relevance",
-      "callee": "split",
-      "line": 29,
-      "resolved": false
-    },
-    {
-      "caller": "compute_relevance",
-      "callee": "len",
-      "line": 33,
-      "resolved": false
-    },
-    {
-      "caller": "compute_relevance",
-      "callee": "len",
-      "line": 33,
-      "resolved": false
-    },
-    {
-      "caller": "compute_relevance",
-      "callee": "lower",
-      "line": 28,
-      "resolved": false
-    },
-    {
-      "caller": "compute_relevance",
-      "callee": "lower",
-      "line": 29,
-      "resolved": false
-    },
-    {
-      "caller": "verify_site",
-      "callee": "get",
-      "line": 38,
-      "resolved": false
-    },
-    {
-      "caller": "verify_site",
-      "callee": "get",
-      "line": 39,
-      "resolved": false
-    },
-    {
-      "caller": "verify_site",
-      "callee": "get",
-      "line": 40,
-      "resolved": false
-    },
-    {
-      "caller": "verify_site",
-      "callee": "exists",
-      "line": 44,
-      "resolved": false
-    },
-    {
       "caller": "verify_site",
       "callee": "read_text",
       "line": 53,
-      "resolved": false
-    },
-    {
-      "caller": "verify_site",
-      "callee": "split",
-      "line": 63,
-      "resolved": false
-    },
-    {
-      "caller": "verify_site",
-      "callee": "split",
-      "line": 55,
-      "resolved": false
-    },
-    {
-      "caller": "verify_site",
-      "callee": "len",
-      "line": 64,
-      "resolved": false
-    },
-    {
-      "caller": "verify_site",
-      "callee": "str",
-      "line": 74,
       "resolved": false
     },
     {
@@ -1851,24 +867,6 @@
     },
     {
       "caller": "verify_handbook",
-      "callee": "get",
-      "line": 93,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "items",
-      "line": 115,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "get",
-      "line": 91,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
       "callee": "compute_relevance",
       "line": 122,
       "resolved": false
@@ -1883,84 +881,6 @@
       "caller": "verify_handbook",
       "callee": "Path",
       "line": 87,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "append",
-      "line": 118,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "get",
-      "line": 122,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "append",
-      "line": 124,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "append",
-      "line": 131,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "append",
-      "line": 133,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "len",
-      "line": 137,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "len",
-      "line": 138,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "len",
-      "line": 139,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "len",
-      "line": 140,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "items",
-      "line": 106,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "any",
-      "line": 107,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "get",
-      "line": 107,
-      "resolved": false
-    },
-    {
-      "caller": "verify_handbook",
-      "callee": "get",
-      "line": 107,
       "resolved": false
     },
     {
@@ -2006,45 +926,9 @@
       "resolved": false
     },
     {
-      "caller": "main",
-      "callee": "print",
-      "line": 163,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "print",
-      "line": 166,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "dumps",
-      "line": 163,
-      "resolved": false
-    },
-    {
       "caller": "_compute_source_hash",
       "callee": "Path",
       "line": 26,
-      "resolved": false
-    },
-    {
-      "caller": "_compute_source_hash",
-      "callee": "exists",
-      "line": 27,
-      "resolved": false
-    },
-    {
-      "caller": "_compute_source_hash",
-      "callee": "splitlines",
-      "line": 30,
-      "resolved": false
-    },
-    {
-      "caller": "_compute_source_hash",
-      "callee": "join",
-      "line": 34,
       "resolved": false
     },
     {
@@ -2061,25 +945,7 @@
     },
     {
       "caller": "_compute_source_hash",
-      "callee": "max",
-      "line": 34,
-      "resolved": false
-    },
-    {
-      "caller": "_compute_source_hash",
       "callee": "sha256",
-      "line": 35,
-      "resolved": false
-    },
-    {
-      "caller": "_compute_source_hash",
-      "callee": "type",
-      "line": 37,
-      "resolved": false
-    },
-    {
-      "caller": "_compute_source_hash",
-      "callee": "encode",
       "line": 35,
       "resolved": false
     },
@@ -2097,104 +963,8 @@
     },
     {
       "caller": "generate_overview",
-      "callee": "get",
-      "line": 49,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
-      "callee": "get",
-      "line": 50,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
-      "callee": "get",
-      "line": 51,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
-      "callee": "get",
-      "line": 50,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
       "callee": "now_iso",
       "line": 55,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
-      "callee": "get",
-      "line": 60,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
-      "callee": "get",
-      "line": 62,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
-      "callee": "len",
-      "line": 63,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
-      "callee": "len",
-      "line": 64,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
-      "callee": "len",
-      "line": 65,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
-      "callee": "get",
-      "line": 64,
-      "resolved": false
-    },
-    {
-      "caller": "generate_overview",
-      "callee": "get",
-      "line": 65,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "get",
-      "line": 108,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "get",
-      "line": 121,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "get",
-      "line": 109,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "len",
-      "line": 122,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "append",
-      "line": 110,
       "resolved": false
     },
     {
@@ -2204,195 +974,15 @@
       "resolved": false
     },
     {
-      "caller": "generate_index",
-      "callee": "len",
-      "line": 116,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "get",
-      "line": 121,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "get",
-      "line": 122,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "len",
-      "line": 126,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "get",
-      "line": 116,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "get",
-      "line": 126,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "setdefault",
-      "line": 110,
-      "resolved": false
-    },
-    {
-      "caller": "generate_index",
-      "callee": "get",
-      "line": 116,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "get",
-      "line": 143,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "get",
-      "line": 147,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "get",
-      "line": 154,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "append",
-      "line": 156,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "sorted",
-      "line": 171,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "get",
-      "line": 155,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "get",
-      "line": 155,
-      "resolved": false
-    },
-    {
       "caller": "generate_registers",
       "callee": "now_iso",
       "line": 164,
       "resolved": false
     },
     {
-      "caller": "generate_registers",
-      "callee": "items",
-      "line": 171,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "get",
-      "line": 174,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "get",
-      "line": 177,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "setdefault",
-      "line": 156,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "get",
-      "line": 159,
-      "resolved": false
-    },
-    {
-      "caller": "generate_registers",
-      "callee": "setdefault",
-      "line": 156,
-      "resolved": false
-    },
-    {
-      "caller": "generate_stage_page",
-      "callee": "get",
-      "line": 194,
-      "resolved": false
-    },
-    {
-      "caller": "generate_stage_page",
-      "callee": "get",
-      "line": 195,
-      "resolved": false
-    },
-    {
-      "caller": "generate_stage_page",
-      "callee": "get",
-      "line": 225,
-      "resolved": false
-    },
-    {
-      "caller": "generate_stage_page",
-      "callee": "len",
-      "line": 221,
-      "resolved": false
-    },
-    {
-      "caller": "generate_l3_entries",
-      "callee": "get",
-      "line": 246,
-      "resolved": false
-    },
-    {
-      "caller": "generate_l3_entries",
-      "callee": "get",
-      "line": 250,
-      "resolved": false
-    },
-    {
-      "caller": "generate_l3_entries",
-      "callee": "get",
-      "line": 247,
-      "resolved": false
-    },
-    {
       "caller": "generate_l3_entries",
       "callee": "_compute_source_hash",
       "line": 257,
-      "resolved": false
-    },
-    {
-      "caller": "generate_l3_entries",
-      "callee": "get",
-      "line": 258,
-      "resolved": false
-    },
-    {
-      "caller": "compute_graph_hash",
-      "callee": "dumps",
-      "line": 268,
       "resolved": false
     },
     {
@@ -2404,12 +994,6 @@
     {
       "caller": "compute_graph_hash",
       "callee": "sha256",
-      "line": 269,
-      "resolved": false
-    },
-    {
-      "caller": "compute_graph_hash",
-      "callee": "encode",
       "line": 269,
       "resolved": false
     },
@@ -2429,12 +1013,6 @@
       "caller": "run_phase3",
       "callee": "Path",
       "line": 290,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "mkdir",
-      "line": 293,
       "resolved": false
     },
     {
@@ -2475,18 +1053,6 @@
     },
     {
       "caller": "run_phase3",
-      "callee": "get",
-      "line": 309,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "get",
-      "line": 313,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
       "callee": "generate_l3_entries",
       "line": 319,
       "resolved": false
@@ -2511,86 +1077,14 @@
     },
     {
       "caller": "run_phase3",
-      "callee": "print",
-      "line": 342,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "print",
-      "line": 345,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "exists",
-      "line": 278,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "print",
-      "line": 279,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
       "callee": "exit",
       "line": 280,
       "resolved": false
     },
     {
       "caller": "run_phase3",
-      "callee": "exists",
-      "line": 281,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "print",
-      "line": 282,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
       "callee": "exit",
       "line": 283,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "open",
-      "line": 285,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "load",
-      "line": 286,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "open",
-      "line": 287,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "load",
-      "line": 288,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "get",
-      "line": 310,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "get",
-      "line": 314,
       "resolved": false
     },
     {
@@ -2607,134 +1101,14 @@
     },
     {
       "caller": "run_phase3",
-      "callee": "get",
-      "line": 323,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
       "callee": "compute_graph_hash",
       "line": 324,
       "resolved": false
     },
     {
       "caller": "run_phase3",
-      "callee": "get",
-      "line": 325,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "dumps",
-      "line": 328,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "sorted",
-      "line": 333,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "dumps",
-      "line": 336,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "dumps",
-      "line": 340,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "len",
-      "line": 347,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "len",
-      "line": 348,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "len",
-      "line": 349,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "append",
-      "line": 311,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "get",
-      "line": 313,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
       "callee": "now_iso",
       "line": 326,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "get",
-      "line": 348,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "len",
-      "line": 342,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "len",
-      "line": 343,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "len",
-      "line": 344,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "setdefault",
-      "line": 311,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "glob",
-      "line": 333,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "get",
-      "line": 343,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "get",
-      "line": 348,
-      "resolved": false
-    },
-    {
-      "caller": "run_phase3",
-      "callee": "get",
-      "line": 343,
       "resolved": false
     },
     {
@@ -2787,18 +1161,6 @@
     },
     {
       "caller": "PythonAdapter.extract",
-      "callee": "append",
-      "line": 129,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "print",
-      "line": 135,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
       "callee": "_auto_detect_source_dirs",
       "line": 136,
       "resolved": false
@@ -2823,32 +1185,8 @@
     },
     {
       "caller": "PythonAdapter.extract",
-      "callee": "exists",
-      "line": 132,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "str",
-      "line": 154,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
       "callee": "_extract_from_tree",
       "line": 155,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "len",
-      "line": 175,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "str",
-      "line": 141,
       "resolved": false
     },
     {
@@ -2871,68 +1209,8 @@
     },
     {
       "caller": "PythonAdapter.extract",
-      "callee": "append",
-      "line": 148,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "str",
-      "line": 146,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "str",
-      "line": 149,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
       "callee": "relative_to",
       "line": 149,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "type",
-      "line": 150,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "str",
-      "line": 150,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "walk",
-      "line": 195,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "isinstance",
-      "line": 196,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "isinstance",
-      "line": 209,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "append",
-      "line": 197,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "pop",
-      "line": 205,
       "resolved": false
     },
     {
@@ -2943,44 +1221,8 @@
     },
     {
       "caller": "PythonAdapter._extract_from_tree",
-      "callee": "isinstance",
-      "line": 199,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
       "callee": "_record_function",
       "line": 200,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "join",
-      "line": 203,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
-      "callee": "append",
-      "line": 243,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
-      "callee": "walk",
-      "line": 252,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
-      "callee": "isinstance",
-      "line": 253,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
-      "callee": "hasattr",
-      "line": 225,
       "resolved": false
     },
     {
@@ -3003,44 +1245,14 @@
     },
     {
       "caller": "PythonAdapter._record_function",
-      "callee": "isinstance",
-      "line": 264,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
-      "callee": "isinstance",
-      "line": 264,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
       "callee": "_is_assign_target",
-      "line": 267,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
-      "callee": "append",
-      "line": 269,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
-      "callee": "hasattr",
-      "line": 231,
+      "line": 271,
       "resolved": false
     },
     {
       "caller": "PythonAdapter._record_function",
       "callee": "hexdigest",
       "line": 239,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
-      "callee": "append",
-      "line": 256,
       "resolved": false
     },
     {
@@ -3053,114 +1265,6 @@
       "caller": "PythonAdapter._record_function",
       "callee": "sha256",
       "line": 239,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
-      "callee": "encode",
-      "line": 239,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._get_call_name",
-      "callee": "isinstance",
-      "line": 278,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._get_call_name",
-      "callee": "isinstance",
-      "line": 280,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs",
-      "callee": "exists",
-      "line": 54,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs",
-      "callee": "get",
-      "line": 59,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs",
-      "callee": "exists",
-      "line": 68,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs",
-      "callee": "open",
-      "line": 57,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs",
-      "callee": "load",
-      "line": 58,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs",
-      "callee": "get",
-      "line": 59,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs",
-      "callee": "str",
-      "line": 61,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs",
-      "callee": "isinstance",
-      "line": 61,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs_from_config",
-      "callee": "exists",
-      "line": 74,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs_from_config",
-      "callee": "get",
-      "line": 80,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs_from_config",
-      "callee": "open",
-      "line": 78,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs_from_config",
-      "callee": "load",
-      "line": 79,
-      "resolved": false
-    },
-    {
-      "caller": "_read_source_dirs_from_config",
-      "callee": "get",
-      "line": 80,
-      "resolved": false
-    },
-    {
-      "caller": "_auto_detect_source_dirs",
-      "callee": "exists",
-      "line": 89,
-      "resolved": false
-    },
-    {
-      "caller": "_validate_repo_root",
-      "callee": "exists",
-      "line": 94,
       "resolved": false
     },
     {
@@ -3196,127 +1300,73 @@
     {
       "caller": "build_program_graph",
       "callee": "resolve",
-      "line": 293,
+      "line": 297,
       "resolved": false
     },
     {
       "caller": "build_program_graph",
       "callee": "PythonAdapter",
-      "line": 294,
+      "line": 298,
       "resolved": false
     },
     {
       "caller": "build_program_graph",
       "callee": "extract",
-      "line": 295,
+      "line": 299,
       "resolved": false
     },
     {
       "caller": "build_program_graph",
       "callee": "Path",
-      "line": 293,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "mkdir",
-      "line": 300,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "print",
-      "line": 303,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "print",
-      "line": 304,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "open",
-      "line": 301,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "dump",
-      "line": 302,
+      "line": 297,
       "resolved": false
     },
     {
       "caller": "save_program_graph",
       "callee": "Path",
-      "line": 300,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "len",
       "line": 304,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "len",
-      "line": 305,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "len",
-      "line": 306,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "ArgumentParser",
-      "line": 312,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "add_argument",
-      "line": 313,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "add_argument",
-      "line": 314,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "parse_args",
       "line": 316,
       "resolved": false
     },
     {
       "caller": "main",
-      "callee": "build_program_graph",
-      "line": 319,
+      "callee": "add_argument",
+      "line": 317,
       "resolved": false
     },
     {
       "caller": "main",
-      "callee": "save_program_graph",
+      "callee": "add_argument",
+      "line": 318,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "parse_args",
       "line": 320,
       "resolved": false
     },
     {
       "caller": "main",
-      "callee": "print",
-      "line": 322,
+      "callee": "build_program_graph",
+      "line": 323,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "save_program_graph",
+      "line": 324,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "exit",
-      "line": 323,
+      "line": 327,
       "resolved": false
     }
   ],
@@ -3349,7 +1399,7 @@
       "function": "PythonAdapter._record_function",
       "attribute": "self._is_assign_target",
       "access": "write",
-      "line": 267
+      "line": 271
     }
   ],
   "unresolved_calls_log": []
