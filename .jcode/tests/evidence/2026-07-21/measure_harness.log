@@ -1,11 +1,11 @@
-  harness.sh init: 63ms
+  harness.sh init: 65ms
   PASS  harness.sh init < 5000ms
-  harness.sh check: 92ms
+  harness.sh check: 90ms
   PASS  harness.sh check < 5000ms
   state_manager.sh score: 91ms
   PASS  state_manager.sh score < 5000ms
   state_manager.sh breakdown: 93ms
   PASS  state_manager.sh breakdown < 5000ms
-  harness.sh status: 475ms
+  harness.sh status: 493ms
   PASS  harness.sh status < 5000ms
 measure_harness: OK
