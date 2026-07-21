@@ -43,7 +43,7 @@ Relevant state registers (see registers.md):
 - **File**: `.jcode/lib/handbook_phase2.py`
 - **Line range**: 78-145
 - **Signature**: `(func: dict, context: dict) -> list`
-- **Purpose**: (heuristic) _classify_with_heuristic → stage(s) verify, plan, interpret, execute, handoff. Clasificado por heurística de source analysis.
+- **Purpose**: (heuristic) _classify_with_heuristic → stage(s) handoff, execute, verify, plan, interpret. Clasificado por heurística de source analysis.
 
 ### `run_phase2`
 
@@ -83,7 +83,7 @@ Relevant state registers (see registers.md):
 ### `main`
 
 - **File**: `.jcode/lib/handbook_builder.py`
-- **Line range**: 310-323
+- **Line range**: 327-340
 - **Signature**: `()`
 - **Purpose**: (heuristic) main → stage(s) verify. Clasificado por heurística de source analysis.
 

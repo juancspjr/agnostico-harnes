@@ -79,17 +79,17 @@
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
         142,
-        170
+        217
       ],
       "signature": "(repo_root: str='.', auto: bool=False) -> dict",
-      "body_hash": "sha256:274fb166c2684273"
+      "body_hash": "sha256:612a81278d3c69c2"
     },
     {
       "qualname": "main",
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        173,
-        182
+        220,
+        229
       ],
       "signature": "()",
       "body_hash": "sha256:0dffee778f7dec8d"
@@ -573,26 +573,56 @@
     },
     {
       "caller": "resync",
-      "callee": "version_align",
-      "line": 151,
-      "resolved": false
-    },
-    {
-      "caller": "resync",
-      "callee": "scoped_update",
+      "callee": "load_json",
       "line": 156,
       "resolved": false
     },
     {
       "caller": "resync",
+      "callee": "version_align",
+      "line": 197,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "scoped_update",
+      "line": 203,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
       "callee": "conservative_handling",
-      "line": 159,
+      "line": 206,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "build_program_graph",
+      "line": 163,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "save_json",
+      "line": 179,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "load_json",
+      "line": 182,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "save_json",
+      "line": 186,
       "resolved": false
     },
     {
       "caller": "resync",
       "callee": "rebuild_full",
-      "line": 162,
+      "line": 209,
       "resolved": false
     },
     {
@@ -602,33 +632,69 @@
       "resolved": false
     },
     {
-      "caller": "main",
-      "callee": "ArgumentParser",
-      "line": 174,
+      "caller": "resync",
+      "callee": "hexdigest",
+      "line": 167,
       "resolved": false
     },
     {
-      "caller": "main",
-      "callee": "add_argument",
+      "caller": "resync",
+      "callee": "hexdigest",
+      "line": 168,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "load_json",
+      "line": 172,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "save_json",
       "line": 175,
       "resolved": false
     },
     {
+      "caller": "resync",
+      "callee": "sha256",
+      "line": 167,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "sha256",
+      "line": 168,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "ArgumentParser",
+      "line": 221,
+      "resolved": false
+    },
+    {
       "caller": "main",
       "callee": "add_argument",
-      "line": 176,
+      "line": 222,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 223,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "parse_args",
-      "line": 178,
+      "line": 225,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "resync",
-      "line": 180,
+      "line": 227,
       "resolved": false
     },
     {

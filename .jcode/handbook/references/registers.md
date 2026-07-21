@@ -1,37 +1,9 @@
 # State Registers (Vista Z)
 
-> Auto-generated on 2026-07-21T05:17:59.121209+00:00
+> Auto-generated on 2026-07-21T05:21:10.571560+00:00
 > Maps each state register to all writers and readers.
 
-## `self._extract_from_tree`
-
-**Writers:**
-- `PythonAdapter.extract` (.jcode/lib/handbook_builder.py:155)
-
-**Readers:**
-
-## `self._get_call_name`
-
-**Writers:**
-- `PythonAdapter._record_function` (.jcode/lib/handbook_builder.py:254)
-
-**Readers:**
-
-## `self._is_assign_target`
-
-**Writers:**
-- `PythonAdapter._record_function` (.jcode/lib/handbook_builder.py:267)
-
-**Readers:**
-
-## `self._record_function`
-
-**Writers:**
-- `PythonAdapter._extract_from_tree` (.jcode/lib/handbook_builder.py:210)
-- `PythonAdapter._extract_from_tree` (.jcode/lib/handbook_builder.py:200)
-
-**Readers:**
-
+_No state registers detected yet._
 
 ## Maintenance
 

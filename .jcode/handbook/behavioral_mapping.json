@@ -137,7 +137,7 @@
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
         142,
-        170
+        217
       ]
     },
     {
@@ -148,8 +148,8 @@
       "regions": null,
       "file": ".jcode/lib/handbook_resync.py",
       "line_range": [
-        173,
-        182
+        220,
+        229
       ]
     },
     {
@@ -245,14 +245,14 @@
     },
     {
       "qualname": "_classify_with_heuristic",
-      "purpose": "(heuristic) _classify_with_heuristic \u2192 stage(s) verify, plan, interpret, execute, handoff. Clasificado por heur\u00edstica de source analysis.",
+      "purpose": "(heuristic) _classify_with_heuristic \u2192 stage(s) handoff, execute, verify, plan, interpret. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
+        "handoff",
+        "execute",
         "verify",
         "plan",
-        "interpret",
-        "execute",
-        "handoff"
+        "interpret"
       ],
       "regions": null,
       "file": ".jcode/lib/handbook_phase2.py",
@@ -406,11 +406,11 @@
     },
     {
       "qualname": "generate_overview",
-      "purpose": "(heuristic) generate_overview \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
+      "purpose": "(heuristic) generate_overview \u2192 stage(s) plan, handoff. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "handoff",
-        "plan"
+        "plan",
+        "handoff"
       ],
       "regions": null,
       "file": ".jcode/lib/handbook_phase3.py",
@@ -445,11 +445,11 @@
     },
     {
       "qualname": "generate_stage_page",
-      "purpose": "(heuristic) generate_stage_page \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
+      "purpose": "(heuristic) generate_stage_page \u2192 stage(s) plan, handoff. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "handoff",
-        "plan"
+        "plan",
+        "handoff"
       ],
       "regions": null,
       "file": ".jcode/lib/handbook_phase3.py",
@@ -546,7 +546,7 @@
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
         216,
-        274
+        291
       ]
     },
     {
@@ -557,8 +557,8 @@
       "regions": null,
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        276,
-        282
+        293,
+        299
       ]
     },
     {
@@ -569,8 +569,8 @@
       "regions": null,
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        284,
-        288
+        301,
+        305
       ]
     },
     {
@@ -638,8 +638,8 @@
       "regions": null,
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        291,
-        295
+        308,
+        312
       ]
     },
     {
@@ -652,8 +652,8 @@
       "regions": null,
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        298,
-        307
+        315,
+        324
       ]
     },
     {
@@ -666,8 +666,8 @@
       "regions": null,
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        310,
-        323
+        327,
+        340
       ]
     }
   ],

@@ -126,9 +126,9 @@
       "anchor": "resync",
       "line_range": [
         142,
-        170
+        217
       ],
-      "source_hash": "sha256:274fb166c26842737d076a39066017e49a1a114a14dc8c352254d2c2153c4bd1",
+      "source_hash": "sha256:612a81278d3c69c29e6a571496c79f60e176af42a4ebdacb4a865bc8624d8f11",
       "interface": "(repo_root: str='.', auto: bool=False) -> dict",
       "behavior": "(unmapped: no heuristic match) resync",
       "relations": {
@@ -141,8 +141,8 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "main",
       "line_range": [
-        310,
-        323
+        327,
+        340
       ],
       "source_hash": "sha256:90efec706f65b29bcfa949b05c77bb328c3982a5cc45f4c72589a781a1bc62c3",
       "interface": "()",
@@ -264,14 +264,14 @@
       ],
       "source_hash": "sha256:7efd4f996728d7d8d699a5c0fbba9b43d815572237a02bd8f231b2d852feef52",
       "interface": "(func: dict, context: dict) -> list",
-      "behavior": "(heuristic) _classify_with_heuristic \u2192 stage(s) verify, plan, interpret, execute, handoff. Clasificado por heur\u00edstica de source analysis.",
+      "behavior": "(heuristic) _classify_with_heuristic \u2192 stage(s) handoff, execute, verify, plan, interpret. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
+          "handoff",
+          "execute",
           "verify",
           "plan",
-          "interpret",
-          "execute",
-          "handoff"
+          "interpret"
         ]
       },
       "register_interactions": []
@@ -423,11 +423,11 @@
       ],
       "source_hash": "sha256:c5646044987b806e00c251da954cfda3b72aa7f3c30d7e68e83f117cb6bd52d6",
       "interface": "(pg: dict, mapping: dict) -> str",
-      "behavior": "(heuristic) generate_overview \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
+      "behavior": "(heuristic) generate_overview \u2192 stage(s) plan, handoff. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
-          "handoff",
-          "plan"
+          "plan",
+          "handoff"
         ]
       },
       "register_interactions": []
@@ -474,11 +474,11 @@
       ],
       "source_hash": "sha256:386fffad42c2b9ce2e5d0402a5086a4fa174d688818210c99ef15bf737391ef5",
       "interface": "(stage_id: str, stage_name: str, stage_desc: str, funcs: list, pg: dict) -> str",
-      "behavior": "(heuristic) generate_stage_page \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
+      "behavior": "(heuristic) generate_stage_page \u2192 stage(s) plan, handoff. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
-          "handoff",
-          "plan"
+          "plan",
+          "handoff"
         ]
       },
       "register_interactions": []
@@ -576,9 +576,9 @@
       "anchor": "PythonAdapter._record_function",
       "line_range": [
         216,
-        274
+        291
       ],
-      "source_hash": "sha256:e2e7e16589a1ca653070e88c094b0c69824d63b7d9d1ced6a56c855306b6b3dd",
+      "source_hash": "sha256:d8658e434786def89780bd87bf4f08c858f7c3491f039f283439df45df7b8f92",
       "interface": "(self, func_node, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log, qualname_prefix='')",
       "behavior": "(unmapped: no heuristic match) PythonAdapter._record_function",
       "relations": {
@@ -591,8 +591,8 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "PythonAdapter._get_call_name",
       "line_range": [
-        276,
-        282
+        293,
+        299
       ],
       "source_hash": "sha256:1b1560da8ecda101207c1731e03a16828274cdeee5ab8751bff615b57b5b0bda",
       "interface": "(self, func_node)",
@@ -607,8 +607,8 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "PythonAdapter._is_assign_target",
       "line_range": [
-        284,
-        288
+        301,
+        305
       ],
       "source_hash": "sha256:a0ec7efd5dcc51abf8d8590e4597d7de82b5971f3609f0ce18e75a2c676ab826",
       "interface": "(self, attr_node)",
@@ -694,8 +694,8 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "build_program_graph",
       "line_range": [
-        291,
-        295
+        308,
+        312
       ],
       "source_hash": "sha256:7f71faaf4b77a98d88a73f4cdc2f38e7a138170debb45ce96a771e577798a069",
       "interface": "(repo_root: str) -> dict",
@@ -712,8 +712,8 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "save_program_graph",
       "line_range": [
-        298,
-        307
+        315,
+        324
       ],
       "source_hash": "sha256:2102a9366cb877df44faa64f591e0e09d98e8bc71fbb82a66e697dcbb17e6505",
       "interface": "(graph: dict, output_path: str)",

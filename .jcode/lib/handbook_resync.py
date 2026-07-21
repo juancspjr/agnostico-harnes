@@ -140,17 +140,64 @@ def rebuild_full(repo_root: Path, handbook_dir: Path):
 
 
 def resync(repo_root: str = ".", auto: bool = False) -> dict:
-    """Ejecuta el resync completo."""
+    """Ejecuta el resync completo con re-extracción automática (H-4 fix)."""
     root = Path(repo_root).resolve()
     handbook_dir = root / ".jcode" / "handbook"
 
     if not handbook_dir.exists():
         return {"status": "no_handbook", "reason": "handbook_dir_not_found"}
 
-    # Paso 1: Version alignment
+    # H-4: Siempre re-ejecutar Phase I antes de comparar
+    # El resync no puede confiar en que program_graph.json está actualizado
+    print("[resync] Step 0: Re-extracting static facts (Phase I)", file=sys.stderr)
+
+    # Backup PG actual antes de rebuildear
+    pg_path = handbook_dir / "program_graph.json"
+    old_pg = load_json(pg_path)
+
+    try:
+        # Re-ejecutar Phase I para obtener el program graph actualizado
+        sys.path.insert(0, str(root / ".jcode" / "lib"))
+        from handbook_builder import build_program_graph
+
+        new_pg = build_program_graph(str(root))
+
+        # Comparar hashes para detectar cambios
+        import hashlib as _hl
+        old_hash = _hl.sha256(json.dumps(old_pg, sort_keys=True).encode()).hexdigest()[:16]
+        new_hash = _hl.sha256(json.dumps(new_pg, sort_keys=True).encode()).hexdigest()[:16]
+
+        if old_hash == new_hash:
+            # No hay cambios en PG, pero actualizar K_g por si acaso
+            k_g = load_json(handbook_dir / "K_g.json")
+            if k_g:
+                k_g["program_graph_hash"] = f"sha256:{new_hash}"
+                save_json(handbook_dir / "K_g.json", k_g)
+            return {"status": "no_op", "reason": "graph_unchanged_after_rebuild"}
+
+        # Guardar nuevo PG
+        save_json(pg_path, new_pg)
+
+        # Actualizar K_g
+        k_g = load_json(handbook_dir / "K_g.json")
+        if not k_g:
+            k_g = {"leaf_mode": "function", "stage_skeleton": {"stages": []}}
+        k_g["program_graph_hash"] = f"sha256:{new_hash}"
+        save_json(handbook_dir / "K_g.json", k_g)
+
+        print(f"[resync] PG changed: {old_hash[:12]} → {new_hash[:12]} "
+              f"({len(new_pg.get('functions', []))} functions)",
+              file=sys.stderr)
+
+    except Exception as e:
+        print(f"[resync] Phase I failed: {e}", file=sys.stderr)
+        return {"status": "error", "reason": f"phase1_failed: {e}"}
+
+    # Paso 1: Version alignment (ahora con PG actualizado)
     align = version_align(root, handbook_dir)
     if align.get("status") == "no_op":
-        return align
+        # No hay diff en git pero PG cambió → continuar de todas formas
+        print("[resync] No git diff but PG changed — continuing", file=sys.stderr)
 
     # Paso 2: Scoped update
     scoped = scoped_update(root, handbook_dir, align)
