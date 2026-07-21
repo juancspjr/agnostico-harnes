@@ -27,6 +27,7 @@ title: AGENT-PROTOCOL — Checklist por turno (agnóstico)
 | `.jcode/PRINCIPLES.md` PARTE II | Solo si tarea es de loops | ~150 |
 | `.jcode/INCIDENT-PROTOCOLS.md` | Solo si hubo bloqueo de guardrail | bajo demanda |
 | `.jcode/FAILURE-PATTERNS.md §1-§3` | **Si task_class >= SLICE, fixed_check falló 2 veces, o remediación** | ~200 |
+| `.jcode/quality-preamble.md` | **Siempre antes de entrega final** (cargado automáticamente por el coordinador) | ~40 |
 
 **Prohibido**: leer `archive/` entero, `PLAN-VIVO` histórico, o `INDEX.md`
 salvo búsqueda específica con `grep`.

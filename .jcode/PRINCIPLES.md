@@ -151,6 +151,21 @@ Los patrones de fallo ocultos y recurrentes del agente están normados en
 Ningún loop puede cerrarse ni declararse resuelto si el Hidden Failure Gate
 definido allí no pasa completo.
 
+### §14 R-FRONTIER-QUALITY — Emulación de modelo frontera
+
+Todo agente (incluido el coordinador) debe seguir el protocolo de calidad
+definido en `.jcode/quality-preamble.md` antes de entregar cualquier resultado:
+
+1. Chain‑of‑Thought (razonar antes de actuar)
+2. Self‑Verify (re‑leer la petición y criticar el output)
+3. Effort stratification (modelo barato para mecánico, potente para juicio)
+4. Multi‑agent review (spawn de revisor para entregas importantes)
+5. Summarize with evidence (incluir razonamiento en reportes)
+6. Task decomposition (split + synthesize)
+
+El coordinador inyecta este protocolo en cada spawn. Cuando trabaja en
+solitario, lo aplica a sí mismo como system prompt.
+
 ---
 
 ## PARTE II — Ley operativa del arnés
@@ -231,6 +246,7 @@ template repo para compartir el arnés entre proyectos.
 | **R-REGRESSION-BEFORE-MERGE** | §11: Regresión completa antes de merge |
 | **R-CONTAMINATION-ZERO** | §12: Cero contaminación en `.jcode/` |
 | **R-HIDDEN-FAILURE-CATALOG** | §13: Catálogo normado en `FAILURE-PATTERNS.md` |
+| **R-FRONTIER-QUALITY** | §14: Protocolo de calidad en `quality-preamble.md` |
 | **HF Gate** | Hidden Failure Gate — gate anti-autoengaño para cierre de loops |
 | **Evidence Bundle** | Conjunto persistido de evidencia ejecutable que prueba un fix |
 

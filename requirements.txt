@@ -1,0 +1,29 @@
+# =============================================================================
+# requirements.txt — Dependencias del harness agnóstico
+# =============================================================================
+# Estas son las dependencias mínimas para que el harness funcione.
+# Son parte estándar de Python 3.11+ en la mayoría de los casos.
+# =============================================================================
+
+# Core — Python 3.11+ stdlib
+# (ast, json, pathlib, hashlib, subprocess, tomllib — todos stdlib)
+
+# Opcional — Python 3.10 o menor requiere tomli como backport
+# tomli>=2.0.0  ; python_version < "3.11"
+
+# Opcional — LLM integration (Phase II)
+# Descomentar para habilitar clasificación con LLM real:
+# z-ai-web-dev-sdk>=0.1.0
+
+# =============================================================================
+# Notas de instalación
+# =============================================================================
+# Instalación mínima (Python 3.11+):
+#   pip install -r requirements.txt  # No-op si no hay deps opcionales
+#
+# Para habilitar LLM en Phase II:
+#   pip install z-ai-web-dev-sdk
+#
+# Para CI/CD:
+#   pip install pytest pytest-cov mypy ruff
+# =============================================================================
