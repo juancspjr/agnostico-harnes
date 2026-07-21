@@ -22,6 +22,25 @@ try:
 except ImportError:
     pass
 
+# C-3: Visibilidad del modo stub
+_STUB_MODE_WARNING_ISSUED = False
+
+def _issue_stub_mode_warning():
+    """Emite warning visible sobre el modo stub (no LLM)."""
+    global _STUB_MODE_WARNING_ISSUED
+    if not _STUB_MODE_WARNING_ISSUED:
+        _STUB_MODE_WARNING_ISSUED = True
+        import warnings
+        warnings.warn(
+            "Phase II en modo HEURÍSTICO (no LLM). "
+            "Las clasificaciones son heurísticas, no basadas en LLM real. "
+            "Para activar LLM: instalar z-ai-web-dev-sdk.",
+            RuntimeWarning, stacklevel=2
+        )
+        print("[warn] Phase II: modo HEURÍSTICO (no LLM). "
+              "Instala z-ai-web-dev-sdk para clasificación real.",
+              file=sys.stderr)
+
 
 # Stage skeleton S0 basado en PRINCIPLES.md PARTE II + execution stages típicos
 DEFAULT_STAGES = [
@@ -161,6 +180,9 @@ def run_phase2(program_graph_path: str = ".jcode/handbook/program_graph.json",
     stage_skeleton = build_stage_skeleton()
     function_assignments = []
     unmapped = []
+
+    # C-3: emitir warning de modo stub
+    _issue_stub_mode_warning()
 
     # Build caller/callee context from call_edges
     call_edges = pg.get("call_edges", [])

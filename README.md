@@ -297,6 +297,20 @@ feat/paper-compliant-bootstrap:
 
 ---
 
+## Dependencias
+
+### Opcionales (LLM para Phase II)
+
+Para clasificación de funciones con LLM real en Phase II (`handbook_phase2.py`), instalar:
+
+```bash
+pip install z-ai-web-dev-sdk
+```
+
+Sin este SDK, Phase II usa heurística de análisis de código fuente (`_classify_with_heuristic`). La heurística distribuye funciones en 6 stages (init, interpret, plan, execute, verify, handoff) con un warning visible al inicio de cada ejecución.
+
+---
+
 ## Versión
 
 - **v002-paper-compliant** (2026-07-21): Bootstrap inicial del repo nuevo +

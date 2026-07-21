@@ -221,11 +221,12 @@
     },
     {
       "qualname": "classify_function_stub",
-      "purpose": "(heuristic) classify_function_stub \u2192 stage(s) handoff, interpret. Clasificado por heur\u00edstica de source analysis.",
+      "purpose": "(heuristic) classify_function_stub \u2192 stage(s) interpret, plan, handoff. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "handoff",
-        "interpret"
+        "interpret",
+        "plan",
+        "handoff"
       ],
       "regions": null,
       "file": ".jcode/lib/handbook_phase2.py",
@@ -248,13 +249,10 @@
     },
     {
       "qualname": "run_phase2",
-      "purpose": "(heuristic) run_phase2 \u2192 stage(s) handoff, execute, plan, verify. Clasificado por heur\u00edstica de source analysis.",
+      "purpose": "(heuristic) run_phase2 \u2192 stage(s) plan. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "handoff",
-        "execute",
-        "plan",
-        "verify"
+        "plan"
       ],
       "regions": null,
       "file": ".jcode/lib/handbook_phase2.py",
@@ -265,9 +263,11 @@
     },
     {
       "qualname": "main",
-      "purpose": "(unmapped: no heuristic match) main",
+      "purpose": "(heuristic) main \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
-      "stage_assignments": [],
+      "stage_assignments": [
+        "execute"
+      ],
       "regions": null,
       "file": ".jcode/lib/handbook_phase2.py",
       "line_range": [
@@ -355,11 +355,11 @@
     },
     {
       "qualname": "generate_overview",
-      "purpose": "(heuristic) generate_overview \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
+      "purpose": "(heuristic) generate_overview \u2192 stage(s) plan, handoff. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "handoff",
-        "plan"
+        "plan",
+        "handoff"
       ],
       "regions": null,
       "file": ".jcode/lib/handbook_phase3.py",
@@ -394,11 +394,11 @@
     },
     {
       "qualname": "generate_stage_page",
-      "purpose": "(heuristic) generate_stage_page \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
+      "purpose": "(heuristic) generate_stage_page \u2192 stage(s) plan, handoff. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "handoff",
-        "plan"
+        "plan",
+        "handoff"
       ],
       "regions": null,
       "file": ".jcode/lib/handbook_phase3.py",
@@ -538,11 +538,11 @@
     },
     {
       "qualname": "_read_source_dirs_from_config",
-      "purpose": "(heuristic) _read_source_dirs_from_config \u2192 stage(s) init, execute. Clasificado por heur\u00edstica de source analysis.",
+      "purpose": "(heuristic) _read_source_dirs_from_config \u2192 stage(s) execute, init. Clasificado por heur\u00edstica de source analysis.",
       "granularity": "function",
       "stage_assignments": [
-        "init",
-        "execute"
+        "execute",
+        "init"
       ],
       "regions": null,
       "file": ".jcode/lib/handbook_builder.py",
@@ -630,7 +630,6 @@
       "parse_toml",
       "parse_section_body",
       "generate_purpose_stub",
-      "main",
       "compute_relevance",
       "main",
       "now_iso",
