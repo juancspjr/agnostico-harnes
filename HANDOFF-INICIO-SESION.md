@@ -9,19 +9,25 @@
 
 | Campo | Valor |
 |---|---|
-| **Nombre** | `<nombre-del-proyecto>` |
-| **Fase actual** | `<Bootstrap / MVP / Producción / Mantenimiento>` |
-| **Sprint activo** | `<NN> — <título>` |
-| **Score compliance actual** | `<N>/100` (ver `bash .jcode/lib/harness.sh status`) |
-| **Última actualización** | `<YYYY-MM-DDTHH:MMZ>` |
+| **Nombre** | `proyecto-01` |
+| **Fase actual** | **Paper-Compliant Bootstrap Completo** ✅ |
+| **Score compliance actual** | 100/100 (ver `bash .jcode/lib/harness.sh status`) |
+| **Última actualización** | 2026-07-21T03:57Z |
+| **Rama activa** | `feat/paper-compliant-bootstrap` |
 
 ### Lo que está hecho
 
-- ✅ Bootstrap del repo con arnés v100-clean agnóstico
-- ✅ `AGENTS.md`, `PROJECT.md`, `PDR.md` (con placeholders por llenar)
+- ✅ Bootstrap del repo con arnés v100-clean agnóstico (54 archivos base)
+- ✅ `AGENTS.md`, `PROJECT.md`, `PDR.md` (placeholders por llenar)
 - ✅ `.jcode/` completo (8 skills, 4 hooks, 5 libs, 3 templates, visualizer)
+- ✅ **FASE 1 cerrada**: C-01 (9 tests) + H-01 (regex fix) + H-02 (config extensions)
+- ✅ **FASE 2 cerrada**: Construction Pipeline Phase I/II/III (12 funcs, 11 L3 entries)
+- ✅ **FASE 3 cerrada**: Resync automático post-commit
+- ✅ **FASE 4 cerrada**: BGPD source verification
+- ✅ **FASE 5 cerrada**: Edit Planning Γ + smoke_paper_compliance
+- ✅ 10 tests pasan (9 audit + 1 paper_compliance), 0 contaminación
 
-### Lo que falta (primeras tareas)
+### Lo que falta (primeras tareas del proyecto)
 
 - [ ] Llenar `AGENTS.md §1-§12` con datos reales del proyecto
 - [ ] Llenar `PROJECT.md §1-§9` con spec del dominio
@@ -34,6 +40,18 @@
 - [ ] Editar `.jcode/lib/contamination_patterns.txt` con el nombre del proyecto
 - [ ] Correr `bash .jcode/lib/harness.sh check` y verificar 0 contaminación
 - [ ] Primer commit + primer loop declarado
+
+### Métricas del handbook paper-compliant
+
+| Métrica | Valor |
+|---|---|
+| **Funciones extraídas** | 12 |
+| **Call edges** | 101 |
+| **State accesses** | 5 |
+| **L3 entries** | 11 |
+| **State registers (Vista Z)** | 5 (1 atributo self.* × 2 access types) |
+| **Stages (L2)** | 6 |
+| **Frozen entries** | 0 |
 
 ---
 

@@ -244,9 +244,63 @@ Si todo ✓ → el proyecto está listo para sprints reales.
 
 ---
 
+## 📊 Paper-Compliant Bootstrap (2026-07-21)
+
+> **Estado**: ✅ 5 fases implementadas con gates pasados.
+> Cumple el paper *Harness Handbook* (arXiv:2607.13285v1) en sus 3 pilares.
+
+### Los 3 pilares del paper implementados
+
+| Pilar | Componente | Estado |
+|---|---|---|
+| **P1: Construction Pipeline** | `handbook_builder.py` + `handbook_phase2.py` + `handbook_phase3.py` | ✅ 12 funcs, 11 L3 entries, 6 state registers, 0 frozen |
+| **P2: Resync automático** | `handbook_resync.py` + hook en `turnend.sh` | ✅ Auto-ejecutado tras commit reciente |
+| **P3: BGPD verification** | `handbook_verify.py` + skill `handbook/SKILL.md` + paso VERIFY en `orient/` | ✅ 11 sites verificados (sin request filter) |
+
+### Resultados de los gates
+
+| Gate | Resultado |
+|---|---|
+| FASE 0 — baseline | ✅ `harness.sh check` retorna 0 contaminación |
+| FASE 1 — C-01 + H-01 + H-02 | ✅ 9 tests pasan |
+| FASE 2 — Construction Pipeline | ✅ overview.md + index.md + registers.md + 6 stage pages + K_g.json + cache_B.json + frozen_entries.json |
+| FASE 3 — Resync | ✅ `handbook_resync.py --auto` ejecutable, hook en turnend.sh |
+| FASE 4 — BGPD | ✅ `handbook_verify.py` retorna 11 verified (sin request) |
+| FASE 5 — Edit Planning Γ + smoke_paper_compliance | ✅ 10 tests pasan, OP.md con will_modify/add/remove |
+
+### Cómo usar el handbook
+
+```bash
+# Generar handbook inicial (después de llenar PROJECT.md/AGENTS.md/PDR.md)
+python3 .jcode/lib/handbook_builder.py --repo .
+python3 .jcode/lib/handbook_phase2.py
+python3 .jcode/lib/handbook_phase3.py
+
+# Verificar sites relevantes a un cambio
+python3 .jcode/lib/handbook_verify.py --request "auth login flow"
+
+# Resync después de commits (auto via turnend.sh)
+python3 .jcode/lib/handbook_resync.py --auto
+```
+
+### Ramas y commits
+
+```
+feat/paper-compliant-bootstrap:
+  b11b735 feat(harness): paper-compliant bootstrap completo
+  d9800b7 feat(harness): paper pilar 3 — BGPD con source verification
+  33783e8 feat(harness): paper pilar 2 — resync automático post-commit
+  536c2b9 feat(harness): paper pilar 1 — construction pipeline Phase I/II/III
+  d87450d fix(harness): C-01 tests + H-01 regex + H-02 config extensions
+  bcd9984 chore: snapshot baseline antes de paper-compliant bootstrap
+```
+
+---
+
 ## Versión
 
+- **v002-paper-compliant** (2026-07-21): Bootstrap inicial del repo nuevo +
+  arnés paper-compliant (3 pilares del paper Harness Handbook implementados).
+  10 tests pasan (9 audit + 1 paper-compliance). 0 contaminación.
 - **v001-bootstrap** (2026-07-21): Bootstrap inicial del repo nuevo.
-  Basado en el arnés v100-clean migrado desde Will-Cel. Cero
-  contaminación del proyecto anterior. Listo para cualquier stack
-  y cualquier dominio.
+  Basado en el arnés v100-clean migrado desde Will-Cel.
