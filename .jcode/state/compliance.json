@@ -18,5 +18,37 @@
   "current_loop_id": null,
   "current_loop_budget": 0,
   "current_loop_iter": 0,
-  "history": []
+  "history": [],
+  "hidden_failure_catalog": {
+    "hf_gate_passed": false,
+    "hf_evidence_bundle_path": "",
+    "hf_strikes": {
+      "HF-V1": 0,
+      "HF-V2": 0,
+      "HF-V3": 0,
+      "HF-V4": 0,
+      "HF-V5": 0,
+      "HF-V6": 0,
+      "HF-S1": 0,
+      "HF-S2": 0,
+      "HF-S3": 0,
+      "HF-S4": 0,
+      "HF-S5": 0,
+      "HF-E1": 0,
+      "HF-E2": 0,
+      "HF-E3": 0,
+      "HF-E4": 0,
+      "HF-E5": 0,
+      "HF-E6": 0,
+      "HF-E7": 0,
+      "HF-E8": 0,
+      "HF-G1": 0,
+      "HF-G2": 0,
+      "HF-G3": 0,
+      "HF-G4": 0,
+      "HF-G5": 0,
+      "HF-G6": 0,
+      "HF-G7": 0
+    }
+  }
 }

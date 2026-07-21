@@ -22,6 +22,7 @@ title: Catálogo oficial de loops
 - out_of_scope: [<archivos/dirs no tocados>]
 - fixed_check: "<comando reproducible que valida el éxito>"
 - benchmark_type: test|smoke|curl|grep|sql|review-score|guardrail-audit|build
+- hf_gate: required                    # Hidden Failure Gate (FAILURE-PATTERNS.md)
 - budget: <máx iteraciones>
 - progress_metric: "<cómo medir progreso entre iteraciones>"
 - stop_conditions: [éxito, no-op, bloqueo, aprobación, budget, 2-no-progreso]
@@ -57,6 +58,16 @@ Cualquiera de estas condiciones cierra el loop:
 4. **Aprobación requerida**: el cambio cruza `approval_boundary`
 5. **Presupuesto agotado**: se alcanzó `budget` iteraciones
 6. **2-no-progreso**: 2 iteraciones consecutivas sin avance medible
+
+### Hidden Failure Gate (obligatorio)
+
+Ningún loop se cierra si el Hidden Failure Gate definido en `FAILURE-PATTERNS.md`
+no está en estado `passed`. Ver ejecutar:
+
+```bash
+bash .jcode/tests/audit/verify_hidden_failure_gate.sh
+bash .jcode/tests/audit/verify_hidden_failure_gate_independiente.sh
+```
 
 ---
 
