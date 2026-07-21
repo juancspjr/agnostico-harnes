@@ -22,7 +22,21 @@ Relevant state registers (see registers.md):
 
 ## Internal units
 
-**Functions in this stage**: 0
+**Functions in this stage**: 2
+
+### `_classify_with_heuristic`
+
+- **File**: `.jcode/lib/handbook_phase2.py`
+- **Line range**: 78-145
+- **Signature**: `(func: dict, context: dict) -> list`
+- **Purpose**: (heuristic) _classify_with_heuristic → stage(s) verify, plan, interpret, execute, handoff. Clasificado por heurística de source analysis.
+
+### `classify_function_heuristic`
+
+- **File**: `.jcode/lib/handbook_phase2.py`
+- **Line range**: 148-156
+- **Signature**: `(qualname: str, file: str, signature: str, source: str='', callers: list=None, callees: list=None) -> list`
+- **Purpose**: (heuristic) classify_function_heuristic → stage(s) interpret. Clasificado por heurística de source analysis.
 
 
 ## Code anchors

@@ -1,5 +1,159 @@
 {
   "l3_entries": {
+    "git_diff_files": {
+      "qualname": "git_diff_files",
+      "file": ".jcode/lib/handbook_resync.py",
+      "anchor": "git_diff_files",
+      "line_range": [
+        20,
+        30
+      ],
+      "source_hash": "sha256:a1f21c73d4424817ae0b6673db99f225b2eb5563938ec4a55716f4c57292c8ea",
+      "interface": "(repo_root: Path) -> list",
+      "behavior": "(heuristic) git_diff_files \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "load_json": {
+      "qualname": "load_json",
+      "file": ".jcode/lib/handbook_verify.py",
+      "anchor": "load_json",
+      "line_range": [
+        17,
+        21
+      ],
+      "source_hash": "sha256:2f2f3b692c9e77e9b536741057de1d16d25689e1ca7764e9c88963ae041fcc21",
+      "interface": "(path: Path) -> dict",
+      "behavior": "(heuristic) load_json \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "save_json": {
+      "qualname": "save_json",
+      "file": ".jcode/lib/handbook_resync.py",
+      "anchor": "save_json",
+      "line_range": [
+        40,
+        43
+      ],
+      "source_hash": "sha256:595495718390bc937d3965d38dfba69b42b6a9c9fe7407b37f7510bc864342ac",
+      "interface": "(path: Path, data: dict)",
+      "behavior": "(heuristic) save_json \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "version_align": {
+      "qualname": "version_align",
+      "file": ".jcode/lib/handbook_resync.py",
+      "anchor": "version_align",
+      "line_range": [
+        46,
+        72
+      ],
+      "source_hash": "sha256:0cd72597f8572d32cd150ef6a7b21ed9cef0f0213a598ad0fda00278750714c1",
+      "interface": "(repo_root: Path, handbook_dir: Path) -> dict",
+      "behavior": "(unmapped: no heuristic match) version_align",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "scoped_update": {
+      "qualname": "scoped_update",
+      "file": ".jcode/lib/handbook_resync.py",
+      "anchor": "scoped_update",
+      "line_range": [
+        75,
+        91
+      ],
+      "source_hash": "sha256:8c9f330efa83619aa4100f2096a73af5f3fa89cda3d219ac177f9cc34741a009",
+      "interface": "(repo_root: Path, handbook_dir: Path, align_result: dict) -> dict",
+      "behavior": "(unmapped: no heuristic match) scoped_update",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "conservative_handling": {
+      "qualname": "conservative_handling",
+      "file": ".jcode/lib/handbook_resync.py",
+      "anchor": "conservative_handling",
+      "line_range": [
+        94,
+        126
+      ],
+      "source_hash": "sha256:ded60440783c3b530fbc122ea974afe62ced03bc9da6b9c0af055708cbb4f535",
+      "interface": "(handbook_dir: Path, scoped_result: dict) -> dict",
+      "behavior": "(unmapped: no heuristic match) conservative_handling",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "rebuild_full": {
+      "qualname": "rebuild_full",
+      "file": ".jcode/lib/handbook_resync.py",
+      "anchor": "rebuild_full",
+      "line_range": [
+        129,
+        139
+      ],
+      "source_hash": "sha256:8de3da7c47bd96f0a9a40f5e095e0b072c92791bd53078eb10cd6725321f6cb3",
+      "interface": "(repo_root: Path, handbook_dir: Path)",
+      "behavior": "(heuristic) rebuild_full \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "resync": {
+      "qualname": "resync",
+      "file": ".jcode/lib/handbook_resync.py",
+      "anchor": "resync",
+      "line_range": [
+        142,
+        170
+      ],
+      "source_hash": "sha256:274fb166c26842737d076a39066017e49a1a114a14dc8c352254d2c2153c4bd1",
+      "interface": "(repo_root: str='.', auto: bool=False) -> dict",
+      "behavior": "(unmapped: no heuristic match) resync",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "main": {
+      "qualname": "main",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "main",
+      "line_range": [
+        310,
+        323
+      ],
+      "source_hash": "sha256:90efec706f65b29bcfa949b05c77bb328c3982a5cc45f4c72589a781a1bc62c3",
+      "interface": "()",
+      "behavior": "(heuristic) main \u2192 stage(s) verify. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "verify"
+        ]
+      },
+      "register_interactions": []
+    },
     "parse_toml": {
       "qualname": "parse_toml",
       "file": ".jcode/lib/_config_parse.py",
@@ -8,13 +162,11 @@
         15,
         42
       ],
-      "source_hash": "",
+      "source_hash": "sha256:04abcda8e45be0fedd6e79a28a91d5bca9a1f85cb248857d9ccd1e01bcff49d2",
       "interface": "(content)",
-      "behavior": "Funci\u00f3n parse_toml participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "behavior": "(unmapped: no heuristic match) parse_toml",
       "relations": {
-        "stages": [
-          "execute"
-        ]
+        "stages": []
       },
       "register_interactions": []
     },
@@ -26,13 +178,11 @@
         45,
         67
       ],
-      "source_hash": "",
+      "source_hash": "sha256:cb61ae00a65e9142856bde3878f46afff7f1375918f1abfa421dd7bbe76aa432",
       "interface": "(body)",
-      "behavior": "Funci\u00f3n parse_section_body participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "behavior": "(unmapped: no heuristic match) parse_section_body",
       "relations": {
-        "stages": [
-          "execute"
-        ]
+        "stages": []
       },
       "register_interactions": []
     },
@@ -44,9 +194,43 @@
         70,
         84
       ],
-      "source_hash": "",
+      "source_hash": "sha256:14bcbae10c65964c9154fe59d8e1b54510127abe72219aab39547771377baf17",
       "interface": "(toml_data, key_path)",
-      "behavior": "Funci\u00f3n get_value participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "behavior": "(heuristic) get_value \u2192 stage(s) verify. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "verify"
+        ]
+      },
+      "register_interactions": []
+    },
+    "_issue_stub_mode_warning": {
+      "qualname": "_issue_stub_mode_warning",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "anchor": "_issue_stub_mode_warning",
+      "line_range": [
+        28,
+        42
+      ],
+      "source_hash": "sha256:914a41a9184488749142a14e6ecece507fac6a76d70484c925524e1172d16d8b",
+      "interface": "()",
+      "behavior": "(unmapped: no heuristic match) _issue_stub_mode_warning",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "build_stage_skeleton": {
+      "qualname": "build_stage_skeleton",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "anchor": "build_stage_skeleton",
+      "line_range": [
+        56,
+        58
+      ],
+      "source_hash": "sha256:4ddc0c291a365933344998c6eaded79dc8d7a6dea5fe0607528cb2a1650e235e",
+      "interface": "() -> dict",
+      "behavior": "(heuristic) build_stage_skeleton \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
           "execute"
@@ -54,19 +238,297 @@
       },
       "register_interactions": []
     },
-    "main": {
-      "qualname": "main",
-      "file": ".jcode/lib/handbook_builder.py",
-      "anchor": "main",
+    "_read_source": {
+      "qualname": "_read_source",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "anchor": "_read_source",
       "line_range": [
-        193,
-        202
+        61,
+        75
       ],
-      "source_hash": "",
-      "interface": "()",
-      "behavior": "Funci\u00f3n main participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "source_hash": "sha256:8ea41899d54565b9371ce18ed9e3047bfc00d44c8e30e0faa32eb70c574c24ea",
+      "interface": "(func: dict) -> str",
+      "behavior": "(unmapped: no heuristic match) _read_source",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "_classify_with_heuristic": {
+      "qualname": "_classify_with_heuristic",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "anchor": "_classify_with_heuristic",
+      "line_range": [
+        78,
+        145
+      ],
+      "source_hash": "sha256:7efd4f996728d7d8d699a5c0fbba9b43d815572237a02bd8f231b2d852feef52",
+      "interface": "(func: dict, context: dict) -> list",
+      "behavior": "(heuristic) _classify_with_heuristic \u2192 stage(s) verify, plan, interpret, execute, handoff. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
+          "verify",
+          "plan",
+          "interpret",
+          "execute",
+          "handoff"
+        ]
+      },
+      "register_interactions": []
+    },
+    "classify_function_heuristic": {
+      "qualname": "classify_function_heuristic",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "anchor": "classify_function_heuristic",
+      "line_range": [
+        148,
+        156
+      ],
+      "source_hash": "sha256:aac087f7670e7246eab945d43027a487267a862e29fe1dc990a8348b5c6b156d",
+      "interface": "(qualname: str, file: str, signature: str, source: str='', callers: list=None, callees: list=None) -> list",
+      "behavior": "(heuristic) classify_function_heuristic \u2192 stage(s) interpret. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "interpret"
+        ]
+      },
+      "register_interactions": []
+    },
+    "generate_purpose": {
+      "qualname": "generate_purpose",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "anchor": "generate_purpose",
+      "line_range": [
+        159,
+        166
+      ],
+      "source_hash": "sha256:e31e18c1c4a1d06dd4a43c9c31fc89b28c636f429a720c40076255797e3c760c",
+      "interface": "(qualname: str, signature: str, stage_ids: list, unmapped_reason: str='') -> str",
+      "behavior": "(unmapped: no heuristic match) generate_purpose",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "run_phase2": {
+      "qualname": "run_phase2",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "anchor": "run_phase2",
+      "line_range": [
+        169,
+        255
+      ],
+      "source_hash": "sha256:34b87fbf4f46fde27203506bcc9c13612f1d3bd16d1a7f3284411d0746228c56",
+      "interface": "(program_graph_path: str='.jcode/handbook/program_graph.json', output_path: str='.jcode/handbook/behavioral_mapping.json') -> dict",
+      "behavior": "(heuristic) run_phase2 \u2192 stage(s) verify, execute. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "verify",
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "compute_relevance": {
+      "qualname": "compute_relevance",
+      "file": ".jcode/lib/handbook_verify.py",
+      "anchor": "compute_relevance",
+      "line_range": [
+        24,
+        33
+      ],
+      "source_hash": "sha256:520fcc495d3e955d55928769bf7cd9de406dcfd0c43797b6b28351c37b1a3d60",
+      "interface": "(request: str, behavior: str) -> float",
+      "behavior": "(unmapped: no heuristic match) compute_relevance",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "verify_site": {
+      "qualname": "verify_site",
+      "file": ".jcode/lib/handbook_verify.py",
+      "anchor": "verify_site",
+      "line_range": [
+        36,
+        82
+      ],
+      "source_hash": "sha256:7c3d9f94a543c5f8ae31ed3a89ea67e81458b225c48d28be451b40488af3a0c8",
+      "interface": "(repo_root: Path, entry: dict) -> dict",
+      "behavior": "(heuristic) verify_site \u2192 stage(s) verify. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "verify"
+        ]
+      },
+      "register_interactions": []
+    },
+    "verify_handbook": {
+      "qualname": "verify_handbook",
+      "file": ".jcode/lib/handbook_verify.py",
+      "anchor": "verify_handbook",
+      "line_range": [
+        85,
+        146
+      ],
+      "source_hash": "sha256:a3bc4181e2a9c1b83ab7688ed620c4f29d5bff3e0d6db11ad0720b2564ba209c",
+      "interface": "(repo_root: str='.', request: str='', stages: list=None) -> dict",
+      "behavior": "(heuristic) verify_handbook \u2192 stage(s) verify. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "verify"
+        ]
+      },
+      "register_interactions": []
+    },
+    "_compute_source_hash": {
+      "qualname": "_compute_source_hash",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "anchor": "_compute_source_hash",
+      "line_range": [
+        24,
+        37
+      ],
+      "source_hash": "sha256:d71cd419ccd254171a398a49c56be27d00bdb073f64fb75e479b452bdfd09072",
+      "interface": "(file_path: str, line_range: list) -> str",
+      "behavior": "(unmapped: no heuristic match) _compute_source_hash",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "now_iso": {
+      "qualname": "now_iso",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "anchor": "now_iso",
+      "line_range": [
+        43,
+        44
+      ],
+      "source_hash": "sha256:8e4c0bad73ea52a0f2fd4d5e9b130a445f3ba41b7574121eb31818ddd174f0c4",
+      "interface": "() -> str",
+      "behavior": "(unmapped: no heuristic match) now_iso",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "generate_overview": {
+      "qualname": "generate_overview",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "anchor": "generate_overview",
+      "line_range": [
+        47,
+        102
+      ],
+      "source_hash": "sha256:c5646044987b806e00c251da954cfda3b72aa7f3c30d7e68e83f117cb6bd52d6",
+      "interface": "(pg: dict, mapping: dict) -> str",
+      "behavior": "(heuristic) generate_overview \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "handoff",
+          "plan"
+        ]
+      },
+      "register_interactions": []
+    },
+    "generate_index": {
+      "qualname": "generate_index",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "anchor": "generate_index",
+      "line_range": [
+        105,
+        138
+      ],
+      "source_hash": "sha256:2451ae0c6807a48a22ec38688dc7eecd4f33664e71f103c12cd124569683418d",
+      "interface": "(pg: dict, mapping: dict) -> str",
+      "behavior": "(unmapped: no heuristic match) generate_index",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "generate_registers": {
+      "qualname": "generate_registers",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "anchor": "generate_registers",
+      "line_range": [
+        141,
+        187
+      ],
+      "source_hash": "sha256:4137ed8eecda2d370d28bbc57e0a3a6fa00930d9685c8977a8f6bf666cbc0e6d",
+      "interface": "(pg: dict, mapping: dict) -> str",
+      "behavior": "(unmapped: no heuristic match) generate_registers",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "generate_stage_page": {
+      "qualname": "generate_stage_page",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "anchor": "generate_stage_page",
+      "line_range": [
+        190,
+        239
+      ],
+      "source_hash": "sha256:386fffad42c2b9ce2e5d0402a5086a4fa174d688818210c99ef15bf737391ef5",
+      "interface": "(stage_id: str, stage_name: str, stage_desc: str, funcs: list, pg: dict) -> str",
+      "behavior": "(heuristic) generate_stage_page \u2192 stage(s) handoff, plan. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "handoff",
+          "plan"
+        ]
+      },
+      "register_interactions": []
+    },
+    "generate_l3_entries": {
+      "qualname": "generate_l3_entries",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "anchor": "generate_l3_entries",
+      "line_range": [
+        242,
+        263
+      ],
+      "source_hash": "sha256:52c296d77cb2e49d182b035acfba06697f9dbc34dbf2fbdf694535c88699ea61",
+      "interface": "(mapping: dict, pg: dict) -> dict",
+      "behavior": "(unmapped: no heuristic match) generate_l3_entries",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "compute_graph_hash": {
+      "qualname": "compute_graph_hash",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "anchor": "compute_graph_hash",
+      "line_range": [
+        266,
+        269
+      ],
+      "source_hash": "sha256:72325e6fbef64b4f0b8768b14b35457555f5813cde9751b47ba487d52bff7c5f",
+      "interface": "(pg: dict) -> str",
+      "behavior": "(unmapped: no heuristic match) compute_graph_hash",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "run_phase3": {
+      "qualname": "run_phase3",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "anchor": "run_phase3",
+      "line_range": [
+        272,
+        350
+      ],
+      "source_hash": "sha256:06d29cf77f4f7a5d26f60d90fd9c06973c1aa01a374b302d315523d459428dee",
+      "interface": "(program_graph_path: str='.jcode/handbook/program_graph.json', mapping_path: str='.jcode/handbook/behavioral_mapping.json', handbook_dir: str='.jcode/handbook') -> dict",
+      "behavior": "(heuristic) run_phase3 \u2192 stage(s) verify, execute. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "verify",
           "execute"
         ]
       },
@@ -77,12 +539,12 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "PythonAdapter.extract",
       "line_range": [
-        21,
-        71
+        112,
+        188
       ],
-      "source_hash": "",
+      "source_hash": "sha256:859afa69b82b47787dad88ecbe854544166090589d858db162b2eff94870a5a0",
       "interface": "(self, repo_root: Path) -> dict",
-      "behavior": "Funci\u00f3n PythonAdapter.extract participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "behavior": "(heuristic) PythonAdapter.extract \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
           "execute"
@@ -95,12 +557,12 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "PythonAdapter._extract_from_tree",
       "line_range": [
-        73,
-        97
+        190,
+        214
       ],
-      "source_hash": "",
+      "source_hash": "sha256:b18eb2f24b71960865099a8f28be8147b1cc0331e9c832a840444e3d7693d47c",
       "interface": "(self, tree, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log)",
-      "behavior": "Funci\u00f3n PythonAdapter._extract_from_tree participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "behavior": "(heuristic) PythonAdapter._extract_from_tree \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
           "execute"
@@ -113,16 +575,14 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "PythonAdapter._record_function",
       "line_range": [
-        99,
-        157
+        216,
+        274
       ],
-      "source_hash": "",
+      "source_hash": "sha256:e2e7e16589a1ca653070e88c094b0c69824d63b7d9d1ced6a56c855306b6b3dd",
       "interface": "(self, func_node, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log, qualname_prefix='')",
-      "behavior": "Funci\u00f3n PythonAdapter._record_function participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "behavior": "(unmapped: no heuristic match) PythonAdapter._record_function",
       "relations": {
-        "stages": [
-          "execute"
-        ]
+        "stages": []
       },
       "register_interactions": []
     },
@@ -131,16 +591,14 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "PythonAdapter._get_call_name",
       "line_range": [
-        159,
-        165
+        276,
+        282
       ],
-      "source_hash": "",
+      "source_hash": "sha256:1b1560da8ecda101207c1731e03a16828274cdeee5ab8751bff615b57b5b0bda",
       "interface": "(self, func_node)",
-      "behavior": "Funci\u00f3n PythonAdapter._get_call_name participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "behavior": "(unmapped: no heuristic match) PythonAdapter._get_call_name",
       "relations": {
-        "stages": [
-          "execute"
-        ]
+        "stages": []
       },
       "register_interactions": []
     },
@@ -149,15 +607,84 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "PythonAdapter._is_assign_target",
       "line_range": [
-        167,
-        171
+        284,
+        288
       ],
-      "source_hash": "",
+      "source_hash": "sha256:a0ec7efd5dcc51abf8d8590e4597d7de82b5971f3609f0ce18e75a2c676ab826",
       "interface": "(self, attr_node)",
-      "behavior": "Funci\u00f3n PythonAdapter._is_assign_target participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "behavior": "(unmapped: no heuristic match) PythonAdapter._is_assign_target",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "_read_source_dirs": {
+      "qualname": "_read_source_dirs",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "_read_source_dirs",
+      "line_range": [
+        51,
+        68
+      ],
+      "source_hash": "sha256:39c311b3b9986f322c8f50530ee55b55ce85b44f45aabfc286d3613a7a178acd",
+      "interface": "(repo_root: Path) -> list",
+      "behavior": "(heuristic) _read_source_dirs \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
           "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "_read_source_dirs_from_config": {
+      "qualname": "_read_source_dirs_from_config",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "_read_source_dirs_from_config",
+      "line_range": [
+        71,
+        82
+      ],
+      "source_hash": "sha256:b46ac63b647044d78b060c23b979cdba44fabed8a8d7a11caf6c95be987eedd8",
+      "interface": "(repo_root: Path) -> list",
+      "behavior": "(heuristic) _read_source_dirs_from_config \u2192 stage(s) init, execute. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "init",
+          "execute"
+        ]
+      },
+      "register_interactions": []
+    },
+    "_auto_detect_source_dirs": {
+      "qualname": "_auto_detect_source_dirs",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "_auto_detect_source_dirs",
+      "line_range": [
+        85,
+        89
+      ],
+      "source_hash": "sha256:ac70874d69cb85941fc837e489cdf4d253b507a4cb35a19d6da7e3c4267955cf",
+      "interface": "(repo_root: Path) -> list",
+      "behavior": "(unmapped: no heuristic match) _auto_detect_source_dirs",
+      "relations": {
+        "stages": []
+      },
+      "register_interactions": []
+    },
+    "_validate_repo_root": {
+      "qualname": "_validate_repo_root",
+      "file": ".jcode/lib/handbook_builder.py",
+      "anchor": "_validate_repo_root",
+      "line_range": [
+        92,
+        106
+      ],
+      "source_hash": "sha256:5fb791f323202c4fc71d9db9ea27f1dae212111142bed04eaaead58495fe537f",
+      "interface": "(repo_root: Path)",
+      "behavior": "(heuristic) _validate_repo_root \u2192 stage(s) verify. Clasificado por heur\u00edstica de source analysis.",
+      "relations": {
+        "stages": [
+          "verify"
         ]
       },
       "register_interactions": []
@@ -167,12 +694,12 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "build_program_graph",
       "line_range": [
-        174,
-        178
+        291,
+        295
       ],
-      "source_hash": "",
+      "source_hash": "sha256:7f71faaf4b77a98d88a73f4cdc2f38e7a138170debb45ce96a771e577798a069",
       "interface": "(repo_root: str) -> dict",
-      "behavior": "Funci\u00f3n build_program_graph participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "behavior": "(heuristic) build_program_graph \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
           "execute"
@@ -185,12 +712,12 @@
       "file": ".jcode/lib/handbook_builder.py",
       "anchor": "save_program_graph",
       "line_range": [
-        181,
-        190
+        298,
+        307
       ],
-      "source_hash": "",
+      "source_hash": "sha256:2102a9366cb877df44faa64f591e0e09d98e8bc71fbb82a66e697dcbb17e6505",
       "interface": "(graph: dict, output_path: str)",
-      "behavior": "Funci\u00f3n save_program_graph participa en stage(s) execute. Implementa la l\u00f3gica operacional del harness para la fase execute.",
+      "behavior": "(heuristic) save_program_graph \u2192 stage(s) execute. Clasificado por heur\u00edstica de source analysis.",
       "relations": {
         "stages": [
           "execute"

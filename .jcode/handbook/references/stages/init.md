@@ -22,7 +22,14 @@ Relevant state registers (see registers.md):
 
 ## Internal units
 
-**Functions in this stage**: 0
+**Functions in this stage**: 1
+
+### `_read_source_dirs_from_config`
+
+- **File**: `.jcode/lib/handbook_builder.py`
+- **Line range**: 71-82
+- **Signature**: `(repo_root: Path) -> list`
+- **Purpose**: (heuristic) _read_source_dirs_from_config → stage(s) init, execute. Clasificado por heurística de source analysis.
 
 
 ## Code anchors

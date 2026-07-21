@@ -2,8 +2,98 @@
   "schema_version": 1,
   "language": "python",
   "leaf_mode": "function",
-  "files_scanned": 2,
+  "files_scanned": 6,
   "functions": [
+    {
+      "qualname": "git_diff_files",
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        20,
+        30
+      ],
+      "signature": "(repo_root: Path) -> list",
+      "body_hash": "sha256:a1f21c73d4424817"
+    },
+    {
+      "qualname": "load_json",
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        33,
+        37
+      ],
+      "signature": "(path: Path) -> dict",
+      "body_hash": "sha256:2f2f3b692c9e77e9"
+    },
+    {
+      "qualname": "save_json",
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        40,
+        43
+      ],
+      "signature": "(path: Path, data: dict)",
+      "body_hash": "sha256:595495718390bc93"
+    },
+    {
+      "qualname": "version_align",
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        46,
+        72
+      ],
+      "signature": "(repo_root: Path, handbook_dir: Path) -> dict",
+      "body_hash": "sha256:0cd72597f8572d32"
+    },
+    {
+      "qualname": "scoped_update",
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        75,
+        91
+      ],
+      "signature": "(repo_root: Path, handbook_dir: Path, align_result: dict) -> dict",
+      "body_hash": "sha256:8c9f330efa83619a"
+    },
+    {
+      "qualname": "conservative_handling",
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        94,
+        126
+      ],
+      "signature": "(handbook_dir: Path, scoped_result: dict) -> dict",
+      "body_hash": "sha256:ded60440783c3b53"
+    },
+    {
+      "qualname": "rebuild_full",
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        129,
+        139
+      ],
+      "signature": "(repo_root: Path, handbook_dir: Path)",
+      "body_hash": "sha256:8de3da7c47bd96f0"
+    },
+    {
+      "qualname": "resync",
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        142,
+        170
+      ],
+      "signature": "(repo_root: str='.', auto: bool=False) -> dict",
+      "body_hash": "sha256:274fb166c2684273"
+    },
+    {
+      "qualname": "main",
+      "file": ".jcode/lib/handbook_resync.py",
+      "line_range": [
+        173,
+        182
+      ],
+      "signature": "()",
+      "body_hash": "sha256:0dffee778f7dec8d"
+    },
     {
       "qualname": "parse_toml",
       "file": ".jcode/lib/_config_parse.py",
@@ -45,21 +135,251 @@
       "body_hash": "sha256:4526614e4490e6b4"
     },
     {
+      "qualname": "_issue_stub_mode_warning",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "line_range": [
+        28,
+        42
+      ],
+      "signature": "()",
+      "body_hash": "sha256:914a41a918448874"
+    },
+    {
+      "qualname": "build_stage_skeleton",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "line_range": [
+        56,
+        58
+      ],
+      "signature": "() -> dict",
+      "body_hash": "sha256:4ddc0c291a365933"
+    },
+    {
+      "qualname": "_read_source",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "line_range": [
+        61,
+        75
+      ],
+      "signature": "(func: dict) -> str",
+      "body_hash": "sha256:8ea41899d54565b9"
+    },
+    {
+      "qualname": "_classify_with_heuristic",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "line_range": [
+        78,
+        145
+      ],
+      "signature": "(func: dict, context: dict) -> list",
+      "body_hash": "sha256:7efd4f996728d7d8"
+    },
+    {
+      "qualname": "classify_function_heuristic",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "line_range": [
+        148,
+        156
+      ],
+      "signature": "(qualname: str, file: str, signature: str, source: str='', callers: list=None, callees: list=None) -> list",
+      "body_hash": "sha256:aac087f7670e7246"
+    },
+    {
+      "qualname": "generate_purpose",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "line_range": [
+        159,
+        166
+      ],
+      "signature": "(qualname: str, signature: str, stage_ids: list, unmapped_reason: str='') -> str",
+      "body_hash": "sha256:e31e18c1c4a1d06d"
+    },
+    {
+      "qualname": "run_phase2",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "line_range": [
+        169,
+        255
+      ],
+      "signature": "(program_graph_path: str='.jcode/handbook/program_graph.json', output_path: str='.jcode/handbook/behavioral_mapping.json') -> dict",
+      "body_hash": "sha256:34b87fbf4f46fde2"
+    },
+    {
+      "qualname": "main",
+      "file": ".jcode/lib/handbook_phase2.py",
+      "line_range": [
+        258,
+        264
+      ],
+      "signature": "()",
+      "body_hash": "sha256:c05972aab14b2367"
+    },
+    {
+      "qualname": "load_json",
+      "file": ".jcode/lib/handbook_verify.py",
+      "line_range": [
+        17,
+        21
+      ],
+      "signature": "(path: Path) -> dict",
+      "body_hash": "sha256:2f2f3b692c9e77e9"
+    },
+    {
+      "qualname": "compute_relevance",
+      "file": ".jcode/lib/handbook_verify.py",
+      "line_range": [
+        24,
+        33
+      ],
+      "signature": "(request: str, behavior: str) -> float",
+      "body_hash": "sha256:520fcc495d3e955d"
+    },
+    {
+      "qualname": "verify_site",
+      "file": ".jcode/lib/handbook_verify.py",
+      "line_range": [
+        36,
+        82
+      ],
+      "signature": "(repo_root: Path, entry: dict) -> dict",
+      "body_hash": "sha256:7c3d9f94a543c5f8"
+    },
+    {
+      "qualname": "verify_handbook",
+      "file": ".jcode/lib/handbook_verify.py",
+      "line_range": [
+        85,
+        146
+      ],
+      "signature": "(repo_root: str='.', request: str='', stages: list=None) -> dict",
+      "body_hash": "sha256:a3bc4181e2a9c1b8"
+    },
+    {
+      "qualname": "main",
+      "file": ".jcode/lib/handbook_verify.py",
+      "line_range": [
+        149,
+        169
+      ],
+      "signature": "()",
+      "body_hash": "sha256:c389b742baea2b9d"
+    },
+    {
+      "qualname": "_compute_source_hash",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        24,
+        37
+      ],
+      "signature": "(file_path: str, line_range: list) -> str",
+      "body_hash": "sha256:d71cd419ccd25417"
+    },
+    {
+      "qualname": "now_iso",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        43,
+        44
+      ],
+      "signature": "() -> str",
+      "body_hash": "sha256:8e4c0bad73ea52a0"
+    },
+    {
+      "qualname": "generate_overview",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        47,
+        102
+      ],
+      "signature": "(pg: dict, mapping: dict) -> str",
+      "body_hash": "sha256:c5646044987b806e"
+    },
+    {
+      "qualname": "generate_index",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        105,
+        138
+      ],
+      "signature": "(pg: dict, mapping: dict) -> str",
+      "body_hash": "sha256:2451ae0c6807a48a"
+    },
+    {
+      "qualname": "generate_registers",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        141,
+        187
+      ],
+      "signature": "(pg: dict, mapping: dict) -> str",
+      "body_hash": "sha256:4137ed8eecda2d37"
+    },
+    {
+      "qualname": "generate_stage_page",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        190,
+        239
+      ],
+      "signature": "(stage_id: str, stage_name: str, stage_desc: str, funcs: list, pg: dict) -> str",
+      "body_hash": "sha256:386fffad42c2b9ce"
+    },
+    {
+      "qualname": "generate_l3_entries",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        242,
+        263
+      ],
+      "signature": "(mapping: dict, pg: dict) -> dict",
+      "body_hash": "sha256:52c296d77cb2e49d"
+    },
+    {
+      "qualname": "compute_graph_hash",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        266,
+        269
+      ],
+      "signature": "(pg: dict) -> str",
+      "body_hash": "sha256:72325e6fbef64b4f"
+    },
+    {
+      "qualname": "run_phase3",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        272,
+        350
+      ],
+      "signature": "(program_graph_path: str='.jcode/handbook/program_graph.json', mapping_path: str='.jcode/handbook/behavioral_mapping.json', handbook_dir: str='.jcode/handbook') -> dict",
+      "body_hash": "sha256:06d29cf77f4f7a5d"
+    },
+    {
+      "qualname": "main",
+      "file": ".jcode/lib/handbook_phase3.py",
+      "line_range": [
+        353,
+        360
+      ],
+      "signature": "()",
+      "body_hash": "sha256:2f045c6a29439888"
+    },
+    {
       "qualname": "PythonAdapter.extract",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        21,
-        71
+        112,
+        188
       ],
       "signature": "(self, repo_root: Path) -> dict",
-      "body_hash": "sha256:9c6891feb2d0d438"
+      "body_hash": "sha256:67c1ddc6b88952d0"
     },
     {
       "qualname": "PythonAdapter._extract_from_tree",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        73,
-        97
+        190,
+        214
       ],
       "signature": "(self, tree, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log)",
       "body_hash": "sha256:073d3b137c287cc0"
@@ -68,8 +388,8 @@
       "qualname": "PythonAdapter._record_function",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        99,
-        157
+        216,
+        274
       ],
       "signature": "(self, func_node, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log, qualname_prefix='')",
       "body_hash": "sha256:5f90658998f914fa"
@@ -78,8 +398,8 @@
       "qualname": "PythonAdapter._get_call_name",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        159,
-        165
+        276,
+        282
       ],
       "signature": "(self, func_node)",
       "body_hash": "sha256:6dc07562c6186fca"
@@ -88,18 +408,58 @@
       "qualname": "PythonAdapter._is_assign_target",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        167,
-        171
+        284,
+        288
       ],
       "signature": "(self, attr_node)",
       "body_hash": "sha256:f533aa889238c33f"
     },
     {
+      "qualname": "_read_source_dirs",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        51,
+        68
+      ],
+      "signature": "(repo_root: Path) -> list",
+      "body_hash": "sha256:39c311b3b9986f32"
+    },
+    {
+      "qualname": "_read_source_dirs_from_config",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        71,
+        82
+      ],
+      "signature": "(repo_root: Path) -> list",
+      "body_hash": "sha256:b46ac63b647044d7"
+    },
+    {
+      "qualname": "_auto_detect_source_dirs",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        85,
+        89
+      ],
+      "signature": "(repo_root: Path) -> list",
+      "body_hash": "sha256:ac70874d69cb8594"
+    },
+    {
+      "qualname": "_validate_repo_root",
+      "file": ".jcode/lib/handbook_builder.py",
+      "line_range": [
+        92,
+        106
+      ],
+      "signature": "(repo_root: Path)",
+      "body_hash": "sha256:5fb791f323202c4f"
+    },
+    {
       "qualname": "build_program_graph",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        174,
-        178
+        291,
+        295
       ],
       "signature": "(repo_root: str) -> dict",
       "body_hash": "sha256:7f71faaf4b77a98d"
@@ -108,8 +468,8 @@
       "qualname": "save_program_graph",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        181,
-        190
+        298,
+        307
       ],
       "signature": "(graph: dict, output_path: str)",
       "body_hash": "sha256:2102a9366cb877df"
@@ -118,15 +478,417 @@
       "qualname": "main",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        193,
-        202
+        310,
+        323
       ],
       "signature": "()",
-      "body_hash": "sha256:96b9a819392dffbf"
+      "body_hash": "sha256:90efec706f65b29b"
     }
   ],
   "boundaries": [],
   "call_edges": [
+    {
+      "caller": "git_diff_files",
+      "callee": "run",
+      "line": 23,
+      "resolved": false
+    },
+    {
+      "caller": "git_diff_files",
+      "callee": "strip",
+      "line": 28,
+      "resolved": false
+    },
+    {
+      "caller": "git_diff_files",
+      "callee": "str",
+      "line": 25,
+      "resolved": false
+    },
+    {
+      "caller": "git_diff_files",
+      "callee": "split",
+      "line": 28,
+      "resolved": false
+    },
+    {
+      "caller": "git_diff_files",
+      "callee": "strip",
+      "line": 28,
+      "resolved": false
+    },
+    {
+      "caller": "load_json",
+      "callee": "exists",
+      "line": 34,
+      "resolved": false
+    },
+    {
+      "caller": "load_json",
+      "callee": "open",
+      "line": 36,
+      "resolved": false
+    },
+    {
+      "caller": "load_json",
+      "callee": "load",
+      "line": 37,
+      "resolved": false
+    },
+    {
+      "caller": "save_json",
+      "callee": "mkdir",
+      "line": 41,
+      "resolved": false
+    },
+    {
+      "caller": "save_json",
+      "callee": "open",
+      "line": 42,
+      "resolved": false
+    },
+    {
+      "caller": "save_json",
+      "callee": "dump",
+      "line": 43,
+      "resolved": false
+    },
+    {
+      "caller": "version_align",
+      "callee": "load_json",
+      "line": 51,
+      "resolved": false
+    },
+    {
+      "caller": "version_align",
+      "callee": "load_json",
+      "line": 52,
+      "resolved": false
+    },
+    {
+      "caller": "version_align",
+      "callee": "dumps",
+      "line": 58,
+      "resolved": false
+    },
+    {
+      "caller": "version_align",
+      "callee": "get",
+      "line": 61,
+      "resolved": false
+    },
+    {
+      "caller": "version_align",
+      "callee": "git_diff_files",
+      "line": 66,
+      "resolved": false
+    },
+    {
+      "caller": "version_align",
+      "callee": "hexdigest",
+      "line": 59,
+      "resolved": false
+    },
+    {
+      "caller": "version_align",
+      "callee": "sha256",
+      "line": 59,
+      "resolved": false
+    },
+    {
+      "caller": "version_align",
+      "callee": "encode",
+      "line": 59,
+      "resolved": false
+    },
+    {
+      "caller": "scoped_update",
+      "callee": "load_json",
+      "line": 78,
+      "resolved": false
+    },
+    {
+      "caller": "scoped_update",
+      "callee": "get",
+      "line": 80,
+      "resolved": false
+    },
+    {
+      "caller": "scoped_update",
+      "callee": "get",
+      "line": 84,
+      "resolved": false
+    },
+    {
+      "caller": "scoped_update",
+      "callee": "len",
+      "line": 90,
+      "resolved": false
+    },
+    {
+      "caller": "scoped_update",
+      "callee": "append",
+      "line": 86,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "load_json",
+      "line": 96,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "load_json",
+      "line": 98,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "load_json",
+      "line": 101,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "get",
+      "line": 104,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "list",
+      "line": 105,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "max",
+      "line": 120,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "save_json",
+      "line": 125,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "keys",
+      "line": 105,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "len",
+      "line": 120,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "len",
+      "line": 121,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "len",
+      "line": 126,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "get",
+      "line": 102,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "get",
+      "line": 108,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "append",
+      "line": 110,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "get",
+      "line": 106,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "exists",
+      "line": 109,
+      "resolved": false
+    },
+    {
+      "caller": "conservative_handling",
+      "callee": "Path",
+      "line": 109,
+      "resolved": false
+    },
+    {
+      "caller": "rebuild_full",
+      "callee": "run",
+      "line": 132,
+      "resolved": false
+    },
+    {
+      "caller": "rebuild_full",
+      "callee": "str",
+      "line": 133,
+      "resolved": false
+    },
+    {
+      "caller": "rebuild_full",
+      "callee": "str",
+      "line": 134,
+      "resolved": false
+    },
+    {
+      "caller": "rebuild_full",
+      "callee": "str",
+      "line": 135,
+      "resolved": false
+    },
+    {
+      "caller": "rebuild_full",
+      "callee": "str",
+      "line": 136,
+      "resolved": false
+    },
+    {
+      "caller": "rebuild_full",
+      "callee": "str",
+      "line": 137,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "resolve",
+      "line": 144,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "version_align",
+      "line": 151,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "scoped_update",
+      "line": 156,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "conservative_handling",
+      "line": 159,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "exists",
+      "line": 147,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "get",
+      "line": 152,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "get",
+      "line": 161,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "rebuild_full",
+      "line": 162,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "get",
+      "line": 167,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "get",
+      "line": 168,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "get",
+      "line": 169,
+      "resolved": false
+    },
+    {
+      "caller": "resync",
+      "callee": "Path",
+      "line": 144,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "ArgumentParser",
+      "line": 174,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 175,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 176,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "parse_args",
+      "line": 178,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "resync",
+      "line": 180,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "print",
+      "line": 181,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "dumps",
+      "line": 181,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "get",
+      "line": 182,
+      "resolved": false
+    },
     {
       "caller": "parse_toml",
       "callee": "split",
@@ -368,369 +1130,2193 @@
       "resolved": false
     },
     {
-      "caller": "PythonAdapter.extract",
-      "callee": "rglob",
-      "line": 39,
+      "caller": "_issue_stub_mode_warning",
+      "callee": "warn",
+      "line": 34,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter.extract",
+      "caller": "_issue_stub_mode_warning",
+      "callee": "print",
+      "line": 40,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source",
+      "callee": "get",
+      "line": 63,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source",
+      "callee": "get",
+      "line": 64,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source",
+      "callee": "Path",
+      "line": 67,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source",
       "callee": "exists",
-      "line": 36,
+      "line": 68,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter.extract",
-      "callee": "str",
-      "line": 51,
+      "caller": "_read_source",
+      "callee": "splitlines",
+      "line": 71,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter.extract",
-      "callee": "_extract_from_tree",
-      "line": 52,
+      "caller": "_read_source",
+      "callee": "join",
+      "line": 73,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter.extract",
+      "caller": "_read_source",
       "callee": "len",
-      "line": 58,
+      "line": 65,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter.extract",
+      "caller": "_read_source",
       "callee": "read_text",
-      "line": 42,
+      "line": 71,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter.extract",
-      "callee": "parse",
-      "line": 43,
+      "caller": "_read_source",
+      "callee": "max",
+      "line": 73,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter.extract",
-      "callee": "relative_to",
-      "line": 51,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "append",
-      "line": 45,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "str",
-      "line": 43,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "str",
-      "line": 46,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "relative_to",
-      "line": 46,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "type",
-      "line": 47,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter.extract",
-      "callee": "str",
-      "line": 47,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "walk",
-      "line": 78,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "isinstance",
-      "line": 79,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "isinstance",
-      "line": 92,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "append",
-      "line": 80,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "pop",
-      "line": 88,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "_record_function",
-      "line": 93,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "isinstance",
-      "line": 82,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "_record_function",
+      "caller": "_classify_with_heuristic",
+      "callee": "lower",
       "line": 83,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._extract_from_tree",
-      "callee": "join",
+      "caller": "_classify_with_heuristic",
+      "callee": "lower",
+      "line": 84,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "lower",
+      "line": 85,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 92,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 100,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 108,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 116,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 125,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 133,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "list",
+      "line": 145,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "lower",
       "line": 86,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "append",
-      "line": 126,
+      "caller": "_classify_with_heuristic",
+      "callee": "lower",
+      "line": 87,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "walk",
+      "caller": "_classify_with_heuristic",
+      "callee": "append",
+      "line": 94,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 95,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "append",
+      "line": 102,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 103,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "append",
+      "line": 110,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 111,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "append",
+      "line": 119,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 120,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "append",
+      "line": 127,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 128,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "append",
       "line": 135,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "isinstance",
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
       "line": 136,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "hasattr",
-      "line": 108,
+      "caller": "_classify_with_heuristic",
+      "callee": "set",
+      "line": 145,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "unparse",
-      "line": 108,
+      "caller": "_classify_with_heuristic",
+      "callee": "get",
+      "line": 83,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "get_source_segment",
-      "line": 121,
+      "caller": "_classify_with_heuristic",
+      "callee": "get",
+      "line": 84,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "_get_call_name",
+      "caller": "_classify_with_heuristic",
+      "callee": "_read_source",
+      "line": 85,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "get",
+      "line": 86,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "get",
+      "line": 87,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "any",
+      "line": 96,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "append",
+      "line": 105,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "append",
+      "line": 122,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "append",
+      "line": 130,
+      "resolved": false
+    },
+    {
+      "caller": "_classify_with_heuristic",
+      "callee": "append",
       "line": 137,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "isinstance",
-      "line": 147,
+      "caller": "_classify_with_heuristic",
+      "callee": "len",
+      "line": 140,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "isinstance",
-      "line": 147,
+      "caller": "_classify_with_heuristic",
+      "callee": "len",
+      "line": 140,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "_is_assign_target",
-      "line": 150,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
+      "caller": "_classify_with_heuristic",
       "callee": "append",
-      "line": 152,
+      "line": 97,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "hasattr",
-      "line": 114,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
-      "callee": "hexdigest",
-      "line": 122,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
+      "caller": "_classify_with_heuristic",
       "callee": "append",
-      "line": 139,
+      "line": 113,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "unparse",
-      "line": 114,
+      "caller": "_classify_with_heuristic",
+      "callee": "splitlines",
+      "line": 140,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "sha256",
-      "line": 122,
+      "caller": "classify_function_heuristic",
+      "callee": "_classify_with_heuristic",
+      "line": 156,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._record_function",
-      "callee": "encode",
-      "line": 122,
+      "caller": "generate_purpose",
+      "callee": "join",
+      "line": 164,
       "resolved": false
     },
     {
-      "caller": "PythonAdapter._get_call_name",
-      "callee": "isinstance",
-      "line": 161,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._get_call_name",
-      "callee": "isinstance",
-      "line": 163,
-      "resolved": false
-    },
-    {
-      "caller": "build_program_graph",
-      "callee": "resolve",
-      "line": 176,
-      "resolved": false
-    },
-    {
-      "caller": "build_program_graph",
-      "callee": "PythonAdapter",
-      "line": 177,
-      "resolved": false
-    },
-    {
-      "caller": "build_program_graph",
-      "callee": "extract",
-      "line": 178,
-      "resolved": false
-    },
-    {
-      "caller": "build_program_graph",
+      "caller": "run_phase2",
       "callee": "Path",
-      "line": 176,
+      "line": 172,
       "resolved": false
     },
     {
-      "caller": "save_program_graph",
-      "callee": "mkdir",
-      "line": 183,
+      "caller": "run_phase2",
+      "callee": "build_stage_skeleton",
+      "line": 180,
       "resolved": false
     },
     {
-      "caller": "save_program_graph",
-      "callee": "print",
-      "line": 186,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "print",
-      "line": 187,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "open",
-      "line": 184,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "dump",
+      "caller": "run_phase2",
+      "callee": "_issue_stub_mode_warning",
       "line": 185,
       "resolved": false
     },
     {
-      "caller": "save_program_graph",
-      "callee": "Path",
-      "line": 183,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "len",
-      "line": 187,
-      "resolved": false
-    },
-    {
-      "caller": "save_program_graph",
-      "callee": "len",
+      "caller": "run_phase2",
+      "callee": "get",
       "line": 188,
       "resolved": false
     },
     {
-      "caller": "save_program_graph",
+      "caller": "run_phase2",
+      "callee": "mkdir",
+      "line": 241,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "print",
+      "line": 250,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "print",
+      "line": 252,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "print",
+      "line": 253,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "print",
+      "line": 254,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "exists",
+      "line": 173,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "print",
+      "line": 174,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "exit",
+      "line": 175,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "open",
+      "line": 177,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "load",
+      "line": 178,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "get",
+      "line": 198,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "get",
+      "line": 199,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "add",
+      "line": 200,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "add",
+      "line": 201,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "_classify_with_heuristic",
+      "line": 213,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "generate_purpose",
+      "line": 219,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "append",
+      "line": 221,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "get",
+      "line": 233,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "open",
+      "line": 242,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "dump",
+      "line": 243,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "set",
+      "line": 195,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "set",
+      "line": 197,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "set",
+      "line": 198,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "set",
+      "line": 199,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "list",
+      "line": 209,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "list",
+      "line": 210,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "append",
+      "line": 217,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "get",
+      "line": 209,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "get",
+      "line": 210,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "get",
+      "line": 224,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "Path",
+      "line": 241,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "get",
+      "line": 248,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
       "callee": "len",
-      "line": 189,
+      "line": 250,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "len",
+      "line": 251,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase2",
+      "callee": "len",
+      "line": 253,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "ArgumentParser",
-      "line": 195,
+      "line": 260,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "add_argument",
-      "line": 196,
+      "line": 261,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "add_argument",
-      "line": 197,
+      "line": 262,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "parse_args",
+      "line": 263,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "run_phase2",
+      "line": 264,
+      "resolved": false
+    },
+    {
+      "caller": "load_json",
+      "callee": "exists",
+      "line": 18,
+      "resolved": false
+    },
+    {
+      "caller": "load_json",
+      "callee": "open",
+      "line": 20,
+      "resolved": false
+    },
+    {
+      "caller": "load_json",
+      "callee": "load",
+      "line": 21,
+      "resolved": false
+    },
+    {
+      "caller": "compute_relevance",
+      "callee": "set",
+      "line": 28,
+      "resolved": false
+    },
+    {
+      "caller": "compute_relevance",
+      "callee": "set",
+      "line": 29,
+      "resolved": false
+    },
+    {
+      "caller": "compute_relevance",
+      "callee": "split",
+      "line": 28,
+      "resolved": false
+    },
+    {
+      "caller": "compute_relevance",
+      "callee": "split",
+      "line": 29,
+      "resolved": false
+    },
+    {
+      "caller": "compute_relevance",
+      "callee": "len",
+      "line": 33,
+      "resolved": false
+    },
+    {
+      "caller": "compute_relevance",
+      "callee": "len",
+      "line": 33,
+      "resolved": false
+    },
+    {
+      "caller": "compute_relevance",
+      "callee": "lower",
+      "line": 28,
+      "resolved": false
+    },
+    {
+      "caller": "compute_relevance",
+      "callee": "lower",
+      "line": 29,
+      "resolved": false
+    },
+    {
+      "caller": "verify_site",
+      "callee": "get",
+      "line": 38,
+      "resolved": false
+    },
+    {
+      "caller": "verify_site",
+      "callee": "get",
+      "line": 39,
+      "resolved": false
+    },
+    {
+      "caller": "verify_site",
+      "callee": "get",
+      "line": 40,
+      "resolved": false
+    },
+    {
+      "caller": "verify_site",
+      "callee": "exists",
+      "line": 44,
+      "resolved": false
+    },
+    {
+      "caller": "verify_site",
+      "callee": "read_text",
+      "line": 53,
+      "resolved": false
+    },
+    {
+      "caller": "verify_site",
+      "callee": "split",
+      "line": 63,
+      "resolved": false
+    },
+    {
+      "caller": "verify_site",
+      "callee": "split",
+      "line": 55,
+      "resolved": false
+    },
+    {
+      "caller": "verify_site",
+      "callee": "len",
+      "line": 64,
+      "resolved": false
+    },
+    {
+      "caller": "verify_site",
+      "callee": "str",
+      "line": 74,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "resolve",
+      "line": 87,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "load_json",
+      "line": 89,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "load_json",
+      "line": 90,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "get",
+      "line": 93,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "items",
+      "line": 115,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "get",
+      "line": 91,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "compute_relevance",
+      "line": 122,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "verify_site",
+      "line": 128,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "Path",
+      "line": 87,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "append",
+      "line": 118,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "get",
+      "line": 122,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "append",
+      "line": 124,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "append",
+      "line": 131,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "append",
+      "line": 133,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "len",
+      "line": 137,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "len",
+      "line": 138,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "len",
+      "line": 139,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "len",
+      "line": 140,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "items",
+      "line": 106,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "any",
+      "line": 107,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "get",
+      "line": 107,
+      "resolved": false
+    },
+    {
+      "caller": "verify_handbook",
+      "callee": "get",
+      "line": 107,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "ArgumentParser",
+      "line": 150,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 151,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 152,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 154,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 156,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "parse_args",
+      "line": 158,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "verify_handbook",
+      "line": 160,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "print",
+      "line": 163,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "print",
+      "line": 166,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "dumps",
+      "line": 163,
+      "resolved": false
+    },
+    {
+      "caller": "_compute_source_hash",
+      "callee": "Path",
+      "line": 26,
+      "resolved": false
+    },
+    {
+      "caller": "_compute_source_hash",
+      "callee": "exists",
+      "line": 27,
+      "resolved": false
+    },
+    {
+      "caller": "_compute_source_hash",
+      "callee": "splitlines",
+      "line": 30,
+      "resolved": false
+    },
+    {
+      "caller": "_compute_source_hash",
+      "callee": "join",
+      "line": 34,
+      "resolved": false
+    },
+    {
+      "caller": "_compute_source_hash",
+      "callee": "read_text",
+      "line": 30,
+      "resolved": false
+    },
+    {
+      "caller": "_compute_source_hash",
+      "callee": "hexdigest",
+      "line": 35,
+      "resolved": false
+    },
+    {
+      "caller": "_compute_source_hash",
+      "callee": "max",
+      "line": 34,
+      "resolved": false
+    },
+    {
+      "caller": "_compute_source_hash",
+      "callee": "sha256",
+      "line": 35,
+      "resolved": false
+    },
+    {
+      "caller": "_compute_source_hash",
+      "callee": "type",
+      "line": 37,
+      "resolved": false
+    },
+    {
+      "caller": "_compute_source_hash",
+      "callee": "encode",
+      "line": 35,
+      "resolved": false
+    },
+    {
+      "caller": "now_iso",
+      "callee": "isoformat",
+      "line": 44,
+      "resolved": false
+    },
+    {
+      "caller": "now_iso",
+      "callee": "now",
+      "line": 44,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "get",
+      "line": 49,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "get",
+      "line": 50,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "get",
+      "line": 51,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "get",
+      "line": 50,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "now_iso",
+      "line": 55,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "get",
+      "line": 60,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "get",
+      "line": 62,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "len",
+      "line": 63,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "len",
+      "line": 64,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "len",
+      "line": 65,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "get",
+      "line": 64,
+      "resolved": false
+    },
+    {
+      "caller": "generate_overview",
+      "callee": "get",
+      "line": 65,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "get",
+      "line": 108,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "get",
+      "line": 121,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "get",
+      "line": 109,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "len",
+      "line": 122,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "append",
+      "line": 110,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "now_iso",
+      "line": 114,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "len",
+      "line": 116,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "get",
+      "line": 121,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "get",
+      "line": 122,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "len",
+      "line": 126,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "get",
+      "line": 116,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "get",
+      "line": 126,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "setdefault",
+      "line": 110,
+      "resolved": false
+    },
+    {
+      "caller": "generate_index",
+      "callee": "get",
+      "line": 116,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "get",
+      "line": 143,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "get",
+      "line": 147,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "get",
+      "line": 154,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "append",
+      "line": 156,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "sorted",
+      "line": 171,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "get",
+      "line": 155,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "get",
+      "line": 155,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "now_iso",
+      "line": 164,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "items",
+      "line": 171,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "get",
+      "line": 174,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "get",
+      "line": 177,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "setdefault",
+      "line": 156,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "get",
+      "line": 159,
+      "resolved": false
+    },
+    {
+      "caller": "generate_registers",
+      "callee": "setdefault",
+      "line": 156,
+      "resolved": false
+    },
+    {
+      "caller": "generate_stage_page",
+      "callee": "get",
+      "line": 194,
+      "resolved": false
+    },
+    {
+      "caller": "generate_stage_page",
+      "callee": "get",
+      "line": 195,
+      "resolved": false
+    },
+    {
+      "caller": "generate_stage_page",
+      "callee": "get",
+      "line": 225,
+      "resolved": false
+    },
+    {
+      "caller": "generate_stage_page",
+      "callee": "len",
+      "line": 221,
+      "resolved": false
+    },
+    {
+      "caller": "generate_l3_entries",
+      "callee": "get",
+      "line": 246,
+      "resolved": false
+    },
+    {
+      "caller": "generate_l3_entries",
+      "callee": "get",
+      "line": 250,
+      "resolved": false
+    },
+    {
+      "caller": "generate_l3_entries",
+      "callee": "get",
+      "line": 247,
+      "resolved": false
+    },
+    {
+      "caller": "generate_l3_entries",
+      "callee": "_compute_source_hash",
+      "line": 257,
+      "resolved": false
+    },
+    {
+      "caller": "generate_l3_entries",
+      "callee": "get",
+      "line": 258,
+      "resolved": false
+    },
+    {
+      "caller": "compute_graph_hash",
+      "callee": "dumps",
+      "line": 268,
+      "resolved": false
+    },
+    {
+      "caller": "compute_graph_hash",
+      "callee": "hexdigest",
+      "line": 269,
+      "resolved": false
+    },
+    {
+      "caller": "compute_graph_hash",
+      "callee": "sha256",
+      "line": 269,
+      "resolved": false
+    },
+    {
+      "caller": "compute_graph_hash",
+      "callee": "encode",
+      "line": 269,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "Path",
+      "line": 276,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "Path",
+      "line": 277,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "Path",
+      "line": 290,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "mkdir",
+      "line": 293,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "generate_overview",
+      "line": 296,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "write_text",
+      "line": 297,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "generate_index",
+      "line": 300,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "write_text",
+      "line": 301,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "generate_registers",
+      "line": 304,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "write_text",
+      "line": 305,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 309,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 313,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "generate_l3_entries",
+      "line": 319,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "write_text",
+      "line": 328,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "write_text",
+      "line": 336,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "write_text",
+      "line": 340,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "print",
+      "line": 342,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "print",
+      "line": 345,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "exists",
+      "line": 278,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "print",
+      "line": 279,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "exit",
+      "line": 280,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "exists",
+      "line": 281,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "print",
+      "line": 282,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "exit",
+      "line": 283,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "open",
+      "line": 285,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "load",
+      "line": 286,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "open",
+      "line": 287,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "load",
+      "line": 288,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 310,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 314,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "generate_stage_page",
+      "line": 315,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "write_text",
+      "line": 316,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 323,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "compute_graph_hash",
+      "line": 324,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 325,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "dumps",
+      "line": 328,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "sorted",
+      "line": 333,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "dumps",
+      "line": 336,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "dumps",
+      "line": 340,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "len",
+      "line": 347,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "len",
+      "line": 348,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "len",
+      "line": 349,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "append",
+      "line": 311,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 313,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "now_iso",
+      "line": 326,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 348,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "len",
+      "line": 342,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "len",
+      "line": 343,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "len",
+      "line": 344,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "setdefault",
+      "line": 311,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "glob",
+      "line": 333,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 343,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 348,
+      "resolved": false
+    },
+    {
+      "caller": "run_phase3",
+      "callee": "get",
+      "line": 343,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "ArgumentParser",
+      "line": 355,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 356,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 357,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 358,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "parse_args",
+      "line": 359,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "run_phase3",
+      "line": 360,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "_validate_repo_root",
+      "line": 115,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "_read_source_dirs",
+      "line": 124,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "append",
+      "line": 129,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "print",
+      "line": 135,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "_auto_detect_source_dirs",
+      "line": 136,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "rglob",
+      "line": 139,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "RuntimeError",
+      "line": 162,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "RuntimeError",
+      "line": 167,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "exists",
+      "line": 132,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "str",
+      "line": 154,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "_extract_from_tree",
+      "line": 155,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "len",
+      "line": 175,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "str",
+      "line": 141,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "read_text",
+      "line": 145,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "parse",
+      "line": 146,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "relative_to",
+      "line": 154,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "append",
+      "line": 148,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "str",
+      "line": 146,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "str",
+      "line": 149,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "relative_to",
+      "line": 149,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "type",
+      "line": 150,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter.extract",
+      "callee": "str",
+      "line": 150,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "walk",
+      "line": 195,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "isinstance",
+      "line": 196,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "isinstance",
+      "line": 209,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "append",
+      "line": 197,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "pop",
+      "line": 205,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "_record_function",
+      "line": 210,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "isinstance",
       "line": 199,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "_record_function",
+      "line": 200,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._extract_from_tree",
+      "callee": "join",
+      "line": 203,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "append",
+      "line": 243,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "walk",
+      "line": 252,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "isinstance",
+      "line": 253,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "hasattr",
+      "line": 225,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "unparse",
+      "line": 225,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "get_source_segment",
+      "line": 238,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "_get_call_name",
+      "line": 254,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "isinstance",
+      "line": 264,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "isinstance",
+      "line": 264,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "_is_assign_target",
+      "line": 267,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "append",
+      "line": 269,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "hasattr",
+      "line": 231,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "hexdigest",
+      "line": 239,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "append",
+      "line": 256,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "unparse",
+      "line": 231,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "sha256",
+      "line": 239,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._record_function",
+      "callee": "encode",
+      "line": 239,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._get_call_name",
+      "callee": "isinstance",
+      "line": 278,
+      "resolved": false
+    },
+    {
+      "caller": "PythonAdapter._get_call_name",
+      "callee": "isinstance",
+      "line": 280,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs",
+      "callee": "exists",
+      "line": 54,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs",
+      "callee": "get",
+      "line": 59,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs",
+      "callee": "exists",
+      "line": 68,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs",
+      "callee": "open",
+      "line": 57,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs",
+      "callee": "load",
+      "line": 58,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs",
+      "callee": "get",
+      "line": 59,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs",
+      "callee": "str",
+      "line": 61,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs",
+      "callee": "isinstance",
+      "line": 61,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs_from_config",
+      "callee": "exists",
+      "line": 74,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs_from_config",
+      "callee": "get",
+      "line": 80,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs_from_config",
+      "callee": "open",
+      "line": 78,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs_from_config",
+      "callee": "load",
+      "line": 79,
+      "resolved": false
+    },
+    {
+      "caller": "_read_source_dirs_from_config",
+      "callee": "get",
+      "line": 80,
+      "resolved": false
+    },
+    {
+      "caller": "_auto_detect_source_dirs",
+      "callee": "exists",
+      "line": 89,
+      "resolved": false
+    },
+    {
+      "caller": "_validate_repo_root",
+      "callee": "exists",
+      "line": 94,
+      "resolved": false
+    },
+    {
+      "caller": "_validate_repo_root",
+      "callee": "FileNotFoundError",
+      "line": 95,
+      "resolved": false
+    },
+    {
+      "caller": "_validate_repo_root",
+      "callee": "is_dir",
+      "line": 99,
+      "resolved": false
+    },
+    {
+      "caller": "_validate_repo_root",
+      "callee": "NotADirectoryError",
+      "line": 100,
+      "resolved": false
+    },
+    {
+      "caller": "_validate_repo_root",
+      "callee": "access",
+      "line": 103,
+      "resolved": false
+    },
+    {
+      "caller": "_validate_repo_root",
+      "callee": "PermissionError",
+      "line": 104,
+      "resolved": false
+    },
+    {
+      "caller": "build_program_graph",
+      "callee": "resolve",
+      "line": 293,
+      "resolved": false
+    },
+    {
+      "caller": "build_program_graph",
+      "callee": "PythonAdapter",
+      "line": 294,
+      "resolved": false
+    },
+    {
+      "caller": "build_program_graph",
+      "callee": "extract",
+      "line": 295,
+      "resolved": false
+    },
+    {
+      "caller": "build_program_graph",
+      "callee": "Path",
+      "line": 293,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "mkdir",
+      "line": 300,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "print",
+      "line": 303,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "print",
+      "line": 304,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "open",
+      "line": 301,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "dump",
+      "line": 302,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "Path",
+      "line": 300,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "len",
+      "line": 304,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "len",
+      "line": 305,
+      "resolved": false
+    },
+    {
+      "caller": "save_program_graph",
+      "callee": "len",
+      "line": 306,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "ArgumentParser",
+      "line": 312,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 313,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 314,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "parse_args",
+      "line": 316,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "build_program_graph",
-      "line": 201,
+      "line": 319,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "save_program_graph",
-      "line": 202,
+      "line": 320,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "print",
+      "line": 322,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "exit",
+      "line": 323,
       "resolved": false
     }
   ],
@@ -739,31 +3325,31 @@
       "function": "PythonAdapter.extract",
       "attribute": "self._extract_from_tree",
       "access": "write",
-      "line": 52
+      "line": 155
     },
     {
       "function": "PythonAdapter._extract_from_tree",
       "attribute": "self._record_function",
       "access": "write",
-      "line": 93
+      "line": 210
     },
     {
       "function": "PythonAdapter._extract_from_tree",
       "attribute": "self._record_function",
       "access": "write",
-      "line": 83
+      "line": 200
     },
     {
       "function": "PythonAdapter._record_function",
       "attribute": "self._get_call_name",
       "access": "write",
-      "line": 137
+      "line": 254
     },
     {
       "function": "PythonAdapter._record_function",
       "attribute": "self._is_assign_target",
       "access": "write",
-      "line": 150
+      "line": 267
     }
   ],
   "unresolved_calls_log": []

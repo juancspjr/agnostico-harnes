@@ -16,8 +16,27 @@
 
 import hashlib
 import json
+import os
 import sys
 from pathlib import Path
+
+
+def _compute_source_hash(file_path: str, line_range: list) -> str:
+    """SHA256 del source excerpt real."""
+    p = Path(file_path)
+    if not p.exists():
+        return "sha256:FILE_NOT_FOUND"
+    try:
+        lines = p.read_text(encoding="utf-8", errors="replace").splitlines()
+        start, end = line_range
+        if start is None or end is None:
+            return "sha256:INVALID_RANGE"
+        region = "\n".join(lines[max(0, start - 1):end])
+        return f"sha256:{hashlib.sha256(region.encode()).hexdigest()}"
+    except Exception as e:
+        return f"sha256:ERROR:{type(e).__name__}"
+
+
 from datetime import datetime, timezone
 
 
@@ -235,7 +254,7 @@ def generate_l3_entries(mapping: dict, pg: dict) -> dict:
             "file": fa["file"],
             "anchor": fa["qualname"],
             "line_range": fa["line_range"],
-            "source_hash": "",
+            "source_hash": _compute_source_hash(fa["file"], fa["line_range"]),
             "interface": qn_to_sig.get(qn, "(...)"),
             "behavior": fa["purpose"],
             "relations": {"stages": fa["stage_assignments"]},

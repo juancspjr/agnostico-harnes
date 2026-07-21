@@ -22,91 +22,119 @@ Relevant state registers (see registers.md):
 
 ## Internal units
 
-**Functions in this stage**: 12
+**Functions in this stage**: 16
 
-### `parse_toml`
+### `git_diff_files`
 
-- **File**: `.jcode/lib/_config_parse.py`
-- **Line range**: 15-42
-- **Signature**: `(content)`
-- **Purpose**: Función parse_toml participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
+- **File**: `.jcode/lib/handbook_resync.py`
+- **Line range**: 20-30
+- **Signature**: `(repo_root: Path) -> list`
+- **Purpose**: (heuristic) git_diff_files → stage(s) execute. Clasificado por heurística de source analysis.
 
-### `parse_section_body`
+### `load_json`
 
-- **File**: `.jcode/lib/_config_parse.py`
-- **Line range**: 45-67
-- **Signature**: `(body)`
-- **Purpose**: Función parse_section_body participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
+- **File**: `.jcode/lib/handbook_resync.py`
+- **Line range**: 33-37
+- **Signature**: `(path: Path) -> dict`
+- **Purpose**: (heuristic) load_json → stage(s) execute. Clasificado por heurística de source analysis.
 
-### `get_value`
+### `save_json`
 
-- **File**: `.jcode/lib/_config_parse.py`
-- **Line range**: 70-84
-- **Signature**: `(toml_data, key_path)`
-- **Purpose**: Función get_value participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
+- **File**: `.jcode/lib/handbook_resync.py`
+- **Line range**: 40-43
+- **Signature**: `(path: Path, data: dict)`
+- **Purpose**: (heuristic) save_json → stage(s) execute. Clasificado por heurística de source analysis.
+
+### `rebuild_full`
+
+- **File**: `.jcode/lib/handbook_resync.py`
+- **Line range**: 129-139
+- **Signature**: `(repo_root: Path, handbook_dir: Path)`
+- **Purpose**: (heuristic) rebuild_full → stage(s) execute. Clasificado por heurística de source analysis.
 
 ### `main`
 
 - **File**: `.jcode/lib/_config_parse.py`
 - **Line range**: 87-112
 - **Signature**: `()`
-- **Purpose**: Función main participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
+- **Purpose**: (heuristic) main → stage(s) verify, execute. Clasificado por heurística de source analysis.
+
+### `build_stage_skeleton`
+
+- **File**: `.jcode/lib/handbook_phase2.py`
+- **Line range**: 56-58
+- **Signature**: `() -> dict`
+- **Purpose**: (heuristic) build_stage_skeleton → stage(s) execute. Clasificado por heurística de source analysis.
+
+### `_classify_with_heuristic`
+
+- **File**: `.jcode/lib/handbook_phase2.py`
+- **Line range**: 78-145
+- **Signature**: `(func: dict, context: dict) -> list`
+- **Purpose**: (heuristic) _classify_with_heuristic → stage(s) verify, plan, interpret, execute, handoff. Clasificado por heurística de source analysis.
+
+### `run_phase2`
+
+- **File**: `.jcode/lib/handbook_phase2.py`
+- **Line range**: 169-255
+- **Signature**: `(program_graph_path: str='.jcode/handbook/program_graph.json', output_path: str='.jcode/handbook/behavioral_mapping.json') -> dict`
+- **Purpose**: (heuristic) run_phase2 → stage(s) verify, execute. Clasificado por heurística de source analysis.
+
+### `load_json`
+
+- **File**: `.jcode/lib/handbook_verify.py`
+- **Line range**: 17-21
+- **Signature**: `(path: Path) -> dict`
+- **Purpose**: (heuristic) load_json → stage(s) execute. Clasificado por heurística de source analysis.
+
+### `run_phase3`
+
+- **File**: `.jcode/lib/handbook_phase3.py`
+- **Line range**: 272-350
+- **Signature**: `(program_graph_path: str='.jcode/handbook/program_graph.json', mapping_path: str='.jcode/handbook/behavioral_mapping.json', handbook_dir: str='.jcode/handbook') -> dict`
+- **Purpose**: (heuristic) run_phase3 → stage(s) verify, execute. Clasificado por heurística de source analysis.
 
 ### `PythonAdapter.extract`
 
 - **File**: `.jcode/lib/handbook_builder.py`
-- **Line range**: 21-71
+- **Line range**: 112-188
 - **Signature**: `(self, repo_root: Path) -> dict`
-- **Purpose**: Función PythonAdapter.extract participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
+- **Purpose**: (heuristic) PythonAdapter.extract → stage(s) execute. Clasificado por heurística de source analysis.
 
 ### `PythonAdapter._extract_from_tree`
 
 - **File**: `.jcode/lib/handbook_builder.py`
-- **Line range**: 73-97
+- **Line range**: 190-214
 - **Signature**: `(self, tree, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log)`
-- **Purpose**: Función PythonAdapter._extract_from_tree participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
+- **Purpose**: (heuristic) PythonAdapter._extract_from_tree → stage(s) execute. Clasificado por heurística de source analysis.
 
-### `PythonAdapter._record_function`
-
-- **File**: `.jcode/lib/handbook_builder.py`
-- **Line range**: 99-157
-- **Signature**: `(self, func_node, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log, qualname_prefix='')`
-- **Purpose**: Función PythonAdapter._record_function participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
-
-### `PythonAdapter._get_call_name`
+### `_read_source_dirs`
 
 - **File**: `.jcode/lib/handbook_builder.py`
-- **Line range**: 159-165
-- **Signature**: `(self, func_node)`
-- **Purpose**: Función PythonAdapter._get_call_name participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
+- **Line range**: 51-68
+- **Signature**: `(repo_root: Path) -> list`
+- **Purpose**: (heuristic) _read_source_dirs → stage(s) execute. Clasificado por heurística de source analysis.
 
-### `PythonAdapter._is_assign_target`
+### `_read_source_dirs_from_config`
 
 - **File**: `.jcode/lib/handbook_builder.py`
-- **Line range**: 167-171
-- **Signature**: `(self, attr_node)`
-- **Purpose**: Función PythonAdapter._is_assign_target participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
+- **Line range**: 71-82
+- **Signature**: `(repo_root: Path) -> list`
+- **Purpose**: (heuristic) _read_source_dirs_from_config → stage(s) init, execute. Clasificado por heurística de source analysis.
 
 ### `build_program_graph`
 
 - **File**: `.jcode/lib/handbook_builder.py`
-- **Line range**: 174-178
+- **Line range**: 291-295
 - **Signature**: `(repo_root: str) -> dict`
-- **Purpose**: Función build_program_graph participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
+- **Purpose**: (heuristic) build_program_graph → stage(s) execute. Clasificado por heurística de source analysis.
 
 ### `save_program_graph`
 
 - **File**: `.jcode/lib/handbook_builder.py`
-- **Line range**: 181-190
+- **Line range**: 298-307
 - **Signature**: `(graph: dict, output_path: str)`
-- **Purpose**: Función save_program_graph participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
-
-### `main`
-
-- **File**: `.jcode/lib/handbook_builder.py`
-- **Line range**: 193-202
-- **Signature**: `()`
-- **Purpose**: Función main participa en stage(s) execute. Implementa la lógica operacional del harness para la fase execute.
+- **Purpose**: (heuristic) save_program_graph → stage(s) execute. Clasificado por heurística de source analysis.
 
 
 ## Code anchors
