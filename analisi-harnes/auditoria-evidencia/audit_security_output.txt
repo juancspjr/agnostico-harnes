@@ -1,0 +1,47 @@
+=== Tests de seguridad independientes (/home/juan/proyectos/proyecto-01) ===
+
+
+[C-1] Test: circularidad handbook→código
+------------------------------------------------------------
+  Archivos del harness en PG: 2/6
+  ❌ Archivos NO escaneados: {'.jcode/lib/handbook_phase3.py', '.jcode/lib/handbook_resync.py', '.jcode/lib/handbook_phase2.py', '.jcode/lib/handbook_verify.py'}
+  CRITICAL: circularidad rota
+
+[C-2] Test: Phase II no integra LLM real
+------------------------------------------------------------
+  Tiene classify_function_stub: True
+  Tiene llamada a LLM real: False
+  ❌ CRITICAL: solo modo stub implementado
+
+[C-4] Test: builder con path inválido
+------------------------------------------------------------
+  Antes: 12 funciones
+  Después: 0 funciones
+  Exit code: 0
+  ❌ CRITICAL: builder corrompió program_graph.json con 0 funciones
+  (PG restaurado)
+
+[H-1] Test: source_hash vacío
+------------------------------------------------------------
+  L3 entries con source_hash vacío: 11/11
+  ❌ HIGH: source_hash nunca se calcula
+
+[H-4] Test: resync sin Phase I no detecta cambios
+------------------------------------------------------------
+  Output: {
+  "status": "no_op",
+  "reason": "graph_unchanged"
+}
+  ❌ HIGH: resync retornó no_op pese a cambio en código
+
+[H-5] Test: race condition entre resyncs
+------------------------------------------------------------
+  Usa locks: False
+  ❌ HIGH: race condition posible en save_json()
+
+============================================================
+RESUMEN DE TESTS DE SEGURIDAD
+============================================================
+  CRITICAL fallan: 3
+  HIGH fallan:     3
+  Total hallazgos confirmados: 6

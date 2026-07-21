@@ -1,0 +1,36 @@
+=== Auditoría forense de métricas (/home/juan/proyectos/proyecto-01) ===
+
+📊 Conteos directos:
+  PG functions:           12
+  PG call_edges:          101
+  PG state_accesses:      5
+  BM function_assignments: 12
+  CB l3_entries:          11
+  Frozen entries:         0
+
+🔍 L3 entries con source_hash vacío: 11/11
+
+🎯 Distribución de stages en L3:
+  execute: 11
+  ⚠️  Solo 1 stage asignado (esperado 2-6 en handbook real)
+
+📂 Files en PG: 2
+  - .jcode/lib/_config_parse.py
+  - .jcode/lib/handbook_builder.py
+
+❌ Archivos del harness NO escaneados (circularidad rota):
+  - .jcode/lib/handbook_phase2.py
+  - .jcode/lib/handbook_phase3.py
+  - .jcode/lib/handbook_resync.py
+  - .jcode/lib/handbook_verify.py
+
+🔗 Call edges a builtins: 23/101 (22%)
+
+📦 State accesses tipo self._meth (probable call disfrazado): 5/5
+   (de los cuales con patrón de método): 5/5
+
+⚖️  Mismatch analysis:
+  PG == BM (sets iguales)
+  BM == CB (sets iguales)
+
+=== Fin auditoría ===
