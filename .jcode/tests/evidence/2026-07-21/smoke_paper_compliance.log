@@ -2,5 +2,5 @@
   PASS  Pilar 2: Resync automático configurado
   PASS  Pilar 3: BGPD con source verification
   PASS  Edit Planning con Γ declarations
-  PASS  L3 entries > 0: 11
+  PASS  L3 entries > 0: 42
 smoke_paper_compliance: OK
