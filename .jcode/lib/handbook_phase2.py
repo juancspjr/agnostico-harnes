@@ -53,8 +53,52 @@ DEFAULT_STAGES = [
 ]
 
 
-def build_stage_skeleton() -> dict:
-    """Construye el stage skeleton S0 desde PRINCIPLES.md o default."""
+def build_stage_skeleton(repo_root: str = None) -> dict:
+    """Construye el stage skeleton S0 desde PRINCIPLES.md o default.
+
+    Gap 1: Si hay stages configuradas en config.toml [handbook], las usa.
+    Si no, invoca bootstrap-proyecto/stage_generator para generarlas.
+    Si no hay proyecto, usa defaults adaptables.
+    """
+    # Intentar leer desde config.toml
+    if repo_root:
+        r = Path(repo_root)
+        config_path = r / ".jcode" / "config.toml"
+        if config_path.exists():
+            try:
+                import tomllib
+                with open(config_path, "rb") as f:
+                    config = tomllib.load(f)
+                handbook_stages = config.get("handbook", {}).get("stages", None)
+                if handbook_stages:
+                    return {"stages": handbook_stages}
+            except Exception:
+                pass
+
+        # Intentar generar con bootstrap-proyecto
+        try:
+            sys.path.insert(0, str(r / ".jcode/skills/bootstrap-proyecto/lib"))
+            from stage_generator import generate as gen_stages
+            result = gen_stages(str(repo_root))
+            if result.get("stages"):
+                # Try to save to config.toml for next time
+                try:
+                    import tomllib
+                    with open(config_path, "rb") as cf:
+                        c = tomllib.load(cf)
+                    c.setdefault("handbook", {})["stages"] = result["stages"]
+                    import tomli_w
+                    with open(config_path, "wb") as cf:
+                        tomli_w.dump(c, cf)
+                except (ImportError, Exception):
+                    pass
+                return {"stages": result["stages"]}
+        except ImportError:
+            pass
+        except Exception:
+            pass
+
+    # Default legacy
     return {"stages": DEFAULT_STAGES}
 
 
@@ -177,7 +221,7 @@ def run_phase2(program_graph_path: str = ".jcode/handbook/program_graph.json",
     with open(pg_path) as f:
         pg = json.load(f)
 
-    stage_skeleton = build_stage_skeleton()
+    stage_skeleton = build_stage_skeleton(repo_root=str(Path(program_graph_path).parent.parent.parent))
     function_assignments = []
     unmapped = []
 
