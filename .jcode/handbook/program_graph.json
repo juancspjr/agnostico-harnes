@@ -389,17 +389,17 @@
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
         216,
-        278
+        291
       ],
       "signature": "(self, func_node, rel_path, source, functions, call_edges, state_accesses, unresolved_calls_log, qualname_prefix='')",
-      "body_hash": "sha256:4a4283e0d8634791"
+      "body_hash": "sha256:7ff7a90dda9f2851"
     },
     {
       "qualname": "PythonAdapter._get_call_name",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        280,
-        286
+        293,
+        299
       ],
       "signature": "(self, func_node)",
       "body_hash": "sha256:6dc07562c6186fca"
@@ -408,8 +408,8 @@
       "qualname": "PythonAdapter._is_assign_target",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        288,
-        292
+        301,
+        305
       ],
       "signature": "(self, attr_node)",
       "body_hash": "sha256:f533aa889238c33f"
@@ -458,8 +458,8 @@
       "qualname": "build_program_graph",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        295,
-        299
+        308,
+        312
       ],
       "signature": "(repo_root: str) -> dict",
       "body_hash": "sha256:7f71faaf4b77a98d"
@@ -468,8 +468,8 @@
       "qualname": "save_program_graph",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        302,
-        311
+        315,
+        324
       ],
       "signature": "(graph: dict, output_path: str)",
       "body_hash": "sha256:2102a9366cb877df"
@@ -478,8 +478,8 @@
       "qualname": "main",
       "file": ".jcode/lib/handbook_builder.py",
       "line_range": [
-        314,
-        327
+        327,
+        340
       ],
       "signature": "()",
       "body_hash": "sha256:90efec706f65b29b"
@@ -1245,12 +1245,6 @@
     },
     {
       "caller": "PythonAdapter._record_function",
-      "callee": "_is_assign_target",
-      "line": 271,
-      "resolved": false
-    },
-    {
-      "caller": "PythonAdapter._record_function",
       "callee": "hexdigest",
       "line": 239,
       "resolved": false
@@ -1300,107 +1294,76 @@
     {
       "caller": "build_program_graph",
       "callee": "resolve",
-      "line": 297,
+      "line": 310,
       "resolved": false
     },
     {
       "caller": "build_program_graph",
       "callee": "PythonAdapter",
-      "line": 298,
+      "line": 311,
       "resolved": false
     },
     {
       "caller": "build_program_graph",
       "callee": "extract",
-      "line": 299,
+      "line": 312,
       "resolved": false
     },
     {
       "caller": "build_program_graph",
       "callee": "Path",
-      "line": 297,
+      "line": 310,
       "resolved": false
     },
     {
       "caller": "save_program_graph",
       "callee": "Path",
-      "line": 304,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "ArgumentParser",
-      "line": 316,
-      "resolved": false
-    },
-    {
-      "caller": "main",
-      "callee": "add_argument",
       "line": 317,
       "resolved": false
     },
     {
       "caller": "main",
+      "callee": "ArgumentParser",
+      "line": 329,
+      "resolved": false
+    },
+    {
+      "caller": "main",
       "callee": "add_argument",
-      "line": 318,
+      "line": 330,
+      "resolved": false
+    },
+    {
+      "caller": "main",
+      "callee": "add_argument",
+      "line": 331,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "parse_args",
-      "line": 320,
+      "line": 333,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "build_program_graph",
-      "line": 323,
+      "line": 336,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "save_program_graph",
-      "line": 324,
+      "line": 337,
       "resolved": false
     },
     {
       "caller": "main",
       "callee": "exit",
-      "line": 327,
+      "line": 340,
       "resolved": false
     }
   ],
-  "state_accesses": [
-    {
-      "function": "PythonAdapter.extract",
-      "attribute": "self._extract_from_tree",
-      "access": "write",
-      "line": 155
-    },
-    {
-      "function": "PythonAdapter._extract_from_tree",
-      "attribute": "self._record_function",
-      "access": "write",
-      "line": 210
-    },
-    {
-      "function": "PythonAdapter._extract_from_tree",
-      "attribute": "self._record_function",
-      "access": "write",
-      "line": 200
-    },
-    {
-      "function": "PythonAdapter._record_function",
-      "attribute": "self._get_call_name",
-      "access": "write",
-      "line": 254
-    },
-    {
-      "function": "PythonAdapter._record_function",
-      "attribute": "self._is_assign_target",
-      "access": "write",
-      "line": 271
-    }
-  ],
+  "state_accesses": [],
   "unresolved_calls_log": []
 }

@@ -265,15 +265,28 @@ class PythonAdapter:
                     })
 
             # State accesses: self.x = ... (write) vs ... = self.x (read)
-            if isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) and node.value.id == "self":
-                access_type = "unknown"
-                # Buscar si es parte de un Assign target
-                parent_is_assign = self._is_assign_target(node)
-                access_type = "write" if parent_is_assign else "read"
+        # Enfoque: primero identificar todas las self.method() calls, luego
+        # solo registrar accesos a self.X que NO sean parte de un Call.func
+
+        # 1. Build set of self.attr nodes used as method calls
+        method_call_attrs = set()
+        for n in ast.walk(func_node):
+            if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute) \
+               and isinstance(n.func.value, ast.Name) and n.func.value.id == "self":
+                # self.method() — guardar posición única (file:line:attr)
+                method_call_attrs.add((n.lineno, n.func.attr))
+
+        # 2. Walk again, record only real self.x accesses (not self.method())
+        for node in ast.walk(func_node):
+            if isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) \
+               and node.value.id == "self":
+                # Skip if this self.attr is a method call (self.method())
+                if (node.lineno, node.attr) in method_call_attrs:
+                    continue
                 state_accesses.append({
                     "function": qualname,
                     "attribute": f"self.{node.attr}",
-                    "access": access_type,
+                    "access": "read",
                     "line": node.lineno,
                 })
 
