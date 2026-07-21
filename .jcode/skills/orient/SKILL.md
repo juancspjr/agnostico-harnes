@@ -78,6 +78,16 @@ el anti-patrón "empezar ligero y terminar incompleto".
    - **L2**: Identificar archivos y reglas (R-N) involucradas.
    - **Z**: Leer `.jcode/STATE-REGISTERS.md` para los estados. Alistar sitios acoplados.
    - **L3**: Hacer `grep`/`rg` en los archivos para confirmar existencia.
+   - **VERIFY (NUEVO)**: Ejecutar OBLIGATORIAMENTE:
+     ```bash
+     python3 .jcode/lib/handbook_verify.py \
+       --request "<descripción del cambio>" \
+       --stages <stage_ids>
+     ```
+     Retener solo los sites que el script retorna como `verified`.
+     Si todos los candidates están `frozen` o `missing`, el handbook
+     está desactualizado — invocar `handbook_resync.py --auto` antes
+     de continuar.
 2. **Swarm Check**: Revisar `AGENT-PROTOCOL.md §4.10`. ¿Requiere
    spawnear sub-agente? (Si toca backend+frontend, spawnear workers).
 3. **Declaración**: Declarar al usuario el Comportamiento, Scope,
