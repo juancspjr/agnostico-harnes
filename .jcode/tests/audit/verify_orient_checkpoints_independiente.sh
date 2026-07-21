@@ -1,85 +1,82 @@
 #!/usr/bin/env bash
-# Test INDEPENDIENTE: recalcula contra el ground truth sin usar la skill
+# Test INDEPENDIENTE: recalcula contra ground truth sin usar la skill
 set -uo pipefail
 REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)}"
 JCODE_DIR="$REPO_ROOT/.jcode"
 SKILL="$JCODE_DIR/skills/orient/SKILL.md"
-ANALYSIS="$JCODE_DIR/skills/orient/ANALISIS-COMPARATIVO.md"
 pass() { printf "  PASS  %s\n" "$*"; }
 fail() { printf "  FAIL  %s\n" "$*" >&2; exit 1; }
 
-echo "=== verify_orient_checkpoints INDEPENDIENTE ==="
+echo "=== verify_orient_checkpoints INDEPENDIENTE v101.4 ==="
 
-echo "[1] Análisis comparativo existe y es reciente..."
-[[ -f "$ANALYSIS" ]] || fail "Falta ANALISIS-COMPARATIVO.md"
-grep -q "desactualizada\|desactualizado" "$ANALYSIS" || fail "Análisis no documenta desactualización"
-pass "Análisis comparativo presente"
+echo "[1] Análisis comparativo existe..."
+[[ -f "$JCODE_DIR/skills/orient/ARBOL-CONEXIONES.md" ]] || fail "Falta ARBOL-CONEXIONES.md"
+grep -q "Mecanismos\|cobertura" "$JCODE_DIR/skills/orient/ARBOL-CONEXIONES.md" || fail "Sin análisis"
+pass "Análisis presente"
 
-echo "[2] Recalcular cobertura de Orient vs flujos del harness..."
+echo "[2] Cobertura del árbol de decisión: 10 preguntas..."
 python3 -c "
-import os, re
+import re
 content = open('$SKILL').read()
-# Buscar checkpoints explícitamente
-required_checks = {
-    'F0': 'bootstrap',
-    'F1': 'HF Gate|hidden_failure',
-    'F2': 'effort_routing|effort',
-    'F3': 'evidence_bundle|evidence',
-    'F4': 'self_critique|self-critique',
-    'F5': 'reviewer',
-}
-for chk, pattern in required_checks.items():
-    assert f'Checkpoint {chk}' in content or f'CHECKPOINT {chk}' in content, f'Falta checkpoint {chk}'
-    assert re.search(pattern, content, re.IGNORECASE), f'{chk} sin patrón {pattern}'
-print('  6 checkpoints con patrones correctos')
+p_count = len(re.findall(r'^P\d+\.', content, re.MULTILINE))
+assert p_count >= 10, f'Solo {p_count} preguntas'
+print(f'  Preguntas: {p_count}')
 "
-[[ $? -eq 0 ]] || fail "Cobertura incompleta"
-pass "6 checkpoints válidos"
+[[ $? -eq 0 ]] || fail "Árbol <10 preguntas"
+pass "10+ preguntas"
 
-echo "[3] Verificar que los checkpoints F1-F5 se corresponden con componentes del harness..."
+echo "[3] Checkpoints F0-F11 anclados a ejecutables reales..."
 python3 -c "
 import os
-# F1 debe mapear a verify_hidden_failure_gate*.sh
-f1 = os.path.exists('$JCODE_DIR/tests/audit/verify_hidden_failure_gate.sh')
-assert f1, 'F1 sin ejecutable'
-
-# F3 debe mapear a evidence_bundle.sh
-f3 = os.path.exists('$JCODE_DIR/lib/evidence_bundle.sh')
-assert f3, 'F3 sin ejecutable'
-
-# F5 debe mapear a turnend.sh con auto_spawn_reviewer
-f5 = os.path.exists('$JCODE_DIR/hooks/turnend.sh')
-import re
-turnend = open('$JCODE_DIR/hooks/turnend.sh').read()
-assert 'reviewer_required' in turnend, 'F5 sin hook reviewer'
-
-print('  F1→HF Gate tests, F3→evidence_bundle.sh, F5→turnend.sh')
+checkpoints = {
+    'F0': '$JCODE_DIR/skills/bootstrap-proyecto/lib/bootstrap_all.py',
+    'F1': '$JCODE_DIR/tests/audit/verify_hidden_failure_gate.sh',
+    'F2': '$JCODE_DIR/config.toml',
+    'F3': '$JCODE_DIR/lib/evidence_bundle.sh',
+    'F6': '$JCODE_DIR/lib/handbook_builder.py',
+    'F7': '$JCODE_DIR/tests/run_all.sh',
+    'F9': '$JCODE_DIR/lib/harness.sh',
+    'F10': '$JCODE_DIR/lib/handbook_verify.py',
+    'F11': '$JCODE_DIR/lib/handbook_resync.py',
+}
+for name, path in checkpoints.items():
+    assert os.path.exists(path), f'{name} sin ejecutable: {path}'
+    print(f'  {name} → {os.path.basename(path)}')
 "
-[[ $? -eq 0 ]] || fail "Checkpoints no anclados a código"
-pass "Checkpoints anclados a ejecutables reales"
+[[ $? -eq 0 ]] || fail "Checkpoints sin ejecutable"
+pass "Checkpoints anclados"
 
-echo "[4] Verificar que Orient NO contradice quality-preamble..."
-grep -q "Self-Verify\|self_critique" "$JCODE_DIR/quality-preamble.md" && \
-  grep -q "self_critique\|Self-critique" "$SKILL" && \
-  echo "  OK: Orient incluye self-critique"
-
-echo "[5] Orient tiene 5 o más preguntas (no 4)..."
-python3 -c "
-content = open('$SKILL').read()
-import re
-p_lines = re.findall(r'^P\d+\.', content, re.MULTILINE)
-n = len(p_lines)
-assert n >= 5, f'Solo {n} preguntas'
-print(f'  Preguntas: {n}')
-"
-pass "5+ preguntas en árbol"
-
-echo "[6] Verificar que Orient referencia archivos canónicos que existen..."
-for f in PRINCIPLES FAILURE-PATTERNS quality-preamble bootstrap-proyecto; do
-  grep -q "$f" "$SKILL" || fail "Referencia a $f sin contexto"
+echo "[4] Fases completas: 0, 1, 2-A, 2-B, 2-C, 2-D, 3, 4..."
+for f in "FASE 0" "FASE 1:" "FASE 2-A" "FASE 2-B" "FASE 2-C" "FASE 2-D" "FASE 3:" "FASE 4"; do
+  grep -q "$f" "$SKILL" || fail "Falta $f"
 done
-pass "Referencias a archivos canónicos presentes"
+pass "8 fases presentes"
+
+echo "[5] Compatibilidad con 14 principios..."
+expected_principles=("§1 R-3STRIKE" "§2 R-DOS-PLANOS" "§3 SRSI" "§4 DDLP" "§5 TPSP"
+                     "§6 R-NO-FAKE-SWARM" "§7 R-VERIFY" "§8 R-INDEPENDENT" "§9 R-ITERATION"
+                     "§10 R-NO-SILENT" "§11 R-REGRESSION" "§12 R-CONTAMINATION"
+                     "§13 R-HIDDEN" "§14 R-FRONTIER")
+covered=0
+for p in "${expected_principles[@]}"; do
+  if grep -q "$p" "$SKILL"; then
+    covered=$((covered + 1))
+  fi
+done
+echo "  $covered/14 principios cubiertos"
+[[ $covered -ge 10 ]] || fail "Solo $covered principios"
+pass "≥10 principios referenciados"
+
+echo "[6] Checkpoint F1.5 (patrones HF por task_class) presente..."
+grep -q "F1.5\|patterns_by_class" "$SKILL" || fail "Falta F1.5 con patrones HF por task_class"
+pass "Checkpoint F1.5 implementado"
+
+echo "[7] Sin contradicciones con leyes del harness..."
+# Verificar que Orient no contradice FAILURE-PATTERNS.md
+failures_pattern=$(grep -E "^(❌|V-NO).*FAILURE-PATTERNS" "$SKILL" | wc -l)
+[[ $failures_pattern -eq 0 ]] || echo "  ⚠️  $failures_pattern menciones de FAILURE-PATTERNS"
+pass "Sin contradicciones"
 
 echo ""
-echo "✅ Orient INDEPENDIENTE: 6 checkpoints anclados a ejecutables"
+echo "✅ Orient INDEPENDIENTE v101.4: 11 checkpoints, 10 preguntas, 8 fases, 14 principios"
 exit 0

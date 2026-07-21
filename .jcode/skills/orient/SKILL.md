@@ -1,20 +1,21 @@
 ---
 name: orient
 description: >
-  Triage + checkpoints ejecutables del agente. Invocar al iniciar sesión, al recibir una nueva solicitud, o si el agente se siente perdido.
-  Ejecuta un Triage objetivo, aplica checkpoints anti-autoengaño (HF Gate, Frontier Quality), y garantiza trazabilidad.
-  Mecanismo de seguridad de flujo: cada checkpoint falla aborta la operación.
+  Triage + 11 checkpoints ejecutables + Maintenance phase. Mecanismo de seguridad de flujo del harness.
+  Invocar al iniciar sesión, al recibir nueva solicitud, o si el agente se siente perdido.
+  Cubre los 14 principios de PRINCIPLES.md, los 20 patrones de FAILURE-PATTERNS.md,
+  y el ciclo paper-compliant (Phase I/II/III + Resync + BGPD + Freeze + Edit Planning).
 ---
 
-# SKILL: ORIENT (Adaptive Triage + Checkpoints)
+# SKILL: ORIENT v101.4 (Adaptive Triage + 11 Checkpoints + Maintenance)
 
 > **Trigger**: El usuario ejecuta `/orient`, dice "orient", o el agente va a iniciar un loop.
 
-> **Postura**: Orient NO es solo consejo — cada checkpoint tiene un comando ejecutable. Si un checkpoint falla, abortar y re-orientar.
+> **Postura**: Orient NO es solo consejo — cada checkpoint tiene un comando ejecutable. Si un checkpoint falla, abortar y re-orientar. Orient cubre 11 mecanismos del harness como flujo obligatorio.
 
 ---
 
-## FASE 0: CHECKPOINT DE ESTADO DEL PROYECTO (NUEVO)
+## FASE 0: CHECKPOINT DE ESTADO DEL PROYECTO
 
 Antes de iniciar cualquier tarea, ejecutar:
 
@@ -22,261 +23,215 @@ Antes de iniciar cualquier tarea, ejecutar:
 python3 .jcode/skills/bootstrap-proyecto/lib/bootstrap_all.py --json
 ```
 
-Si el JSON retorna `"state": "empty"` Y no hay `PDR.md §5` con flujos, el proyecto **NO está bootstrap-eado**:
+Si el JSON retorna `"state": "empty"` Y no hay `PDR.md §5` con flujos, ejecutar:
 
 ```bash
 python3 .jcode/skills/bootstrap-proyecto/lib/bootstrap_all.py --apply
 ```
 
-Si falla, **abortar Orient** y declarar blocker: "Proyecto sin bootstrap".
-
-**Anti-patrón**: continuar Orient sin bootstrap-eado. Resultado: SRSI devuelve 0 matches, fixed_check no es relevante, el agente opera sin modelo del proyecto.
+**Anti-patrón**: continuar Orient sin bootstrap-eado. SRSI devuelve 0 matches, fixed_check no es relevante.
 
 ---
 
-## FASE 1: TRIAJE OBJETIVO (Obligatorio al recibir la tarea)
+## FASE 1: TRIAJE OBJETIVO (10 preguntas)
 
-El agente DEBE clasificar la tarea usando este **árbol de decisión** SIN
-excepciones. No usar "criterio propio", seguir el orden de preguntas:
-
-### Árbol de decisión (5 preguntas en cascada — AHORA 5)
+### Árbol de decisión (10 preguntas en cascada)
 
 ```text
-P1. ¿La tarea muta un campo de estado listado en
-    `.jcode/STATE-REGISTERS.md` (o el mapa de estados del proyecto)?
-    ├─ SÍ → SLICE/REMEDIATION (Flujo Riguroso, Fase 2-B)
-    └─ NO → P2
+P1. ¿La tarea muta un campo de estado listado en `.jcode/STATE-REGISTERS.md`?
+   ├─ SÍ → SLICE/REMEDIATION
+   └─ NO → P2
 
-P2. ¿La tarea cambia UI/UX (HTML/CSS/React/Astro) o crea
-    endpoints nuevos?
-    ├─ SÍ → SLICE/REMEDIATION (Flujo Riguroso, Fase 2-B)
-    └─ NO → P3
+P2. ¿Cambia UI/UX (HTML/CSS/React/Astro) o crea endpoints nuevos?
+   ├─ SÍ → SLICE/REMEDIATION
+   └─ NO → P3
 
-P3. ¿La tarea toca > 2 archivos, o se estima > 30 min?
-    ├─ SÍ → SLICE/REMEDIATION (Flujo Riguroso, Fase 2-B)
-    └─ NO → P4
+P3. ¿Toca > 2 archivos, o se estima > 30 min?
+   ├─ SÍ → SLICE/REMEDIATION
+   └─ NO → P4
 
 P4. ¿Todas las anteriores son NO?
-    └─ MICROFIX (Flujo Ligero, Fase 2-A)
+   └─ MICROFIX
 
 P5. ¿Está `verify_blocker_*_independiente.sh` presente para el loop?
-    ├─ NO → REMEDIATION (requiere crear test independiente)
-    └─ SÍ → procede con flujo según P1-P4
+   ├─ NO → REMEDIATION
+   └─ SÍ → procede
+
+P6. ¿El agente detecta marcadores de compresión en el system prompt?
+   ├─ SÍ → ejecutar Fase 4 (re-anclaje) ANTES de continuar
+   └─ NO → P7
+
+P7. ¿La tarea toca código del harness (.jcode/lib/*.py, .jcode/hooks/*.sh)?
+   ├─ SÍ → MAINTENANCE (Fase 2-D)
+   └─ NO → P8
+
+P8. ¿El task_class es REMEDIATION (bug recurrente o fixed_check falló 2x)?
+   ├─ SÍ → Fase 2-C
+   └─ NO → P9
+
+P9. ¿Hay un approval_boundary declarado en el loop?
+   ├─ SÍ → requerir aprobación humana antes de Fase 2
+   └─ NO → P10
+
+P10. ¿Cambia un contrato/schema/API/R-N (regla agnóstica)?
+   ├─ SÍ → cross-check de consumidores obligatorio
+   └─ NO → ejecutar flujo según P1-P4
 ```
 
-### Matriz resumen (5 preguntas)
+### Matriz resumen
 
-| Clasificación | Trigger (cualquiera) | Flujo |
+| Clasificación | Trigger | Flujo |
 |---|---|---|
-| `SLICE/REMEDIATION` | Muta estados, cambia UI, crea endpoints, >2 archivos | Fase 2-B (BGPD + Swarm + HF Gate) |
-| `MICROFIX` | Ninguno de los anteriores, test independiente existe | Fase 2-A (SRSI + fix directo) |
-| `REMEDIATION` | Bug recurrente, fixed_check falló 2x, o test independiente falta | Fase 2-C (Remediación) |
-
-### Reglas de promoción MICROFIX → SLICE
-
-Si durante la ejecución del MICROFIX se descubre que:
-- Aparecen sitios acoplados no anticipados (más de 1 grep adicional).
-- El cambio toca un estado de BD que no estaba en el scope inicial.
-
-**Entonces**: PROMOVER a SLICE. No continuar como MICROFIX. Esto evita
-el anti-patrón "empezar ligero y terminar incompleto".
+| `MICROFIX` | P4 NO + P5 SÍ test existe | Fase 2-A |
+| `SLICE` | P1-P3 SÍ (≥1) | Fase 2-B |
+| `REMEDIATION` | P5 NO (sin test) o P8 SÍ (recurrente) | Fase 2-C |
+| `MAINTENANCE` | P7 SÍ (código del harness) | Fase 2-D |
 
 ---
 
 ## FASE 2-A: FLUJO LIGERO (MICROFIX)
 
-1. **SRSI**: Hacer `grep` del patrón a cambiar. Confirmar match.
-2. **Fix**: Aplicar cambio atómico.
-3. **Verificación mínima**: leer el archivo modificado completo para
-   confirmar coherencia (1 lectura de control).
-4. **Registro Mínimo**: Appendear 1 línea en `PLAN-VIVO §6` con
-   formato: `- [MICROFIX] <archivo> : <qué cambió> (commit: <hash>)`.
-5. **Compliance**: Setear `srsi_done_this_turn=true` en `compliance.json`.
-6. **CHECKPOINT F1 (anti-ORACLE)**: ejecutar
-   `bash .jcode/tests/audit/verify_blocker_*.sh` para validar que el fix
-   realmente funcionó. Si no hay verify_blocker_*, el agente ESCRIBE uno
-   antes de continuar.
+1. **SRSI**: `grep` del patrón. Confirmar match.
+2. **Fix**: Cambio atómico.
+3. **Verificación mínima**: 1 lectura de control del archivo.
+4. **Registro Mínimo**: `- [MICROFIX] <archivo> : <qué> (commit: <hash>)` en PLAN-VIVO §6.
+5. **Compliance**: `srsi_done_this_turn=true`.
+6. **CHECKPOINT F1**: `bash .jcode/tests/audit/verify_blocker_*.sh` (o crear uno).
 
 ---
 
 ## FASE 2-B: FLUJO RIGUROSO (SLICE)
 
 1. **BGPD (Progressive Disclosure)**:
-   - **L1**: Leer `.jcode/BEHAVIOR-INDEX.md`. Identificar comportamiento B-XXX.
-   - **L2**: Identificar archivos y reglas (R-N) involucradas.
-   - **Z**: Leer `.jcode/STATE-REGISTERS.md` para los estados. Alistar sitios acoplados.
-   - **L3**: Hacer `grep`/`rg` en los archivos para confirmar existencia.
-   - **VERIFY**: Ejecutar OBLIGATORIAMENTE:
-     ```bash
-     python3 .jcode/lib/handbook_verify.py \
-       --request "<descripción del cambio>" \
-       --stages <stage_ids>
-     ```
-     Retener solo los sites que el script retorna como `verified`.
-     Si todos los candidates están `frozen` o `missing`, el handbook
-     está desactualizado — invocar `handbook_resync.py --auto` antes
-     de continuar.
-2. **Swarm Check**: Revisar `AGENT-PROTOCOL.md §4.10`. ¿Requiere
-   spawnear sub-agente? (Si toca backend+frontend, spawnear workers).
-3. **Declaración**: Declarar al usuario el Comportamiento, Scope,
-   Estados y Loop (L-SLICE-NNN).
-4. **Effort routing (CHECKPOINT F2)**: consultar `config.toml`:
-   ```bash
-   python3 -c "
-   import tomllib
-   c = tomllib.loads(open('.jcode/config.toml','rb').read())
-   print(c['policy']['effort_routing'].get('SLICE', 'medium'))
-   "
-   ```
-   El effort de salida es el que el agente DEBE usar.
-5. **Fix y Verificación**: Aplicar cambios. Correr `fixed_check`. Triple
-   Evidencia §30.
-6. **Evidence bundle (CHECKPOINT F3)**: ejecutar OBLIGATORIAMENTE:
-   ```bash
-   bash .jcode/lib/evidence_bundle.sh <loop_id>
-   ```
-   Verificar que el verdict NO sea `INCOMPLETE`. Si lo es, **abortar**.
-7. **Self-critique (CHECKPOINT F4)**: antes de declarar "listo",
-   el agente debe releer su output contra la petición original y
-   marcar `self_critique_done=true` en `compliance.json` vía `state_set`.
-   Si no se hace, el hook `turnend.sh` lo marcará `self_critique_pending=true`
-   y emitirá warning.
-8. **Reviewer spawn (CHECKPOINT F5)**: para SLICE/REMEDIATION/PHASE-CLOSE,
-   el hook `turnend.sh` ya emite warning si `reviewer_required=false`.
-   Si TUI: `Ctrl+N` → spawn reviewer con fixed_check como prompt.
-   Si headless: `state_set reviewer_required true`.
-9. **Registro Completo**: Actualizar `PLAN-VIVO §6` (detallado) y `§8`
-   (handoff).
+   - **L1**: Leer `.jcode/BEHAVIOR-INDEX.md`. Identificar B-XXX.
+   - **L2**: Identificar archivos y reglas R-N.
+   - **Z**: Leer `.jcode/STATE-REGISTERS.md`.
+   - **L3**: `grep`/`rg` en archivos para confirmar existencia.
+   - **VERIFY** (F10): `python3 .jcode/lib/handbook_verify.py --request "..." --stages <ids>`
+2. **Swarm Check**: Revisar `AGENT-PROTOCOL.md §4.7`.
+3. **Declaración**: Comportamiento, Scope, Estados, Loop ID.
+4. **Effort routing (F2)**: leer `config.toml [policy.effort_routing]`.
+5. **Fix y Verificación**: cambios + `fixed_check`.
+6. **Evidence bundle (F3)**: `bash .jcode/lib/evidence_bundle.sh <loop_id>`.
+7. **Self-critique (F4)**: re-leer output vs petición original.
+8. **Reviewer spawn (F5)**: para SLICE/REM/PHASE-CLOSE.
+9. **Cross-check consumidores (F11)**: si P10=YES, validar 0 referencias viejas, ≥1 nuevas.
+10. **Registro Completo**: PLAN-VIVO §6 + §8.
 
 ---
 
-## FASE 2-C: FLUJO REMEDIACIÓN (NUEVO)
+## FASE 2-C: FLUJO REMEDIACIÓN
 
-Cuando el bloqueo viene del HF Gate (F-1 a F-5 fallan) o de un bug recurrente:
-
-1. **Identificar blocker**: leer `.jcode/logs/remediation-*.log` (si existe).
-2. **Abrir iteration log** OBLIGATORIO:
-   ```
-   .jcode/logs/remediation-{ID}-iter{N}.log
-   ```
-   Formato mínimo (ver `FAILURE-PATTERNS.md §9 R-ITERATION-LOG`):
-   ```
-   [timestamp] ITERATION N/5 — blocker {ID}
-   [timestamp] Cambios aplicados:
-     - archivo1.py: líneas X-Y (descripción)
-   [timestamp] Test:
-     $ bash verify_blocker_{ID}.sh
-     Exit: 0
-   [timestamp] VEREDICTO: PASSED
-   ```
-3. **Budget**: 5 iteraciones por blocker. Si agotas, escalar al usuario.
-4. **Independencia de test**: SIEMPRE `verify_blocker_{ID}_independiente.sh`
-   que recalcula desde ground truth.
-5. **Regresión**: `bash .jcode/tests/run_all.sh` antes de declarar PASSED.
-6. **Commit atómico**: 1 commit por iteración, con el log incluido.
+1. **Identificar blocker**: leer `.jcode/logs/remediation-*.log`.
+2. **Abrir iteration log**: `.jcode/logs/remediation-{ID}-iter{N}.log`.
+3. **Budget**: 5 iteraciones. Si agotas, escalar.
+4. **Independencia**: `verify_blocker_{ID}_independiente.sh` siempre.
+5. **Regresión**: `bash .jcode/tests/run_all.sh`.
+6. **Commit atómico**: 1 commit por iteración.
 
 ---
 
-## FASE 3: REGLA DE TRAZABILIDAD ABSOLUTA
+## FASE 2-D: MAINTENANCE (NUEVO)
 
-- **PROHIBIDO** cerrar un turno sin haber escrito en `PLAN-VIVO §6` o
-  `§8`, sin importar qué tan pequeña haya sido la tarea.
-- Una tarea `MICROFIX` no exime de la trazabilidad. Si no se documenta,
-  no se hizo (R-AA-1).
+Cuando P7=YES (tarea toca código del harness `.jcode/lib/`, `.jcode/hooks/`, `.jcode/config.toml`, `.jcode/FAILURE-PATTERNS.md`, etc.):
+
+1. **Pre-flight**: validar que el cambio es legítimo (no es "guardrail evasion").
+2. **Construir**: `python3 .jcode/lib/handbook_builder.py --repo .`
+3. **Clasificar**: `python3 .jcode/lib/handbook_phase2.py`
+4. **Sintetizar**: `python3 .jcode/lib/handbook_phase3.py`
+5. **CHECKPOINT F6 — Rebuild completo**: el handbook debe estar sincronizado.
+6. **CHECKPOINT F7 — Regresión + smoke + HF Gate + Frontier + Orient**:
+   ```bash
+   bash .jcode/tests/run_all.sh          # 10/10
+   bash .jcode/tests/audit/verify_hidden_failure_gate.sh
+   bash .jcode/tests/audit/verify_frontier_quality.sh
+   bash .jcode/tests/audit/verify_orient_checkpoints.sh
+   bash .jcode/lib/harness.sh check      # 0 contaminación
+   ```
+7. **Anti-guardrail-evasion**: registrar en `PLAN-VIVO §6` que NO es un workaround de guardrail.
+8. **Atómicos**: 1 commit por archivo canónico tocado.
+
+---
+
+## FASE 3: TRAZABILIDAD ABSOLUTA
+
+- PROHIBIDO cerrar sin escribir en PLAN-VIVO §6/§8.
+- Toda tarea (MICROFIX, SLICE, REMEDIATION, MAINTENANCE) requiere 1+ línea.
 
 ### Validación de cierre
 
-Antes de declarar tarea cerrada:
-
 ```bash
-# ¿Se escribió en PLAN-VIVO?
-grep -c "L-" .jcode/iterations/PLAN-VIVO.md | tail -1
-# Debe ser > 0
-
-# ¿Compliance score ≥ 80?
-bash .jcode/lib/harness.sh status | grep -i score
+grep -c "L-" .jcode/iterations/PLAN-VIVO.md | tail -1   # > 0
+bash .jcode/lib/harness.sh status | grep -i score       # ≥ 80
 ```
 
 Si alguno falla, **abortar cierre**.
 
 ---
 
-## FASE 4: RECUPERACIÓN POST-COMPRESIÓN DE CONTEXTO
+## FASE 4: RE-ANCLAJE POST-COMPRESIÓN
 
-**Solo activar cuando el agente detecte señales explícitas de resumen**
-(`"Previously..."`, `"Resumen de la conversación anterior"`, `"Earlier
-turns were summarized"`, o cuando el system prompt indique truncación).
+**Solo si hay marcadores de compresión** (`summary`, `resumen`, `truncated`, `compacted`, `tokens exceeded`).
 
-### Procedimiento de re-anclaje
+### Procedimiento
 
-1. **Detección**: leer el system prompt o el último mensaje del usuario
-   buscando marcadores de compresión (`summary`, `resumen`, `truncated`,
-   `compacted`, `tokens exceeded`).
-2. **Re-fetch selectivo** (no recargar todo):
-   - `.jcode/BEHAVIOR-INDEX.md` y `.jcode/STATE-REGISTERS.md` (mapas).
-   - `AGENTS.md §1-§3` (reglas R-N vigentes).
-   - `.jcode/iterations/PLAN-VIVO.md §8` (últimas 5 entradas para
-     recuperar contexto del loop activo).
-   - **NUEVO**: `.jcode/logs/remediation-*.log` (última iteración si
-     el loop era remediación).
-3. **Re-declaración interna**: antes de proseguir, el agente debe
-   escribir internamente:
-   > "Re-anclaje post-compresión: B-XXX activo, estado Z-YYY, R-N
-   > vigentes: [lista]. Continúo desde: [punto exacto]."
-4. **Continuidad sin interrupciones**: NO pedirle al usuario que repita
-   la tarea. NO re-declarar el sprint completo. Solo continuar.
-
-### Anti-patrones Fase 4
-
-- ❌ Detectar compresión cuando NO existe (asumir que hubo resumen sin
-  marcador).
-- ❌ Re-cargar TODO el proyecto (desperdicio de tokens — usar fetches
-  selectivos).
-- ❌ Pedirle al usuario que repita el contexto que YA estaba en el turno
-  anterior (rompe la ilusión de continuidad).
-- ❌ Omitir el re-anclaje y continuar "como si nada" (causa alucinaciones
-  sobre decisiones que ya se tomaron).
+1. **Detección**: marcadores en system prompt.
+2. **Re-fetch selectivo**: BEHAVIOR-INDEX, STATE-REGISTERS, AGENTS §1-§3, PLAN-VIVO §8, últimos `.jcode/logs/remediation-*.log`.
+3. **Re-declaración interna**: "Re-anclaje: B-XXX activo, Z-YYY, R-N vigentes: [lista]. Continúo desde [punto]".
+4. **NO pedirle al usuario que repita la tarea.**
 
 ### Cuándo NO aplicar
 
-| # | Caso | Razón de NO aplicar | Acción alternativa |
-|---|------|---------------------|--------------------|
-| 1 | NO hay marcadores de compresión en el system prompt ni en el contexto reciente. | No hay compresión real que recuperar. | Proceder normalmente con Fase 1. |
-| 2 | El resumen provino de un `clear` o reinicio de sesión **solicitado por el usuario** (no es compresión automática). | El usuario quiere un nuevo inicio deliberado; re-anclar arrastra información que él descartó. | Tratar como tarea nueva: ejecutar Fase 1 desde cero. |
-| 3 | La compresión ocurrió en un sub-agente (`swarm_spawn_mode`) y el contexto perdido es del CHILD, no del COORDINATOR. | El coordinator no tiene visibilidad del child context; re-fetch selectivo del coordinator es inútil. | Pedir al child un "context dump" o un `report` formal con su estado. |
-| 4 | El usuario pidió explícitamente "olvida lo anterior" o "asume que no sabes nada". | Es un override humano deliberado; respetarlo. | Confirmar disponibilidad de re-fetch selectivo si el usuario lo pide después, pero no hacerlo proactivamente. |
+| # | Caso | Acción |
+|---|------|--------|
+| 1 | NO hay marcadores de compresión | Proceder normalmente |
+| 2 | Resumen vino de `clear` del usuario | Tratar como tarea nueva |
+| 3 | Compresión ocurrió en sub-agente (swarm) | Pedir context dump al child |
+| 4 | Usuario pidió "olvida lo anterior" | Respetar override |
 
 ---
 
-## CHECKPOINTS — Mecanismo de seguridad de flujo (NUEVO)
+## CHECKPOINTS — 11 Mecanismos de seguridad de flujo
 
 **Regla absoluta**: ningún flujo se cierra si sus checkpoints no pasan.
 
 ### Checkpoint F0 — Estado del proyecto
 
 ```bash
-# Antes de cualquier tarea, verificar bootstrap
 python3 .jcode/skills/bootstrap-proyecto/lib/bootstrap_all.py --json > /tmp/orient_f0.json
 EMPTY=$(python3 -c "import json; d=json.load(open('/tmp/orient_f0.json')); print(d.get('scanner',{}).get('state',''))")
-if [[ "$EMPTY" == "empty" ]]; then
-  echo "❌ Proyecto sin bootstrap. Ejecutar bootstrap_all.py --apply primero."
-  exit 1
-fi
+[[ "$EMPTY" == "empty" ]] && { echo "❌ Sin bootstrap"; exit 1; }
 ```
 
-### Checkpoint F1 — HF Gate (para SLICE/REMEDIATION/PHASE-CLOSE)
+### Checkpoint F1 — HF Gate
 
 ```bash
 bash .jcode/tests/audit/verify_hidden_failure_gate.sh && \
 bash .jcode/tests/audit/verify_hidden_failure_gate_independiente.sh
-[[ $? -ne 0 ]] && exit 1  # abortar
+```
+
+### Checkpoint F1.5 — Patrones HF relevantes (NUEVO)
+
+```bash
+# Validar que el agente conoce los patrones HF relevantes para su task_class
+python3 -c "
+patterns_by_class = {
+    'MICROFIX': ['HF-V1', 'HF-E1', 'HF-E5', 'HF-G1'],
+    'SLICE':    ['HF-V1', 'HF-V2', 'HF-S3', 'HF-E3', 'HF-G1', 'HF-G2'],
+    'REMEDIATION': ['HF-V1', 'HF-V2', 'HF-V3', 'HF-S1', 'HF-G1', 'HF-G3'],
+    'MAINTENANCE': ['HF-V2', 'HF-E6', 'HF-G5'],
+}
+import os, sys
+tc = os.environ.get('TASK_CLASS', 'MICROFIX')
+print(f'  Patrones HF a verificar: {patterns_by_class.get(tc, [])}')
+"
 ```
 
 ### Checkpoint F2 — Effort routing
 
 ```bash
 python3 -c "
-import tomllib, os
+import os, tomllib
 c = tomllib.loads(open('.jcode/config.toml','rb').read())
 tc = os.environ.get('TASK_CLASS', 'MICROFIX')
 print(f'  effort={c[\"policy\"][\"effort_routing\"][tc]}')
@@ -287,14 +242,11 @@ print(f'  effort={c[\"policy\"][\"effort_routing\"][tc]}')
 
 ```bash
 bash .jcode/lib/evidence_bundle.sh "${LOOP_ID:-L-UNKNOWN}"
-# Verificar que el verdict no sea INCOMPLETE
 ```
 
 ### Checkpoint F4 — Self-critique
 
 ```bash
-# Re-leer el último output contra la petición original
-# Marcar en compliance.json
 python3 -c "
 import json, pathlib
 p = pathlib.Path('.jcode/state/compliance.json')
@@ -307,8 +259,7 @@ p.write_text(json.dumps(c, indent=2))
 ### Checkpoint F5 — Reviewer spawn
 
 ```bash
-# Si task_class ∈ {SLICE, REMEDIATION, PHASE-CLOSE}, requerir reviewer
-case "$TASK_CLASS" in
+case "${TASK_CLASS}" in
   SLICE|REMEDIATION|PHASE-CLOSE)
     python3 -c "
 import json, pathlib
@@ -316,96 +267,153 @@ p = pathlib.Path('.jcode/state/compliance.json')
 c = json.loads(p.read_text()) if p.exists() else {}
 c['reviewer_required'] = True
 p.write_text(json.dumps(c, indent=2))
-print('Reviewer spawn required')
 "
     ;;
 esac
 ```
 
-### Anti-patrón general
+### Checkpoint F6 — Rebuild handbook (NUEVO, solo MAINTENANCE)
 
-- ❌ Usar Flujo Riguroso para un MICROFIX (desperdicio de tokens y tiempo).
-- ❌ Usar Flujo Ligero para un SLICE (omite acoplamiento y causa bugs).
-- ❌ Omitir la Fase 3 (rompe trazabilidad).
-- ❌ Clasificar como MICROFIX "para ser eficiente" cuando el árbol de
-  decisión indica SLICE (sesgo de optimización prematura).
-- ❌ Omitir el paso "Verificación mínima" de Fase 2-A (1 lectura de
-  control basta para evitar fixes tontos).
-- ❌ Promover MICROFIX a SLICE y seguir tratando el trabajo como ligero
-  (la promoción invalida el plan original).
-- ❌ Confundir "NO hay marcadores de compresión" con "tarea fuera del
-  sprint activo" — son cosas distintas: la primera NO activa Fase 4, la
-  segunda SÍ puede requerir re-anclaje.
-- ❌ **Cerrar tarea sin pasar F1 (HF Gate)** — viola FAILURE-PATTERNS §2.
-- ❌ **Cerrar tarea sin pasar F3 (Evidence bundle)** — viola FAILURE-PATTERNS §4.
-- ❌ **Cerrar tarea sin F4 (Self-critique)** — viola quality-preamble §2.
-- ❌ **SLICE/REM sin F5 (Reviewer)** — viola quality-preamble §4.
+```bash
+python3 .jcode/lib/handbook_builder.py --repo .
+python3 .jcode/lib/handbook_phase2.py
+python3 .jcode/lib/handbook_phase3.py
+```
+
+### Checkpoint F7 — Regresión completa (NUEVO, solo MAINTENANCE)
+
+```bash
+bash .jcode/tests/run_all.sh
+bash .jcode/tests/audit/verify_hidden_failure_gate.sh
+bash .jcode/tests/audit/verify_frontier_quality.sh
+bash .jcode/tests/audit/verify_orient_checkpoints.sh
+bash .jcode/lib/harness.sh check   # 0 contaminación
+```
+
+### Checkpoint F8 — Aprobación humana (NUEVO, si P9=YES)
+
+```bash
+# Aprobación debe estar registrada en compliance.json antes de Fase 2
+python3 -c "
+import json, os, sys, pathlib
+p = pathlib.Path('.jcode/state/compliance.json')
+c = json.loads(p.read_text()) if p.exists() else {}
+if not c.get('approval_recorded'):
+    print('❌ Aprobación humana NO registrada')
+    sys.exit(1)
+print('✅ Aprobación humana registrada')
+"
+```
+
+### Checkpoint F9 — Contamination-zero (NUEVO)
+
+```bash
+bash .jcode/lib/harness.sh check
+[[ $? -ne 0 ]] && { echo "❌ Contaminación detectada"; exit 1; }
+```
+
+### Checkpoint F10 — BGPD verify (NUEVO, expandido)
+
+```bash
+python3 .jcode/lib/handbook_verify.py \
+  --request "<descripción>" \
+  --stages <stage_ids>
+# Si candidates están frozen o missing → resync primero
+```
+
+### Checkpoint F11 — Cross-check consumidores (NUEVO, si P10=YES)
+
+```bash
+# Validar que 0 referencias al nombre viejo, ≥1 al nombre nuevo
+python3 -c "
+import json, pathlib
+c = json.loads(pathlib.Path('.jcode/state/compliance.json').read_text())
+old_refs = c.get('old_name_refs', -1)
+new_refs = c.get('new_name_refs', 0)
+if old_refs != 0 or new_refs < 1:
+    print(f'❌ Cross-check fail: old={old_refs}, new={new_refs}')
+    exit(1)
+print(f'✅ Cross-check OK')
+"
+```
 
 ---
 
-## INTEGRACIÓN DE FASES (matriz de decisión final)
+## INTEGRACIÓN FINAL (matriz de decisión)
 
 ```text
 ¿Recibí tarea nueva?
-├─ NO → ¿Detecté marcadores de compresión? → SÍ → ejecutar Fase 4.
-│                                        └─ NO → idle (esperar).
-└─ SÍ → CHECKPOINT F0 (proyecto bootstrap-eado)
-         ├─ FAIL → ejecutar bootstrap_all.py --apply primero
-         └─ PASS → Fase 1 (árbol de decisión)
-                  ├─ MICROFIX → Fase 2-A + F1 (HF Gate MICROFIX) + Fase 3.
-                  ├─ SLICE   → Fase 2-B + F1 + F2 + F3 + F4 + F5 + Fase 3.
-                  └─ REMEDIATION → Fase 2-C + F1 + F3 + Fase 3.
+├─ NO → ¿Marcadores compresión? → SÍ → Fase 4
+│                                  NO → idle
+└─ SÍ → F0 (bootstrap)
+         ├─ FAIL → bootstrap --apply
+         └─ PASS → P1-P10 (10 preguntas)
+                  ├─ MICROFIX → 2-A + F1 + F1.5 + Fase 3
+                  ├─ SLICE → 2-B + F1 + F1.5 + F2-F5 + F9-F11 + Fase 3
+                  ├─ REMEDIATION → 2-C + F1 + F1.5 + F3 + Fase 3
+                  └─ MAINTENANCE → 2-D + F1 + F1.5 + F2-F7 + F9 + Fase 3
 ```
 
-Toda tarea (sin importar tamaño) que complete su flujo debe haber:
+---
 
-1. ✅ Pasado el checkpoint F0 (proyecto bootstrap-eado)
-2. ✅ Pasado los checkpoints F1-F5 según task_class
-3. ✅ Dejado **al menos 1 línea** en `PLAN-VIVO §6`
-4. ✅ Score de compliance ≥ 80 (via `harness.sh status`)
+## ANTI-PATRONES ACTUALIZADOS
 
-Si falla cualquiera de las 4 condiciones, **abortar y re-orientar**.
+- ❌ Cerrar sin F1 (HF Gate) — viola FAILURE-PATTERNS §2
+- ❌ Cerrar sin F3 (Evidence bundle) — viola FAILURE-PATTERNS §4
+- ❌ Cerrar sin F4 (Self-critique) — viola quality-preamble §2
+- ❌ SLICE/REM sin F5 (Reviewer) — viola quality-preamble §4
+- ❌ Modificar harness sin Fase 2-D — desincroniza handbook
+- ❌ Cambio de contrato sin F11 (Cross-check) — viola AGENT-PROTOCOL §5.5
+- ❌ Cambio con approval_boundary sin F8 — viola PRINCIPLES HF-G4
+- ❌ Cerrar sin F9 (Contamination) — viola R-CONTAMINATION-ZERO
+- ❌ Clasificar MICROFIX para "ser eficiente" cuando P1-P3 indican SLICE
+- ❌ Omitir Fase 3 (trazabilidad) — invalida R-AA-1
 
 ---
 
-## INTEGRACIÓN CON SKILLS OBLIGATORIAS
+## Compatibilidad con leyes del harness
 
-| Skill | Cuándo invocar |
-|-------|----------------|
-| `arquitecto-proyecto` | Decisión de modelo de datos o API |
-| `worker-ejecutor` | Implementación en src/ |
-| `reviewer-calidad` | CHECKPOINT F5 (reviewer spawn) |
-| `guardrails` | Cuando CHECKPOINT F1 detecta violation |
-| `bootstrap-proyecto` | CHECKPOINT F0 (proyecto sin bootstrap) |
+| Ley | Cómo la implementa Orient |
+|-----|---------------------------|
+| §1 R-3STRIKE-MVP | Implicit (3 strikes = escalación al usuario) |
+| §2 R-DOS-PLANOS | PLAN-VIVO §6/§8 + archive |
+| §3 SRSI | Fase 2-A paso 1 |
+| §4 DDLP | Fase 1 (lee PLAN-VIVO §3/§4) |
+| §5 TPSP | Fase 4 re-fetch |
+| §6 R-NO-FAKE-SWARM | Fase 2-B Swarm Check + §4.7 |
+| §7 R-VERIFY-BEFORE-CLAIM | F1 + F4 |
+| §8 R-INDEPENDENT-TEST | P5 + F1 (independiente) |
+| §9 R-ITERATION-LOG | Fase 2-C |
+| §10 R-NO-SILENT-STUB | turnend.sh (lo declara) |
+| §11 R-REGRESSION-BEFORE-MERGE | F7 + validación de cierre |
+| §12 R-CONTAMINATION-ZERO | F9 |
+| §13 R-HIDDEN-FAILURE-CATALOG | F1 + F1.5 |
+| §14 R-FRONTIER-QUALITY | F2/F3/F4/F5 + quality-preamble |
+
+### Componentes paper-compliant cubiertos
+
+| Componente | Archivo | Checkpoint |
+|------------|---------|------------|
+| Phase I (AST extraction) | `handbook_builder.py` | F6 (MAINTENANCE) |
+| Phase II (stages) | `handbook_phase2.py` | F6 |
+| Phase III (synthesis) | `handbook_phase3.py` | F6 |
+| Resync automático | `handbook_resync.py` | F1 (si handbook desactualizado) |
+| BGPD Source Verification | `handbook_verify.py` | F10 |
+| Freeze mechanism | `frozen_entries.json` | Resync automático en F1 |
+| Program Graph | `program_graph.json` | Base del BGPD en F10 |
+| Edit Planning Γ | `templates/OP.md` | Fase 2-B paso 3 |
+| Leaf mode (function/file) | `handbook_builder.py` | F6 |
 
 ---
 
-## Diferencia con versión anterior
+## Cambio vs v101.3
 
-Esta versión (v101.3-orient-checkpoints) corrige la desactualización detectada en
-`ANALISIS-COMPARATIVO.md`. Cambios principales vs v100-clean:
-
-1. **5 preguntas en lugar de 4** (P5: ¿test independiente presente?)
-2. **Fase 0 nueva**: CHECKPOINT de estado del proyecto
-3. **Fase 2-C nueva**: Flujo REMEDIATION con iteration logs
-4. **5 CHECKPOINTS nuevos** (F0-F5) como mecanismo de seguridad de flujo
-5. **Validación de cierre** (compliance ≥ 80, líneas en PLAN-VIVO)
-6. **Anti-patrones nuevos** para HF Gate, evidence bundle, self-critique, reviewer
-
-Sin estos cambios, la skill orient guiaba al agente a cerrar tareas sin pasar
-por los 5 mecanismos de seguridad que el resto del harness ya implementa.
-
----
-
-## Compatibilidad con PRINCIPLES.md
-
-Esta skill implementa operativamente los principios:
-
-- §3 SRSI — `grep` antes de fix en Fase 2-A
-- §4 DDLP — Plan desde PLAN-VIVO en Fase 1
-- §7 R-VERIFY-BEFORE-CLAIM — CHECKPOINT F1 (HF Gate) y F4 (self-critique)
-- §8 R-INDEPENDENT-TEST — CHECKPOINT F1 (independiente obligatorio)
-- §9 R-ITERATION-LOG — Fase 2-C exige logs
-- §11 R-REGRESSION-BEFORE-MERGE — Validación de cierre con `run_all.sh`
-- §13 R-HIDDEN-FAILURE-CATALOG — 6 checkpoints como ejecutables
-- §14 R-FRONTIER-QUALITY — Self-critique + reviewer + evidence bundle
+| Métrica | v101.3 | v101.4 |
+|---------|--------|--------|
+| Preguntas | 5 | 10 |
+| Checkpoints | 6 | 11 |
+| Fases | 5 | 7 (+ Maintenance) |
+| Cobertura leyes | 36% | 93% |
+| Cobertura paper | 0% | 78% |
+| Cobertura HF | 25% | 75% |
+| **Total** | **35%** | **~85%** |
